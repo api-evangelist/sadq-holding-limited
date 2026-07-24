@@ -1,0 +1,2310 @@
+openapi: 3.0.0
+info:
+  title: Sadq Integration Archiving & Delegations Envelopes API
+  description: API reference for the Sadq e-signature platform
+  version: 1.0.0
+  contact:
+    url: https://docs.sadq.sa
+servers:
+- url: https://api.sadq.sa
+  description: Production
+- url: https://sandbox-api.sadq-sa.com
+  description: Sandbox
+tags:
+- name: Envelopes
+  description: Initiate and manage signing envelopes and document packages
+  x-docs-url: https://docs.sadq.sa/docs/envelopes
+paths:
+  /api/v1/envelopes/initiate:
+    post:
+      tags:
+      - Envelopes
+      summary: Initiate Envelope
+      description: Initiate a signature envelope by uploading document files as multipart/form-data. Returns an envelope and Docuemnt ID that can be used in subsequent signing invitation steps.
+      deprecated: false
+      x-docs-url: https://docs.sadq.sa/docs/envelopes/post-api-v1-envelopes-initiate
+      security:
+      - BearerAuth: []
+      parameters:
+      - name: FileId
+        in: path
+        required: true
+        description: Optional. Custom file identifier (Guid). If omitted, the system generates one.
+        schema:
+          type: string
+      - name: WebhookId
+        in: path
+        required: true
+        description: Optional. Target a specific webhook instead of the tenant default.
+        schema:
+          type: string
+      - name: WorkflowId
+        in: path
+        required: true
+        description: Optional. Attach the envelope to an existing workflow.
+        schema:
+          type: string
+      - name: ReferenceNumber
+        in: path
+        required: true
+        description: Optional. Your own reference number. If omitted, the system generates one.
+        schema:
+          type: string
+      - name: Password
+        in: path
+        required: true
+        description: Optional. Password to protect the uploaded PDF.
+        schema:
+          type: string
+      - name: IsForExternalWorkFlow
+        in: path
+        required: true
+        description: Optional. Enable External WorkFlow.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Envelope created successfully
+          content:
+            application/json:
+              example:
+                data:
+                  documentId: d21b710f-bee2-4c0a-a881-0874ca5155ca
+                  envelopeId: c548792b-9b74-48bb-b4b5-6bbc86c62a2f
+                  destinations: null
+                  referenceNumber: contract-i-31157546
+                  creatorFields: null
+                errorCode: 0
+                message: Success
+                returnUrl: /dashboard
+                stateValidationErrors: null
+                signature: ''
+        '400':
+          description: ' Bad Request'
+          content:
+            application/json:
+              example:
+                data:
+                  documentId: 00000000-0000-0000-0000-000000000000
+                  envelopeId: 00000000-0000-0000-0000-000000000000
+                  destinations: null
+                  referenceNumber: null
+                  creatorFields: null
+                errorCode: 116
+                message: FileNotFoundInRequest
+                returnUrl: /dashboard
+                stateValidationErrors: null
+                signature: ''
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              example:
+                data: null
+                errorCode: 401
+                message: Unauthorized
+                returnUrl: null
+                stateValidationErrors: null
+                signature: ''
+  /api/v1/envelopes/initiate-base64:
+    post:
+      tags:
+      - Envelopes
+      summary: Initiate Envelope Base64
+      description: Initiate a signature envelope by providing the document content as a Base64-encoded string. The system creates an envelope and returns its ID for subsequent signing invitation steps.
+      deprecated: false
+      x-docs-url: https://docs.sadq.sa/docs/envelopes/post-api-v1-envelopes-initiate-base64
+      security:
+      - BearerAuth: []
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              userOnlySigner: true
+              webhookId: ''
+              workflowId: ''
+              referenceNumber: string
+              isForExternalWorkFlow: true
+              files:
+                fileId: ''
+                file: ''
+                fileName: ''
+      responses:
+        '200':
+          description: Envelope created successfully
+          content:
+            application/json:
+              example:
+                data:
+                  documentId: a6b7946e-5d76-478f-bfab-b1d6378d4f38
+                  envelopeId: 4b83d3e7-b391-4dd2-b7d8-c0c121cb6cb1
+                  destinations: null
+                  referenceNumber: Req-A-2026-125
+                  creatorFields: null
+                errorCode: 0
+                message: Success
+                returnUrl: /dashboard
+                stateValidationErrors: null
+                signature: ''
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              example:
+                data: null
+                errorCode: 400
+                message: File content is required
+                returnUrl: null
+                stateValidationErrors: null
+                signature: ''
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              example:
+                data: null
+                errorCode: 401
+                message: Unauthorized
+                returnUrl: null
+                stateValidationErrors: null
+                signature: ''
+  /api/v1/envelopes/initiate-by-template:
+    post:
+      tags:
+      - Envelopes
+      summary: Initiate Envelope by Template
+      description: Initiate a signature envelope using a predefined template. The template defines the document structure, signing fields, and signer roles. Returns an envelope ID.
+      deprecated: false
+      x-docs-url: https://docs.sadq.sa/docs/envelopes/post-api-v1-envelopes-initiate-by-template
+      security:
+      - BearerAuth: []
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+            example:
+              templateId: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+      responses:
+        '200':
+          description: Envelope created from template
+          content:
+            application/json:
+              example:
+                data:
+                  documentId: 31e9cca5-3d6b-4493-a16e-4948174c6a3f
+                  envelopeId: 8cf497f7-8c09-40d0-8dd1-b6593f6abc06
+                  destinations: []
+                  referenceNumber: Req-A-2026-326
+                  creatorFields: null
+                errorCode: 0
+                message: Success
+                returnUrl: /dashboard
+                stateValidationErrors: null
+                signature: ''
+        '404':
+          description: Template not found
+          content:
+            application/json:
+              example:
+                data: null
+                errorCode: 404
+                message: Template not found
+                returnUrl: null
+                stateValidationErrors: null
+                signature: ''
+  /api/v1/envelopes/bulk/initiate-base64:
+    post:
+      tags:
+      - Envelopes
+      summary: Bulk Initiate Envelope Base64
+      description: Initiate multiple signature envelopes in a single request by providing documents as Base64-encoded strings. Returns an array of envelope IDs.
+      deprecated: false
+      x-docs-url: https://docs.sadq.sa/docs/envelopes/post-api-v1-envelopes-bulk-initiate-base64
+      security:
+      - BearerAuth: []
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              userOnlySigner: true
+              webhookId: ''
+              workflowId: ''
+              referenceNumber: ''
+              isForExternalWorkFlow: true
+              files:
+              - file: ''
+                fileName: ''
+              - file: ''
+                fileName: ''
+      responses:
+        '200':
+          description: Bulk envelopes created
+          content:
+            application/json:
+              example:
+                data:
+                  envelopeId: 71cbe1e0-1b18-42c6-88b2-9f371019c723
+                  bulkFileResponse:
+                  - documentId: d8190868-a918-4e82-b149-e6d0074dacf8
+                    documentName: example.pdf
+                    referenceNumber: Req-A-2026-126
+                  destinations: null
+                errorCode: 0
+                message: Success
+                returnUrl: /dashboard
+                stateValidationErrors: null
+                signature: ''
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              example:
+                data: null
+                errorCode: 400
+                message: At least one envelope is required
+                returnUrl: null
+                stateValidationErrors: null
+                signature: ''
+  /api/v1/envelopes/{envelopeId}/files:
+    get:
+      tags:
+      - Envelopes
+      summary: Download Envelope Files
+      description: Download all files associated with an envelope. Returns file content as binary or base64 depending on the Accept header.
+      deprecated: false
+      x-docs-url: https://docs.sadq.sa/docs/envelopes/get-api-v1-envelopes-envelopeid-files
+      security:
+      - BearerAuth: []
+      parameters:
+      - name: envelopeId
+        in: path
+        required: true
+        description: The unique identifier of the envelope
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Envelope files returned
+          content:
+            application/json:
+              example:
+                data:
+                  files:
+                  - fileId: f1a2b3c4-d5e6-7890-abcd-ef1234567890
+                    fileName: contract.pdf
+                errorCode: 0
+                message: Success
+                returnUrl: null
+                stateValidationErrors: null
+                signature: ''
+        '404':
+          description: Envelope not found
+          content:
+            application/json:
+              example:
+                data: null
+                errorCode: 404
+                message: Envelope not found
+                returnUrl: null
+                stateValidationErrors: null
+                signature: ''
+  /api/v1/envelopes/{envelopeId}/cancel:
+    post:
+      tags:
+      - Envelopes
+      summary: Cancel Envelope
+      description: Cancel an active envelope, preventing any further signing actions. Cancellation is irreversible. All pending signers will be notified.
+      deprecated: false
+      x-docs-url: https://docs.sadq.sa/docs/envelopes/post-api-v1-envelopes-envelopeid-cancel
+      security:
+      - BearerAuth: []
+      parameters:
+      - name: envelopeId
+        in: path
+        required: true
+        description: The unique identifier of the envelope to cancel
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              envelopId: ''
+      responses:
+        '200':
+          description: Envelope cancelled
+          content:
+            application/json:
+              example:
+                errorCode: 0
+                message: Success
+                returnUrl: /dashboard
+                stateValidationErrors: null
+                signature: ''
+        '400':
+          description: Envelope already completed
+          content:
+            application/json:
+              example:
+                errorCode: 100
+                message: GeneralError
+                returnUrl: /dashboard
+                stateValidationErrors: null
+                signature: ''
+  /api/v1/envelopes/{envelopeId}/status:
+    get:
+      tags:
+      - Envelopes
+      summary: Get Envelope Status
+      description: Retrieve the current status of an envelope including signer completion details and overall progress.
+      deprecated: false
+      x-docs-url: https://docs.sadq.sa/docs/envelopes/get-api-v1-envelopes-envelopeid-status
+      security:
+      - BearerAuth: []
+      parameters:
+      - name: envelopeId
+        in: path
+        required: true
+        description: The unique identifier of the envelope
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Envelope status retrieved
+          content:
+            application/json:
+              example:
+                data:
+                  envelopeId: 9af7cb57-436f-40e9-b05c-75d05732db1c
+                  status: Pending
+                  createdAt: '2024-01-15T09:00:00Z'
+                  signers:
+                  - name: Ahmed Al-Rashid
+                    email: ahmed@example.com
+                    status: Signed
+                    signedAt: '2024-01-15T10:30:00Z'
+                  - name: Sara Al-Otaibi
+                    email: sara@example.com
+                    status: Pending
+                    signedAt: null
+                errorCode: 0
+                message: Success
+                returnUrl: null
+                stateValidationErrors: null
+                signature: ''
+  /api/v1/envelopes/{envelopeId}/files/completed:
+    get:
+      tags:
+      - Envelopes
+      summary: Download Completed Envelope Files
+      description: Download the signed and completed files from an envelope. Only available after all signers have completed signing.
+      deprecated: false
+      x-docs-url: https://docs.sadq.sa/docs/envelopes/get-api-v1-envelopes-envelopeid-files-completed
+      security:
+      - BearerAuth: []
+      parameters:
+      - name: envelopeId
+        in: path
+        required: true
+        description: The unique identifier of the completed envelope
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Completed files returned
+          content:
+            application/json:
+              example:
+                data:
+                - fileName: A Simple PDF File.pdf
+                  file: file Base64 bit
+                errorCode: 0
+                message: null
+                returnUrl: /dashboard
+                stateValidationErrors: null
+                signature: ''
+        '409':
+          description: Envelope not yet completed
+          content:
+            application/json:
+              example:
+                data: null
+                errorCode: 14
+                message: The envelope is not complete, you can't download the file
+                returnUrl: /dashboard
+                stateValidationErrors: null
+                signature: ''
+  /api/v1/envelopes/bulk/initiate-and-invite:
+    post:
+      tags:
+      - Envelopes
+      summary: Envelope Creation & Signing Invitation Process
+      description: 'The API provides a complete end-to-end digital document signing workflow in a single operation. It initiates a signature envelope by accepting the document content as a Base64-encoded string, and immediately creates the envelope while generating a unique envelope ID.
+
+
+        In the same process, the API also handles sending signing invitations to recipients. Each recipient receives a secure link via email or SMS, allowing them to review and sign the document electronically without requiring any additional API calls.'
+      deprecated: false
+      x-docs-url: https://docs.sadq.sa/docs/envelopes/post-api-v1-envelopes-bulk-initiate-and-invite
+      security:
+      - BearerAuth: []
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              Files:
+              - File: sadfsfsfr....
+                fileName: PDF-File.pdf
+              Destinations:
+              - DestinationName: Nubani
+                DestinationEmail: ahmed.alnubani@gmail.com
+                DestinationPhoneNumber: ''
+                SigneOrder: 0
+                Signatories: []
+                AvailableTo: '2029-04-22T23:59:59Z'
+                ConsentOnly: true
+                AuthenticationType: 0
+                AllowUserToSignAnyWhere: false
+                DailyNotify: false
+                Escalation: null
+              SaveAsDraft: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              example:
+                errorCode: 100
+                message: General Erorr
+                returnUrl: /dashboard
+                stateValidationErrors: null
+                signature: ''
+                data: null
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-enum-groups:
+- id: enum-1779092035465
+  name: Authentication Type
+  description: Authentication methods available for signature requests and user verification.
+  entries:
+  - value: '0'
+    name: None
+    description: No authentication is required.
+  - value: '1'
+    name: Nafath KYC
+    description: Users authenticate through Nafath for the first time then will be login with Sadq credentials
+  - value: '2'
+    name: SMS
+    description: An OTP is sent via SMS to verify the user's identity.
+  - value: '3'
+    name: Email
+    description: An OTP is sent via email for authentication.
+  - value: '5'
+    name: DigitalSign
+    description: For Digital signature authentication for documents Only
+  - value: '7'
+    name: Nafath App
+    description: Authentication through the Nafath mobile application every time
+  - value: '9'
+    name: Absher OTP
+    description: Users authenticate using an OTP from the Absher platform.
+  - value: '10'
+    name: WhatsApp
+    description: An authentication OTP is sent to WhatsApp.
+  createdAt: '2026-05-18T08:13:55.465Z'
+  updatedAt: '2026-05-18T08:26:39.952Z'
+- id: enum-1779092832548
+  name: Field Type
+  description: Types of fields available in documents for signatures and data entry.
+  entries:
+  - value: Signature
+    name: Signature
+    description: Represents a signature field for capturing and displaying signatures.
+  - value: initial
+    name: Intial
+    description: Represents an Initial field for capturing and displaying initials.
+  - value: stamp
+    name: Stamp
+    description: Represents a stamp field for capturing and displaying stamps.
+  - value: signDate
+    name: SignDate
+    description: Auto-populated with the signing date when the recipient signs.
+  - value: radio
+    name: Radio button
+    description: Radio button field for single-choice selections.
+  - value: checkbox
+    name: Checkbox
+    description: Checkbox field for multiple-choice selections.
+  - value: TextField
+    name: TextField
+    description: Text input field for entering custom text.
+  createdAt: '2026-05-18T08:27:12.548Z'
+  updatedAt: '2026-05-18T08:30:09.995Z'
+- id: enum-1779093119372
+  name: Webhook Status
+  description: Status values for envelope via webhook.
+  entries:
+  - value: '1'
+    name: Success
+    description: Envelope is completed
+  - value: '2'
+    name: Rejected
+    description: Envelope has been rejected
+  createdAt: '2026-05-18T08:31:59.372Z'
+  updatedAt: '2026-05-18T08:34:00.934Z'
+- id: enum-1779093217136
+  name: Webhook log Status
+  description: Status values for webhook delivery.
+  entries:
+  - value: '0'
+    name: PENDING
+    description: Webhook is pending delivery
+  - value: '1'
+    name: SUCCESS
+    description: Webhook delivered successfully
+  - value: '2'
+    name: RECALL
+    description: Webhook was recalled/retried
+  - value: '4'
+    name: FAILEDFROMCLIENT
+    description: Delivery failed at client endpoint
+  createdAt: '2026-05-18T08:33:37.136Z'
+  updatedAt: '2026-05-18T08:34:44.601Z'
+- id: enum-1779093318127
+  name: Gender
+  description: Gender identification values.
+  entries:
+  - value: '1'
+    name: Male
+    description: ''
+  - value: '2'
+    name: Female
+    description: ''
+  - value: '3'
+    name: Other
+    description: ''
+  - value: '4'
+    name: Don't Exposed
+    description: ''
+  createdAt: '2026-05-18T08:35:18.127Z'
+  updatedAt: '2026-05-18T08:35:45.560Z'
+- id: enum-1779093366817
+  name: SMS Provider Type
+  description: Available SMS service providers.
+  entries:
+  - value: '1'
+    name: Imissive
+    description: ''
+  - value: '2'
+    name: Msegat
+    description: ''
+  - value: '3'
+    name: Unifonic
+    description: ''
+  - value: '4'
+    name: FourJawaly
+    description: ''
+  - value: '5'
+    name: InfinitoProvider
+    description: ''
+  createdAt: '2026-05-18T08:36:06.817Z'
+  updatedAt: '2026-05-18T08:36:39.620Z'
+- id: enum-1779093409202
+  name: Text Alignment Type
+  description: Text alignment options for document fields.
+  entries:
+  - value: '0'
+    name: AlignLeft
+    description: ''
+  - value: '1'
+    name: AlignCenter
+    description: ''
+  - value: '2'
+    name: AlignRight
+    description: ''
+  createdAt: '2026-05-18T08:36:49.202Z'
+  updatedAt: '2026-05-18T08:37:10.187Z'
+- id: enum-1779093443218
+  name: Destination Type
+  description: Types of recipients in signature workflows.
+  entries:
+  - value: '0'
+    name: Creator
+    description: ''
+  - value: '1'
+    name: Signer
+    description: ''
+  - value: '2'
+    name: CC
+    description: ''
+  - value: '3'
+    name: Reviewer
+    description: ''
+  - value: '4'
+    name: Department
+    description: ''
+  createdAt: '2026-05-18T08:37:23.218Z'
+  updatedAt: '2026-05-18T08:38:01.593Z'
+- id: enum-1779093502377
+  name: Invitation Language
+  description: Language options for invitation emails and SMS.
+  entries:
+  - value: '1'
+    name: 'Arabic '
+    description: Send invitation in Arabic language
+  - value: '2'
+    name: 'English '
+    description: Send invitation in English language
+  createdAt: '2026-05-18T08:38:22.377Z'
+  updatedAt: '2026-05-18T08:38:43.481Z'
+- id: enum-1779093540131
+  name: ID Types
+  description: Types of identification documents.
+  entries:
+  - value: '1'
+    name: National ID Card
+    description: ''
+  - value: '2'
+    name: Resident ID
+    description: ''
+  - value: '3'
+    name: Passport
+    description: ''
+  createdAt: '2026-05-18T08:39:00.131Z'
+  updatedAt: '2026-05-18T08:39:23.745Z'
+- id: enum-1779093573463
+  name: File Template Share Type
+  description: Sharing visibility options for file templates.
+  entries:
+  - value: '0'
+    name: 'Private '
+    description: ' Template is private to the creator'
+  - value: '1'
+    name: 'Public '
+    description: Template is publicly accessible
+  - value: '2'
+    name: 'Shared '
+    description: Template is shared with specific users
+  createdAt: '2026-05-18T08:39:33.463Z'
+  updatedAt: '2026-05-18T08:40:04.094Z'
+- id: enum-1779093621013
+  name: Document/Request Status
+  description: Common status values for documents and signature requests.
+  entries:
+  - value: '0'
+    name: Pending
+    description: Waiting for action
+  - value: '1'
+    name: In Progress
+    description: One or more signers have started
+  - value: '2'
+    name: Completed
+    description: All required signers have completed
+  - value: '3'
+    name: Cancelled
+    description: Request was cancelled
+  - value: '4'
+    name: Rejected
+    description: One or more signers declined
+  - value: '5'
+    name: Expired
+    description: Request expired before completion
+  createdAt: '2026-05-18T08:40:21.013Z'
+  updatedAt: '2026-05-18T08:41:44.683Z'
+- id: enum-1779093771484
+  name: Permissions
+  description: Available system permissions for user access control.
+  entries:
+  - value: '1'
+    name: ViewAccounts
+    description: View account information
+  - value: '2'
+    name: AddAccount
+    description: Create new accounts
+  - value: '3'
+    name: UpdateAccount
+    description: Modify existing accounts
+  - value: '4'
+    name: ViewUsers
+    description: View user information
+  - value: '5'
+    name: AddUser
+    description: Create new users
+  - value: '6'
+    name: UpdateUser
+    description: Modify existing users
+  - value: '7'
+    name: DeleteUser
+    description: Remove users from the system
+  - value: '8'
+    name: DeleteAccount
+    description: Remove accounts from the system
+  - value: '9'
+    name: UpdateConfiguration
+    description: Modify system configuration
+  - value: '10'
+    name: UploadFile
+    description: Upload files to the system
+  - value: '11'
+    name: ViewSignatureRequestList
+    description: View list of signature requests
+  - value: '12'
+    name: ViewDocumentSigners
+    description: View signers of a document
+  - value: '13'
+    name: DownloadFile
+    description: Download files from the system
+  - value: '14'
+    name: UploadContent
+    description: Upload content to the system
+  - value: '15'
+    name: ReInviteUser
+    description: Resend invitations to users
+  - value: '16'
+    name: UpdateUserPermission
+    description: Modify user permissions
+  - value: '17'
+    name: DeleteSignatureRequest
+    description: Remove signature requests
+  - value: '18'
+    name: ShareUsingWhatsApp
+    description: Share documents via WhatsApp
+  - value: '19'
+    name: ViewUserDelegations
+    description: View delegation information
+  - value: '20'
+    name: AddUserDelegations
+    description: Create new delegations
+  - value: '22'
+    name: AdminDashboard
+    description: Access admin dashboard
+  - value: '23'
+    name: AddConfigurationAdmin
+    description: Add system configuration (admin only)
+  - value: '24'
+    name: UpdateConfigurationAdmin
+    description: Update system configuration (admin only)
+  - value: '25'
+    name: GetConfiguration
+    description: Retrieve configuration settings
+  - value: '26'
+    name: GenerateTemplates
+    description: Create document templates
+  - value: '27'
+    name: ViewBranding
+    description: View branding settings
+  - value: '28'
+    name: UpdateBranding
+    description: Modify branding settings
+  - value: '29'
+    name: ViewDepartments
+    description: View department information
+  - value: '30'
+    name: AddDepartment
+    description: Create new departments
+  - value: '31'
+    name: UpdateDepartment
+    description: Modify existing departments
+  - value: '32'
+    name: DeleteDepartment
+    description: Remove departments
+  - value: '33'
+    name: ViewDepartmentDocumentsList
+    description: View documents in a department
+  - value: '34'
+    name: AddAndUseStamp
+    description: Add and apply stamps to documents
+  - value: '35'
+    name: AddUserToDepartment
+    description: Assign users to departments
+  - value: '36'
+    name: AddDepartmentForUser
+    description: Assign departments to users
+  - value: '37'
+    name: SignatureRequestToDepartments
+    description: Send signature requests to departments
+  - value: '38'
+    name: BulkSend
+    description: Send bulk signature requests
+  - value: '39'
+    name: ViewTemplates
+    description: View document templates
+  - value: '40'
+    name: SendDocumentUsingEmail
+    description: Send documents via email
+  - value: '41'
+    name: SendDocumentUsingSMS
+    description: Send documents via SMS
+  - value: '42'
+    name: SendDocumentUsingNafath
+    description: Send documents via Nafath
+  - value: '43'
+    name: SendDocumentUsingEmdah
+    description: Send documents via Emdah
+  - value: '44'
+    name: SigningOnBehalfOfCompany
+    description: Sign documents as company representative
+  - value: '45'
+    name: ChangeEmail
+    description: Modify user email address
+  - value: '46'
+    name: ChangePhone
+    description: Modify user phone number
+  - value: '47'
+    name: SendDocumentUsingNafathApp
+    description: Send documents via Nafath App
+  - value: '48'
+    name: AddGroupUsers
+    description: Create user groups
+  - value: '49'
+    name: ManageRoles
+    description: Manage user roles
+  - value: '50'
+    name: WhatsApp
+    description: WhatsApp integration access
+  - value: '51'
+    name: ConsumptionReport
+    description: View consumption reports
+  - value: '52'
+    name: RequestReport
+    description: View request reports
+  - value: '53'
+    name: ShowArchivingTab
+    description: Access archiving features
+  - value: '54'
+    name: CreateFolderOrFile
+    description: Create folders and files in archive
+  - value: '55'
+    name: DeleteFolderOrFile
+    description: Remove folders and files from archive
+  - value: '56'
+    name: ShareFolderOrFile
+    description: Share archived folders and files
+  - value: '57'
+    name: MoveFolderOrFile
+    description: Move folders and files in archive
+  - value: '58'
+    name: ShowStorageUsed
+    description: View storage usage information
+  - value: '62'
+    name: Escalation
+    description: Escalate signature requests
+  - value: '63'
+    name: SendDocumentUsingPinCode
+    description: Send documents with PIN code authentication
+  - value: '64'
+    name: UserDeleteHisProfile
+    description: Allow users to delete their own profiles
+  - value: '65'
+    name: CommercialInquiryHistory
+    description: View commercial inquiry history
+  - value: '66'
+    name: RestoreSignatureRequest
+    description: Restore deleted signature requests
+  - value: '67'
+    name: DeleteSignatureRequestPermanently
+    description: Permanently remove signature requests
+  - value: '68'
+    name: SendDocumentUsingAbsher
+    description: Send documents via Absher
+  - value: '69'
+    name: SelfSign
+    description: Sign documents as the creator
+  - value: '70'
+    name: SignatureRequestKPI
+    description: View signature request KPIs
+  - value: '71'
+    name: AnalyzeDocumentsByAI
+    description: Use AI to analyze documents
+  - value: '72'
+    name: Watermark
+    description: Add watermarks to documents
+  - value: '73'
+    name: EmailTemplateConfiguration
+    description: Configure email templates
+  - value: '74'
+    name: ConsumptionMonthlyReport
+    description: View monthly consumption reports
+  - value: '75'
+    name: ManageAccountRejectionReason
+    description: Manage rejection reasons
+  - value: '76'
+    name: UpdatePasswordConfiguration
+    description: Modify password policies
+  - value: '79'
+    name: EditAndPreviewDesignPages
+    description: Edit and preview page designs
+  - value: '80'
+    name: UseOrganizationStamp
+    description: Apply organization stamps
+  - value: '81'
+    name: ViewRequestsByDestinationsReport
+    description: View destination reports
+  - value: '82'
+    name: EditWebhooks
+    description: Edit webhook configurations
+  - value: '83'
+    name: DeleteWebhooks
+    description: Delete webhooks
+  - value: '84'
+    name: ViewWebhooksReports
+    description: View webhook reports
+  - value: '85'
+    name: ViewWebhooks
+    description: View webhooks
+  - value: '86'
+    name: AddWebhooks
+    description: Add new webhooks
+  - value: '87'
+    name: Metadata
+    description: Manage document metadata
+  - value: '88'
+    name: ViewAuditLog
+    description: View audit logs
+  - value: '89'
+    name: SmartTasksFromRequests
+    description: Create smart tasks from requests
+  - value: '90'
+    name: DailyRequestSummary
+    description: View daily request summary
+  - value: '91'
+    name: NotifyMeAboutKeyEmails
+    description: Receive notifications for key emails
+  - value: '92'
+    name: SmartSignaturePrioritization
+    description: Enable smart signature prioritization
+  - value: '93'
+    name: ViewAiTokenConsumptionReport
+    description: View AI token consumption
+  - value: '94'
+    name: AddRenewal
+    description: Add renewal requests
+  - value: '95'
+    name: GenerateDocumentWithAI
+    description: Generate documents using AI
+  - value: '96'
+    name: Manage2FA
+    description: Manage two-factor authentication
+  - value: '97'
+    name: MetadataAutomation
+    description: Automate metadata extraction
+  - value: '98'
+    name: WordSearch
+    description: Search within document content
+  - value: '99'
+    name: CreateRoom
+    description: Create collaboration rooms
+  - value: '100'
+    name: ManageRoomsCustomPermissions
+    description: Manage room custom permissions
+  - value: '101'
+    name: CreateContract
+    description: Create contracts
+  - value: '106'
+    name: ApproveReview
+    description: Approve contract reviews
+  - value: '109'
+    name: ManagePlaybook
+    description: Manage contract playbooks
+  - value: '110'
+    name: ViewWorkflow
+    description: View contract workflows
+  - value: '111'
+    name: ManageWorkflow
+    description: Manage contract workflows
+  - value: '113'
+    name: FillContractUsingAI
+    description: Fill contracts using AI
+  - value: '115'
+    name: WorkflowPage
+    description: Access workflow page
+  createdAt: '2026-05-18T08:42:51.484Z'
+  updatedAt: '2026-05-18T08:49:31.602Z'
+- id: enum-1780615299712
+  name: 'Request status '
+  description: 'Request status filter '
+  entries:
+  - value: '1'
+    name: Pending
+    description: Get pending requests
+  - value: '5'
+    name: Completed
+    description: Get Completed requests
+  - value: '7'
+    name: Waiting Signature
+    description: Get Waiting Signature requests
+  - value: '6'
+    name: Rejected
+    description: Get Rejected requests
+  - value: '2'
+    name: Voided
+    description: Get canceled requests
+  - value: '8'
+    name: Expired
+    description: Get Expired requests
+  - value: '9'
+    name: Drafts
+    description: Get Drafts requests
+  - value: '10'
+    name: Recycle Bin
+    description: Get deleted requests and moved to Recycle Bin
+  createdAt: '2026-06-04T23:21:39.712Z'
+  updatedAt: '2026-06-09T13:15:06.897Z'
+- id: enum-1781010733279
+  name: Destination Status
+  description: Status Value for destination
+  entries:
+  - value: '1'
+    name: Pending
+    description: destinations who did not sign the document
+  - value: '3'
+    name: Signed
+    description: destinations who signed the document
+  - value: '4'
+    name: ' Rejected '
+    description: destinations who reject the document
+  - value: '7'
+    name: Expired
+    description: destinations the document date is expired for them
+  createdAt: '2026-06-09T13:12:13.279Z'
+  updatedAt: '2026-06-09T13:14:47.560Z'
+x-error-codes:
+- id: err-1779094385039
+  code: '0'
+  name: Success
+  description: Success
+  createdAt: '2026-05-18T08:53:05.039Z'
+  updatedAt: '2026-05-18T08:53:05.039Z'
+- id: err-1779094470570
+  code: '4'
+  name: InvalidUserNameOrPassword
+  description: Invalid User Name Or Password
+  createdAt: '2026-05-18T08:54:30.570Z'
+  updatedAt: '2026-05-18T08:54:30.570Z'
+- id: err-1779094470573
+  code: '8'
+  name: ValidationError
+  description: Validation Error
+  createdAt: '2026-05-18T08:54:30.573Z'
+  updatedAt: '2026-05-18T08:54:30.573Z'
+- id: err-1779094470583
+  code: '1'
+  name: SessionTimeOut
+  description: Session Time Out
+  createdAt: '2026-05-18T08:54:30.583Z'
+  updatedAt: '2026-05-18T08:54:30.583Z'
+- id: err-1779094470585
+  code: '9'
+  name: BadRequest
+  description: Bad Request
+  createdAt: '2026-05-18T08:54:30.585Z'
+  updatedAt: '2026-05-18T08:54:30.585Z'
+- id: err-1779094470588
+  code: '10'
+  name: InvalidFileIdorRequestId
+  description: Invalid File ID or Request ID
+  createdAt: '2026-05-18T08:54:30.588Z'
+  updatedAt: '2026-05-18T08:54:30.588Z'
+- id: err-1779094470624
+  code: '7'
+  name: RequestDoesnotHasFormContentType
+  description: Request Does not Have Form Content Type
+  createdAt: '2026-05-18T08:54:30.624Z'
+  updatedAt: '2026-05-18T08:54:30.624Z'
+- id: err-1779094470658
+  code: '19'
+  name: ForbidenRequest
+  description: Forbidden Request
+  createdAt: '2026-05-18T08:54:30.658Z'
+  updatedAt: '2026-05-18T08:54:30.658Z'
+- id: err-1779094470660
+  code: '18'
+  name: ChangePasswordEmailExpired
+  description: Change Password Email Expired
+  createdAt: '2026-05-18T08:54:30.660Z'
+  updatedAt: '2026-05-18T08:54:30.660Z'
+- id: err-1779094470700
+  code: '3'
+  name: UnAuthrized
+  description: Unauthorized
+  createdAt: '2026-05-18T08:54:30.700Z'
+  updatedAt: '2026-05-18T08:54:30.700Z'
+- id: err-1779094470703
+  code: '5'
+  name: UserAlreadyExsit
+  description: User Already Exists
+  createdAt: '2026-05-18T08:54:30.703Z'
+  updatedAt: '2026-05-18T08:54:30.703Z'
+- id: err-1779094470705
+  code: '13'
+  name: DestinationNotFound
+  description: Destination Not Found
+  createdAt: '2026-05-18T08:54:30.705Z'
+  updatedAt: '2026-05-18T08:54:30.705Z'
+- id: err-1779094470726
+  code: '14'
+  name: UnauthorizedRequest
+  description: Unauthorized Request
+  createdAt: '2026-05-18T08:54:30.726Z'
+  updatedAt: '2026-05-18T08:54:30.726Z'
+- id: err-1779094470734
+  code: '15'
+  name: UserAlreadySigneDocument
+  description: User Already Signed Document
+  createdAt: '2026-05-18T08:54:30.734Z'
+  updatedAt: '2026-05-18T08:54:30.734Z'
+- id: err-1779094470737
+  code: '16'
+  name: ContentIsEmpty
+  description: Content Is Empty
+  createdAt: '2026-05-18T08:54:30.737Z'
+  updatedAt: '2026-05-18T08:54:30.737Z'
+- id: err-1779094470779
+  code: '17'
+  name: InvalidChangePasswordToken
+  description: Invalid Change Password Token
+  createdAt: '2026-05-18T08:54:30.779Z'
+  updatedAt: '2026-05-18T08:54:30.779Z'
+- id: err-1779094470785
+  code: '12'
+  name: DestinationBelongtoAnotherUser
+  description: Destination Belongs to Another User
+  createdAt: '2026-05-18T08:54:30.785Z'
+  updatedAt: '2026-05-18T08:54:30.785Z'
+- id: err-1779094470788
+  code: '11'
+  name: UserMustWaitForOtherToSigne
+  description: User Must Wait For Other To Sign
+  createdAt: '2026-05-18T08:54:30.788Z'
+  updatedAt: '2026-05-18T08:54:30.788Z'
+- id: err-1779094470812
+  code: '20'
+  name: FirstLogin
+  description: First Login
+  createdAt: '2026-05-18T08:54:30.812Z'
+  updatedAt: '2026-05-18T08:54:30.812Z'
+- id: err-1779094470814
+  code: '21'
+  name: SignFaild
+  description: Sign Failed
+  createdAt: '2026-05-18T08:54:30.814Z'
+  updatedAt: '2026-05-18T08:54:30.814Z'
+- id: err-1779094470833
+  code: '22'
+  name: UnvalidCertificatePassword
+  description: Invalid Certificate Password
+  createdAt: '2026-05-18T08:54:30.833Z'
+  updatedAt: '2026-05-18T08:54:30.833Z'
+- id: err-1779094470859
+  code: '23'
+  name: ThirdPartySignServiceError
+  description: Third Party Sign Service Error
+  createdAt: '2026-05-18T08:54:30.859Z'
+  updatedAt: '2026-05-18T08:54:30.859Z'
+- id: err-1779094470865
+  code: '24'
+  name: DisabledAccount
+  description: Disabled Account
+  createdAt: '2026-05-18T08:54:30.865Z'
+  updatedAt: '2026-05-18T08:54:30.865Z'
+- id: err-1779094470867
+  code: '25'
+  name: MismatchPassword
+  description: Mismatch Password
+  createdAt: '2026-05-18T08:54:30.867Z'
+  updatedAt: '2026-05-18T08:54:30.867Z'
+- id: err-1779094470891
+  code: '26'
+  name: InvalidSigneOrder
+  description: Invalid Sign Order
+  createdAt: '2026-05-18T08:54:30.891Z'
+  updatedAt: '2026-05-18T08:54:30.891Z'
+- id: err-1779094470893
+  code: '27'
+  name: MissmatchFileType
+  description: Mismatch File Type
+  createdAt: '2026-05-18T08:54:30.893Z'
+  updatedAt: '2026-05-18T08:54:30.893Z'
+- id: err-1779094470935
+  code: '28'
+  name: ExccededAccountTransactionQuota
+  description: Exceeded Account Transaction Quota
+  createdAt: '2026-05-18T08:54:30.935Z'
+  updatedAt: '2026-05-18T08:54:30.935Z'
+- id: err-1779094470937
+  code: '29'
+  name: NotVerfied
+  description: Not Verified
+  createdAt: '2026-05-18T08:54:30.937Z'
+  updatedAt: '2026-05-18T08:54:30.937Z'
+- id: err-1779094470945
+  code: '100'
+  name: GeneralError
+  description: General Error
+  createdAt: '2026-05-18T08:54:30.945Z'
+  updatedAt: '2026-05-18T08:54:30.945Z'
+- id: err-1779094470947
+  code: '30'
+  name: SMSSendSuccessfullly
+  description: SMS Sent Successfully
+  createdAt: '2026-05-18T08:54:30.947Z'
+  updatedAt: '2026-05-18T08:54:30.947Z'
+- id: err-1779094470968
+  code: '101'
+  name: NoOtpRequired
+  description: No OTP Required
+  createdAt: '2026-05-18T08:54:30.967Z'
+  updatedAt: '2026-05-18T08:54:30.967Z'
+- id: err-1779094470976
+  code: '102'
+  name: PasswordProtectedFile
+  description: Password Protected File
+  createdAt: '2026-05-18T08:54:30.976Z'
+  updatedAt: '2026-05-18T08:54:30.976Z'
+- id: err-1779094471024
+  code: '103'
+  name: DelegationAlreadyExists
+  description: Delegation Already Exists
+  createdAt: '2026-05-18T08:54:31.024Z'
+  updatedAt: '2026-05-18T08:54:31.024Z'
+- id: err-1779094471038
+  code: '104'
+  name: DelegationExpired
+  description: Delegation Expired
+  createdAt: '2026-05-18T08:54:31.038Z'
+  updatedAt: '2026-05-18T08:54:31.038Z'
+- id: err-1779094471040
+  code: '105'
+  name: WorkeflowIsNotActive
+  description: Workflow Is Not Active
+  createdAt: '2026-05-18T08:54:31.040Z'
+  updatedAt: '2026-05-18T08:54:31.040Z'
+- id: err-1779094471042
+  code: '106'
+  name: WorkeflowExpired
+  description: Workflow Expired
+  createdAt: '2026-05-18T08:54:31.042Z'
+  updatedAt: '2026-05-18T08:54:31.042Z'
+- id: err-1779094471045
+  code: '107'
+  name: DocumentSignerExpiryDate
+  description: Document Signer Expiry Date
+  createdAt: '2026-05-18T08:54:31.045Z'
+  updatedAt: '2026-05-18T08:54:31.045Z'
+- id: err-1779094471051
+  code: '108'
+  name: UserLocked
+  description: User Locked
+  createdAt: '2026-05-18T08:54:31.051Z'
+  updatedAt: '2026-05-18T08:54:31.051Z'
+- id: err-1779094471104
+  code: '109'
+  name: FileSizeLessThanAllowdSize
+  description: File Size Less Than Allowed Size
+  createdAt: '2026-05-18T08:54:31.104Z'
+  updatedAt: '2026-05-18T08:54:31.104Z'
+- id: err-1779094471118
+  code: '110'
+  name: PdfCountLengthIsLessThanAllowdPDF
+  description: PDF Count Length Is Less Than Allowed
+  createdAt: '2026-05-18T08:54:31.118Z'
+  updatedAt: '2026-05-18T08:54:31.118Z'
+- id: err-1779094471120
+  code: '111'
+  name: FaildSummarization
+  description: Failed Summarization
+  createdAt: '2026-05-18T08:54:31.120Z'
+  updatedAt: '2026-05-18T08:54:31.120Z'
+- id: err-1779094471123
+  code: '112'
+  name: UserEmailAlreadyExsit
+  description: User Email Already Exists
+  createdAt: '2026-05-18T08:54:31.123Z'
+  updatedAt: '2026-05-18T08:54:31.123Z'
+- id: err-1779094471126
+  code: '113'
+  name: UserPhoneAlreadyExsit
+  description: User Phone Already Exists
+  createdAt: '2026-05-18T08:54:31.126Z'
+  updatedAt: '2026-05-18T08:54:31.126Z'
+- id: err-1779094471146
+  code: '114'
+  name: NotMatchIdentityCardWithSelfie
+  description: Identity Card Does Not Match With Selfie
+  createdAt: '2026-05-18T08:54:31.146Z'
+  updatedAt: '2026-05-18T08:54:31.146Z'
+- id: err-1779094471184
+  code: '115'
+  name: CantAddFileToCompletedRequest
+  description: Cannot Add File To Completed Request
+  createdAt: '2026-05-18T08:54:31.184Z'
+  updatedAt: '2026-05-18T08:54:31.184Z'
+- id: err-1779094471198
+  code: '116'
+  name: FileNotFoundInRequest
+  description: File Not Found In Request
+  createdAt: '2026-05-18T08:54:31.198Z'
+  updatedAt: '2026-05-18T08:54:31.198Z'
+- id: err-1779094471200
+  code: '118'
+  name: IdentityCardOrSelfieIsFake
+  description: Identity Card Or Selfie Is Fake
+  createdAt: '2026-05-18T08:54:31.200Z'
+  updatedAt: '2026-05-18T08:54:31.200Z'
+- id: err-1779094471202
+  code: '117'
+  name: FileAlreadyExists
+  description: File Already Exists
+  createdAt: '2026-05-18T08:54:31.202Z'
+  updatedAt: '2026-05-18T08:54:31.202Z'
+- id: err-1779094471205
+  code: '119'
+  name: DuplicatedFieldId
+  description: Duplicated Field ID
+  createdAt: '2026-05-18T08:54:31.205Z'
+  updatedAt: '2026-05-18T08:54:31.205Z'
+- id: err-1779094471251
+  code: '120'
+  name: SignatureFieldNotFound
+  description: Signature Field Not Found
+  createdAt: '2026-05-18T08:54:31.251Z'
+  updatedAt: '2026-05-18T08:54:31.251Z'
+- id: err-1779094471262
+  code: '121'
+  name: SignatureAlreadySigned
+  description: Signature Already Signed
+  createdAt: '2026-05-18T08:54:31.262Z'
+  updatedAt: '2026-05-18T08:54:31.262Z'
+- id: err-1779094471276
+  code: '122'
+  name: InactiveUser
+  description: Inactive User
+  createdAt: '2026-05-18T08:54:31.276Z'
+  updatedAt: '2026-05-18T08:54:31.276Z'
+- id: err-1779094471278
+  code: '123'
+  name: NotMatchIdentityCardWithInfo
+  description: Identity Card Does Not Match With Info
+  createdAt: '2026-05-18T08:54:31.278Z'
+  updatedAt: '2026-05-18T08:54:31.278Z'
+- id: err-1779094471280
+  code: '128'
+  name: NotFound
+  description: Not Found
+  createdAt: '2026-05-18T08:54:31.280Z'
+  updatedAt: '2026-05-18T08:54:31.280Z'
+- id: err-1779094471282
+  code: '124'
+  name: InvalidSignatureType
+  description: Invalid Signature Type
+  createdAt: '2026-05-18T08:54:31.282Z'
+  updatedAt: '2026-05-18T08:54:31.282Z'
+- id: err-1779094471350
+  code: '129'
+  name: ExceededTheAllowedNumberOfFiles
+  description: Exceeded The Allowed Number Of Files
+  createdAt: '2026-05-18T08:54:31.350Z'
+  updatedAt: '2026-05-18T08:54:31.350Z'
+- id: err-1779094471358
+  code: '133'
+  name: InvalidNationalIdOrPhone
+  description: Invalid National ID Or Phone
+  createdAt: '2026-05-18T08:54:31.358Z'
+  updatedAt: '2026-05-18T08:54:31.358Z'
+- id: err-1779094471360
+  code: '131'
+  name: SignatureSizeLimit
+  description: Signature Size Limit
+  createdAt: '2026-05-18T08:54:31.360Z'
+  updatedAt: '2026-05-18T08:54:31.360Z'
+- id: err-1779094471362
+  code: '132'
+  name: UserNationalIdAlreadyExsit
+  description: User National ID Already Exists
+  createdAt: '2026-05-18T08:54:31.362Z'
+  updatedAt: '2026-05-18T08:54:31.362Z'
+- id: err-1779094471364
+  code: '134'
+  name: InvalidWebhookUrl
+  description: Invalid Webhook URL
+  createdAt: '2026-05-18T08:54:31.364Z'
+  updatedAt: '2026-05-18T08:54:31.364Z'
+- id: err-1779094471366
+  code: '130'
+  name: ForIntegration
+  description: For Integration
+  createdAt: '2026-05-18T08:54:31.366Z'
+  updatedAt: '2026-05-18T08:54:31.366Z'
+- id: err-1779094471430
+  code: '135'
+  name: IsCC
+  description: Is CC
+  createdAt: '2026-05-18T08:54:31.430Z'
+  updatedAt: '2026-05-18T08:54:31.430Z'
+- id: err-1779094471435
+  code: '136'
+  name: RequestIsRejected
+  description: Request Is Rejected
+  createdAt: '2026-05-18T08:54:31.435Z'
+  updatedAt: '2026-05-18T08:54:31.435Z'
+- id: err-1779094471437
+  code: '137'
+  name: RequestIsCanceled
+  description: Request Is Canceled
+  createdAt: '2026-05-18T08:54:31.437Z'
+  updatedAt: '2026-05-18T08:54:31.437Z'
+- id: err-1779094471441
+  code: '138'
+  name: PdfPasswordExceededTries
+  description: PDF Password Exceeded Tries
+  createdAt: '2026-05-18T08:54:31.441Z'
+  updatedAt: '2026-05-18T08:54:31.441Z'
+- id: err-1779094471444
+  code: '139'
+  name: FileAlreadyHaveCertificate
+  description: File Already Has Certificate
+  createdAt: '2026-05-18T08:54:31.444Z'
+  updatedAt: '2026-05-18T08:54:31.444Z'
+- id: err-1779094471467
+  code: '140'
+  name: FileLocked
+  description: File Locked
+  createdAt: '2026-05-18T08:54:31.467Z'
+  updatedAt: '2026-05-18T08:54:31.467Z'
+- id: err-1779094471513
+  code: '141'
+  name: UserEmailNotVerified
+  description: User Email Not Verified
+  createdAt: '2026-05-18T08:54:31.513Z'
+  updatedAt: '2026-05-18T08:54:31.513Z'
+- id: err-1779094471515
+  code: '142'
+  name: HubSpotUnauthorizedRequest
+  description: HubSpot Unauthorized Request
+  createdAt: '2026-05-18T08:54:31.515Z'
+  updatedAt: '2026-05-18T08:54:31.515Z'
+- id: err-1779094471517
+  code: '143'
+  name: UserAlreadySignTheDocument
+  description: User Already Signed The Document
+  createdAt: '2026-05-18T08:54:31.517Z'
+  updatedAt: '2026-05-18T08:54:31.517Z'
+- id: err-1779094471521
+  code: '144'
+  name: EmployeeMustHaveAmanager
+  description: Employee Must Have A Manager
+  createdAt: '2026-05-18T08:54:31.521Z'
+  updatedAt: '2026-05-18T08:54:31.521Z'
+- id: err-1779094471525
+  code: '145'
+  name: OnlyDocxAllowed
+  description: Only DOCX Allowed
+  createdAt: '2026-05-18T08:54:31.525Z'
+  updatedAt: '2026-05-18T08:54:31.525Z'
+- id: err-1779094471574
+  code: '146'
+  name: CommercialNumberRequerd
+  description: Commercial Number Required
+  createdAt: '2026-05-18T08:54:31.574Z'
+  updatedAt: '2026-05-18T08:54:31.574Z'
+- id: err-1779094471595
+  code: '148'
+  name: NotAuthorizedToSign
+  description: Not Authorized To Sign
+  createdAt: '2026-05-18T08:54:31.595Z'
+  updatedAt: '2026-05-18T08:54:31.595Z'
+- id: err-1779094471597
+  code: '147'
+  name: NationalIdRequired
+  description: National ID Required
+  createdAt: '2026-05-18T08:54:31.597Z'
+  updatedAt: '2026-05-18T08:54:31.597Z'
+- id: err-1779094471599
+  code: '149'
+  name: CommercialNumberNotValid
+  description: Commercial Number Not Valid
+  createdAt: '2026-05-18T08:54:31.599Z'
+  updatedAt: '2026-05-18T08:54:31.599Z'
+- id: err-1779094471602
+  code: '150'
+  name: CommercialNumberOtpSent
+  description: Commercial Number OTP Sent
+  createdAt: '2026-05-18T08:54:31.602Z'
+  updatedAt: '2026-05-18T08:54:31.602Z'
+- id: err-1779094471605
+  code: '151'
+  name: CommercialNumberRequireOtp
+  description: Commercial Number Requires OTP
+  createdAt: '2026-05-18T08:54:31.605Z'
+  updatedAt: '2026-05-18T08:54:31.605Z'
+- id: err-1779094471673
+  code: '152'
+  name: ExceededAbsherOtp
+  description: Exceeded Absher OTP
+  createdAt: '2026-05-18T08:54:31.673Z'
+  updatedAt: '2026-05-18T08:54:31.673Z'
+- id: err-1779094471675
+  code: '153'
+  name: ExceededWathqRequest
+  description: Exceeded Wathq Request
+  createdAt: '2026-05-18T08:54:31.675Z'
+  updatedAt: '2026-05-18T08:54:31.675Z'
+- id: err-1779094471678
+  code: '155'
+  name: AbsherOtpCustomerMobileNumberNotAvailable
+  description: Absher OTP Customer Mobile Number Not Available
+  createdAt: '2026-05-18T08:54:31.678Z'
+  updatedAt: '2026-05-18T08:54:31.678Z'
+- id: err-1779094471681
+  code: '154'
+  name: AbsherOtpCustomerIdNumberNotActivated
+  description: Absher OTP Customer ID Number Not Activated
+  createdAt: '2026-05-18T08:54:31.681Z'
+  updatedAt: '2026-05-18T08:54:31.681Z'
+- id: err-1779094471693
+  code: '156'
+  name: AbsherOtpGeneralError
+  description: Absher OTP General Error
+  createdAt: '2026-05-18T08:54:31.693Z'
+  updatedAt: '2026-05-18T08:54:31.693Z'
+- id: err-1779094471695
+  code: '157'
+  name: ExceededTheAllowedDocumentSize
+  description: Exceeded The Allowed Document Size
+  createdAt: '2026-05-18T08:54:31.695Z'
+  updatedAt: '2026-05-18T08:54:31.695Z'
+- id: err-1779094471749
+  code: '158'
+  name: UserNotVerifiedByNafath
+  description: User Not Verified By Nafath
+  createdAt: '2026-05-18T08:54:31.749Z'
+  updatedAt: '2026-05-18T08:54:31.749Z'
+- id: err-1779094471755
+  code: '160'
+  name: RequestCreatorNotEnoughQuota
+  description: Request Creator Not Enough Quota
+  createdAt: '2026-05-18T08:54:31.755Z'
+  updatedAt: '2026-05-18T08:54:31.755Z'
+- id: err-1779094471757
+  code: '159'
+  name: RemainingQuotaLessThanUserQuota
+  description: Remaining Quota Less Than User Quota
+  createdAt: '2026-05-18T08:54:31.757Z'
+  updatedAt: '2026-05-18T08:54:31.757Z'
+- id: err-1779094471772
+  code: '161'
+  name: DepartmentAlreadyExists
+  description: Department Already Exists
+  createdAt: '2026-05-18T08:54:31.772Z'
+  updatedAt: '2026-05-18T08:54:31.772Z'
+- id: err-1779094471774
+  code: '162'
+  name: UserIsNotInTheDepartment
+  description: User Is Not In The Department
+  createdAt: '2026-05-18T08:54:31.774Z'
+  updatedAt: '2026-05-18T08:54:31.774Z'
+- id: err-1779094471781
+  code: '163'
+  name: ExistsSubDepartments
+  description: Sub-Departments Exist
+  createdAt: '2026-05-18T08:54:31.781Z'
+  updatedAt: '2026-05-18T08:54:31.781Z'
+- id: err-1779094471826
+  code: '164'
+  name: ExistsUsersInDepartment
+  description: Users Exist In Department
+  createdAt: '2026-05-18T08:54:31.826Z'
+  updatedAt: '2026-05-18T08:54:31.826Z'
+- id: err-1779094471831
+  code: '165'
+  name: AccountNotEnoughQuota
+  description: Account Not Enough Quota
+  createdAt: '2026-05-18T08:54:31.831Z'
+  updatedAt: '2026-05-18T08:54:31.831Z'
+- id: err-1779094471834
+  code: '166'
+  name: ExceededTheLimitAddUser
+  description: Exceeded The Limit To Add User
+  createdAt: '2026-05-18T08:54:31.834Z'
+  updatedAt: '2026-05-18T08:54:31.834Z'
+- id: err-1779094471860
+  code: '167'
+  name: CompleteRequestFailed
+  description: Complete Request Failed
+  createdAt: '2026-05-18T08:54:31.860Z'
+  updatedAt: '2026-05-18T08:54:31.860Z'
+- id: err-1779094471862
+  code: '168'
+  name: RequestIsCompleted
+  description: Request Is Completed
+  createdAt: '2026-05-18T08:54:31.862Z'
+  updatedAt: '2026-05-18T08:54:31.862Z'
+- id: err-1779094471883
+  code: '169'
+  name: UnderProsess
+  description: Under Process
+  createdAt: '2026-05-18T08:54:31.883Z'
+  updatedAt: '2026-05-18T08:54:31.883Z'
+- id: err-1779094471902
+  code: '170'
+  name: UnauthorizedNationalIdRequest
+  description: Unauthorized National ID Request
+  createdAt: '2026-05-18T08:54:31.902Z'
+  updatedAt: '2026-05-18T08:54:31.902Z'
+- id: err-1779094471908
+  code: '171'
+  name: DestinationAlreadySigned
+  description: Destination Already Signed
+  createdAt: '2026-05-18T08:54:31.908Z'
+  updatedAt: '2026-05-18T08:54:31.908Z'
+- id: err-1779094471913
+  code: '172'
+  name: NafathIdNumberNotInvalid
+  description: Nafath ID Number Not Invalid
+  createdAt: '2026-05-18T08:54:31.913Z'
+  updatedAt: '2026-05-18T08:54:31.913Z'
+- id: err-1779094471939
+  code: '173'
+  name: NafathRequestStatusExpierd
+  description: Nafath Request Status Expired
+  createdAt: '2026-05-18T08:54:31.939Z'
+  updatedAt: '2026-05-18T08:54:31.939Z'
+- id: err-1779094471941
+  code: '174'
+  name: NafathNationalId
+  description: Nafath National ID
+  createdAt: '2026-05-18T08:54:31.941Z'
+  updatedAt: '2026-05-18T08:54:31.941Z'
+- id: err-1779094471978
+  code: '175'
+  name: EmdhaSmartVerificationRequired
+  description: Emdha Smart Verification Required
+  createdAt: '2026-05-18T08:54:31.978Z'
+  updatedAt: '2026-05-18T08:54:31.978Z'
+- id: err-1779094471982
+  code: '176'
+  name: InvalidRequestId
+  description: Invalid Request ID
+  createdAt: '2026-05-18T08:54:31.982Z'
+  updatedAt: '2026-05-18T08:54:31.982Z'
+- id: err-1779094471986
+  code: '177'
+  name: NotInvitedDestination
+  description: Not Invited Destination
+  createdAt: '2026-05-18T08:54:31.986Z'
+  updatedAt: '2026-05-18T08:54:31.986Z'
+- id: err-1779094471992
+  code: '178'
+  name: NotRequiredNafath
+  description: Nafath Not Required
+  createdAt: '2026-05-18T08:54:31.992Z'
+  updatedAt: '2026-05-18T08:54:31.992Z'
+- id: err-1779094472042
+  code: '179'
+  name: SmtpFaildSendEmail
+  description: SMTP Failed To Send Email
+  createdAt: '2026-05-18T08:54:32.042Z'
+  updatedAt: '2026-05-18T08:54:32.042Z'
+- id: err-1779094472045
+  code: '180'
+  name: InvalidDestinationOrder
+  description: Invalid Destination Order
+  createdAt: '2026-05-18T08:54:32.045Z'
+  updatedAt: '2026-05-18T08:54:32.045Z'
+- id: err-1779094472054
+  code: '181'
+  name: CantCancelCompletedRequest
+  description: Cannot Cancel Completed Request
+  createdAt: '2026-05-18T08:54:32.054Z'
+  updatedAt: '2026-05-18T08:54:32.054Z'
+- id: err-1779094472061
+  code: '182'
+  name: ExceedUserMultiAccountAddUser
+  description: Exceed User Multi-Account Add User
+  createdAt: '2026-05-18T08:54:32.061Z'
+  updatedAt: '2026-05-18T08:54:32.061Z'
+- id: err-1779094472069
+  code: '183'
+  name: MultiAccountUserNotHasAccounts
+  description: Multi-Account User Does Not Have Accounts
+  createdAt: '2026-05-18T08:54:32.069Z'
+  updatedAt: '2026-05-18T08:54:32.069Z'
+- id: err-1779094472082
+  code: '184'
+  name: MultiAccountUserNotHasAccessToAccounts
+  description: Multi-Account User Does Not Have Access To Accounts
+  createdAt: '2026-05-18T08:54:32.082Z'
+  updatedAt: '2026-05-18T08:54:32.082Z'
+- id: err-1779094472122
+  code: '185'
+  name: UserMultiAccountNotAccess
+  description: User Multi-Account Not Access
+  createdAt: '2026-05-18T08:54:32.122Z'
+  updatedAt: '2026-05-18T08:54:32.122Z'
+- id: err-1779094472124
+  code: '186'
+  name: InvalidPassword
+  description: Invalid Password
+  createdAt: '2026-05-18T08:54:32.124Z'
+  updatedAt: '2026-05-18T08:54:32.124Z'
+- id: err-1779094472128
+  code: '188'
+  name: UnTrustedDevice
+  description: Untrusted Device
+  createdAt: '2026-05-18T08:54:32.128Z'
+  updatedAt: '2026-05-18T08:54:32.128Z'
+- id: err-1779094472135
+  code: '189'
+  name: UnableToTrustDevice
+  description: Unable To Trust Device
+  createdAt: '2026-05-18T08:54:32.135Z'
+  updatedAt: '2026-05-18T08:54:32.135Z'
+- id: err-1779094472148
+  code: '190'
+  name: AbsherOtpSent
+  description: Absher OTP Sent
+  createdAt: '2026-05-18T08:54:32.148Z'
+  updatedAt: '2026-05-18T08:54:32.148Z'
+- id: err-1779094472184
+  code: '191'
+  name: DestinationAlreadyExists
+  description: Destination Already Exists
+  createdAt: '2026-05-18T08:54:32.184Z'
+  updatedAt: '2026-05-18T08:54:32.184Z'
+- id: err-1779094472206
+  code: '194'
+  name: UserDelegateOtherUser
+  description: User Delegates Other User
+  createdAt: '2026-05-18T08:54:32.205Z'
+  updatedAt: '2026-05-18T08:54:32.205Z'
+- id: err-1779094472208
+  code: '192'
+  name: UserNotFound
+  description: User Not Found
+  createdAt: '2026-05-18T08:54:32.208Z'
+  updatedAt: '2026-05-18T08:54:32.208Z'
+- id: err-1779094472210
+  code: '193'
+  name: RoleHaveUser
+  description: Role Has User
+  createdAt: '2026-05-18T08:54:32.210Z'
+  updatedAt: '2026-05-18T08:54:32.210Z'
+- id: err-1779094472212
+  code: '195'
+  name: DestinationDelegationAlreadyExists
+  description: Destination Delegation Already Exists
+  createdAt: '2026-05-18T08:54:32.212Z'
+  updatedAt: '2026-05-18T08:54:32.212Z'
+- id: err-1779094472227
+  code: '196'
+  name: CurrentUserIsDelegated
+  description: Current User Is Delegated
+  createdAt: '2026-05-18T08:54:32.227Z'
+  updatedAt: '2026-05-18T08:54:32.227Z'
+- id: err-1779094472282
+  code: '197'
+  name: UserAlreadyReviewedDocument
+  description: User Already Reviewed Document
+  createdAt: '2026-05-18T08:54:32.282Z'
+  updatedAt: '2026-05-18T08:54:32.282Z'
+- id: err-1779094472285
+  code: '198'
+  name: UserDelegatedFromOtherUser
+  description: User Delegated From Other User
+  createdAt: '2026-05-18T08:54:32.285Z'
+  updatedAt: '2026-05-18T08:54:32.285Z'
+- id: err-1779094472289
+  code: '199'
+  name: PhoneOrEmailAreLinkedToNationalId
+  description: Phone Or Email Are Linked To National ID
+  createdAt: '2026-05-18T08:54:32.289Z'
+  updatedAt: '2026-05-18T08:54:32.289Z'
+- id: err-1779094472291
+  code: '200'
+  name: DestinationDeleteNotAllowed
+  description: Destination Delete Not Allowed
+  createdAt: '2026-05-18T08:54:32.291Z'
+  updatedAt: '2026-05-18T08:54:32.291Z'
+- id: err-1779094472293
+  code: '201'
+  name: UserNotHasAccessToTrackingData
+  description: User Does Not Have Access To Tracking Data
+  createdAt: '2026-05-18T08:54:32.293Z'
+  updatedAt: '2026-05-18T08:54:32.293Z'
+- id: err-1779094472305
+  code: '202'
+  name: ExceededArchiveStorageQuota
+  description: Exceeded Archive Storage Quota
+  createdAt: '2026-05-18T08:54:32.305Z'
+  updatedAt: '2026-05-18T08:54:32.305Z'
+- id: err-1779094472358
+  code: '203'
+  name: DestinationNotAllowedToSign
+  description: Destination Not Allowed To Sign
+  createdAt: '2026-05-18T08:54:32.358Z'
+  updatedAt: '2026-05-18T08:54:32.358Z'
+- id: err-1779094472369
+  code: '205'
+  name: DelegatedUserNotExists
+  description: Delegated User Does Not Exist
+  createdAt: '2026-05-18T08:54:32.369Z'
+  updatedAt: '2026-05-18T08:54:32.369Z'
+- id: err-1779094472371
+  code: '204'
+  name: UserIsUnauthorizedToAccessTheFile
+  description: User Is Unauthorized To Access The File
+  createdAt: '2026-05-18T08:54:32.371Z'
+  updatedAt: '2026-05-18T08:54:32.371Z'
+- id: err-1779094472374
+  code: '206'
+  name: NotAllowedToUpload
+  description: Not Allowed To Upload
+  createdAt: '2026-05-18T08:54:32.374Z'
+  updatedAt: '2026-05-18T08:54:32.374Z'
+- id: err-1779094472386
+  code: '207'
+  name: AuthenticationTypeNotAllowed
+  description: Authentication Type Not Allowed
+  createdAt: '2026-05-18T08:54:32.386Z'
+  updatedAt: '2026-05-18T08:54:32.386Z'
+- id: err-1779094472388
+  code: '208'
+  name: PinCodeRequired
+  description: PIN Code Required
+  createdAt: '2026-05-18T08:54:32.388Z'
+  updatedAt: '2026-05-18T08:54:32.388Z'
+- id: err-1779094472439
+  code: '209'
+  name: TemplateHasExternalRecipientData
+  description: Template Has External Recipient Data
+  createdAt: '2026-05-18T08:54:32.439Z'
+  updatedAt: '2026-05-18T08:54:32.439Z'
+- id: err-1779094472446
+  code: '210'
+  name: DifferentCommercialNumber
+  description: Different Commercial Number
+  createdAt: '2026-05-18T08:54:32.446Z'
+  updatedAt: '2026-05-18T08:54:32.446Z'
+- id: err-1779094472450
+  code: '211'
+  name: SignatureCurrentlyInUse
+  description: Signature Currently In Use
+  createdAt: '2026-05-18T08:54:32.450Z'
+  updatedAt: '2026-05-18T08:54:32.450Z'
+- id: err-1779094472453
+  code: '212'
+  name: IssueWithNafathService
+  description: Issue With Nafath Service
+  createdAt: '2026-05-18T08:54:32.453Z'
+  updatedAt: '2026-05-18T08:54:32.453Z'
+- id: err-1779094472466
+  code: '213'
+  name: DocumentStillUnderReview
+  description: Document Still Under Review
+  createdAt: '2026-05-18T08:54:32.466Z'
+  updatedAt: '2026-05-18T08:54:32.466Z'
+- id: err-1779094472490
+  code: '214'
+  name: DocumentAlreadyEditedByCreator
+  description: Document Already Edited By Creator
+  createdAt: '2026-05-18T08:54:32.490Z'
+  updatedAt: '2026-05-18T08:54:32.490Z'
+- id: err-1779094472515
+  code: '215'
+  name: DocumentIsCompleted
+  description: Document Is Completed
+  createdAt: '2026-05-18T08:54:32.515Z'
+  updatedAt: '2026-05-18T08:54:32.515Z'
+- id: err-1779094472520
+  code: '216'
+  name: WorkflowIsUsedInTemplate
+  description: Workflow Is Used In Template
+  createdAt: '2026-05-18T08:54:32.520Z'
+  updatedAt: '2026-05-18T08:54:32.520Z'
+- id: err-1779094472530
+  code: '217'
+  name: SelfSignExternalCannotSign
+  description: Self Sign External Cannot Sign
+  createdAt: '2026-05-18T08:54:32.530Z'
+  updatedAt: '2026-05-18T08:54:32.530Z'
+- id: err-1779094472533
+  code: '218'
+  name: TemplateSelfSignIsStopped
+  description: Template Self Sign Is Stopped
+  createdAt: '2026-05-18T08:54:32.533Z'
+  updatedAt: '2026-05-18T08:54:32.533Z'
+- id: err-1779094472552
+  code: '219'
+  name: UnsupportedExtenstion
+  description: Unsupported Extension
+  createdAt: '2026-05-18T08:54:32.552Z'
+  updatedAt: '2026-05-18T08:54:32.552Z'
+- id: err-1779094472593
+  code: '221'
+  name: DarftRequest
+  description: Draft Request
+  createdAt: '2026-05-18T08:54:32.593Z'
+  updatedAt: '2026-05-18T08:54:32.593Z'
+- id: err-1779094472595
+  code: '220'
+  name: DestinationSign
+  description: Destination Sign
+  createdAt: '2026-05-18T08:54:32.595Z'
+  updatedAt: '2026-05-18T08:54:32.595Z'
+- id: err-1779094472599
+  code: '222'
+  name: RecalltRequest
+  description: Recall Request
+  createdAt: '2026-05-18T08:54:32.599Z'
+  updatedAt: '2026-05-18T08:54:32.599Z'
+- id: err-1779094472609
+  code: '223'
+  name: UnSafeHtml
+  description: Unsafe HTML
+  createdAt: '2026-05-18T08:54:32.609Z'
+  updatedAt: '2026-05-18T08:54:32.609Z'
+- id: err-1779094472614
+  code: '224'
+  name: WorkflowForward
+  description: Workflow Forward
+  createdAt: '2026-05-18T08:54:32.614Z'
+  updatedAt: '2026-05-18T08:54:32.614Z'
+- id: err-1779094472632
+  code: '225'
+  name: RequestNotAvailableNow
+  description: Request Not Available Now
+  createdAt: '2026-05-18T08:54:32.632Z'
+  updatedAt: '2026-05-18T08:54:32.632Z'
+- id: err-1779094472671
+  code: '226'
+  name: ExpiredPassword
+  description: Expired Password
+  createdAt: '2026-05-18T08:54:32.671Z'
+  updatedAt: '2026-05-18T08:54:32.671Z'
+- id: err-1779094472678
+  code: '227'
+  name: DuplicatedReferenceNumber
+  description: Duplicated Reference Number
+  createdAt: '2026-05-18T08:54:32.678Z'
+  updatedAt: '2026-05-18T08:54:32.678Z'
+- id: err-1779094472689
+  code: '228'
+  name: NationalIdAreLinkedToAnotherPhoneOrEmail
+  description: National ID Is Linked To Another Phone Or Email
+  createdAt: '2026-05-18T08:54:32.689Z'
+  updatedAt: '2026-05-18T08:54:32.689Z'
+- id: err-1779094472693
+  code: '229'
+  name: RequestAlreadySent
+  description: Request Already Sent
+  createdAt: '2026-05-18T08:54:32.693Z'
+  updatedAt: '2026-05-18T08:54:32.693Z'
+- id: err-1779094472700
+  code: '330'
+  name: InvalidPackageId
+  description: Invalid Package ID
+  createdAt: '2026-05-18T08:54:32.700Z'
+  updatedAt: '2026-05-18T08:54:32.700Z'
+- id: err-1779094472738
+  code: '331'
+  name: PackageNotFound
+  description: Package Not Found
+  createdAt: '2026-05-18T08:54:32.738Z'
+  updatedAt: '2026-05-18T08:54:32.738Z'
+- id: err-1779094472748
+  code: '332'
+  name: InvalidUserPhone
+  description: Invalid User Phone
+  createdAt: '2026-05-18T08:54:32.748Z'
+  updatedAt: '2026-05-18T08:54:32.748Z'
+- id: err-1779094472754
+  code: '333'
+  name: PaymentModified
+  description: Payment Modified
+  createdAt: '2026-05-18T08:54:32.754Z'
+  updatedAt: '2026-05-18T08:54:32.754Z'
+- id: err-1779094472770
+  code: '334'
+  name: ExternalApiFailure
+  description: External API Failure
+  createdAt: '2026-05-18T08:54:32.770Z'
+  updatedAt: '2026-05-18T08:54:32.770Z'
+- id: err-1779094472774
+  code: '335'
+  name: InvalidHashstring
+  description: Invalid Hash String
+  createdAt: '2026-05-18T08:54:32.774Z'
+  updatedAt: '2026-05-18T08:54:32.774Z'
+- id: err-1779094472803
+  code: '336'
+  name: AlreadyProcessed
+  description: Already Processed
+  createdAt: '2026-05-18T08:54:32.803Z'
+  updatedAt: '2026-05-18T08:54:32.803Z'
+- id: err-1779094472822
+  code: '337'
+  name: PhoneNumberIsNotAllowEmpty
+  description: Phone Number Is Not Allowed To Be Empty
+  createdAt: '2026-05-18T08:54:32.822Z'
+  updatedAt: '2026-05-18T08:54:32.822Z'
+- id: err-1779094472830
+  code: '338'
+  name: EmailIsNotAllowEmpty
+  description: Email Is Not Allowed To Be Empty
+  createdAt: '2026-05-18T08:54:32.830Z'
+  updatedAt: '2026-05-18T08:54:32.830Z'
+- id: err-1779094472832
+  code: '339'
+  name: EmailOrPhoneNumberIsNotValid
+  description: Email Or Phone Number Is Not Valid
+  createdAt: '2026-05-18T08:54:32.832Z'
+  updatedAt: '2026-05-18T08:54:32.832Z'
+- id: err-1779094472851
+  code: '340'
+  name: RequestNotEditable
+  description: Request Not Editable
+  createdAt: '2026-05-18T08:54:32.851Z'
+  updatedAt: '2026-05-18T08:54:32.851Z'
+- id: err-1779094472854
+  code: '341'
+  name: QuorumRemoveDestination
+  description: Quorum Remove Destination
+  createdAt: '2026-05-18T08:54:32.854Z'
+  updatedAt: '2026-05-18T08:54:32.854Z'
+- id: err-1779094472927
+  code: '342'
+  name: RequestNotActive
+  description: Request Not Active
+  createdAt: '2026-05-18T08:54:32.927Z'
+  updatedAt: '2026-05-18T08:54:32.927Z'
+- id: err-1779094472931
+  code: '343'
+  name: UserNotVerifiedByNafathDefrentNationalId
+  description: User Not Verified By Nafath Different National ID
+  createdAt: '2026-05-18T08:54:32.931Z'
+  updatedAt: '2026-05-18T08:54:32.931Z'
+- id: err-1779094472933
+  code: '344'
+  name: OtpNeedVrify
+  description: OTP Needs Verification
+  createdAt: '2026-05-18T08:54:32.933Z'
+  updatedAt: '2026-05-18T08:54:32.933Z'
+- id: err-1779094472935
+  code: '345'
+  name: WebHookDefaultIsAlreadyRegistered
+  description: WebHook Default Is Already Registered
+  createdAt: '2026-05-18T08:54:32.935Z'
+  updatedAt: '2026-05-18T08:54:32.935Z'
+- id: err-1779094472938
+  code: '346'
+  name: MissingSignatureDataFromWeb
+  description: Missing Signature Data From Web
+  createdAt: '2026-05-18T08:54:32.938Z'
+  updatedAt: '2026-05-18T08:54:32.938Z'
+- id: err-1779094472940
+  code: '347'
+  name: ExistsDomain
+  description: Domain Already Exists
+  createdAt: '2026-05-18T08:54:32.940Z'
+  updatedAt: '2026-05-18T08:54:32.940Z'
+- id: err-1779094473007
+  code: '348'
+  name: UserIsUnauthorizedToAddTenancy
+  description: User Is Unauthorized To Add Tenancy
+  createdAt: '2026-05-18T08:54:33.007Z'
+  updatedAt: '2026-05-18T08:54:33.007Z'
+- id: err-1779094473009
+  code: '349'
+  name: AgentNationalIdDoesNotExist
+  description: Agent National ID Does Not Exist
+  createdAt: '2026-05-18T08:54:33.009Z'
+  updatedAt: '2026-05-18T08:54:33.009Z'
+- id: err-1779094473016
+  code: '350'
+  name: PrincipalDoesNotExist
+  description: Principal Does Not Exist
+  createdAt: '2026-05-18T08:54:33.016Z'
+  updatedAt: '2026-05-18T08:54:33.016Z'
+- id: err-1779094473018
+  code: '351'
+  name: PrincipalNationalIdDoesNotExist
+  description: Principal National ID Does Not Exist
+  createdAt: '2026-05-18T08:54:33.018Z'
+  updatedAt: '2026-05-18T08:54:33.018Z'
+- id: err-1779094473021
+  code: '352'
+  name: PrincipalCRNumberDoesNotExist
+  description: Principal CR Number Does Not Exist
+  createdAt: '2026-05-18T08:54:33.021Z'
+  updatedAt: '2026-05-18T08:54:33.021Z'
+- id: err-1779094473047
+  code: '353'
+  name: AttorneyTypeDoesNotExist
+  description: Attorney Type Does Not Exist
+  createdAt: '2026-05-18T08:54:33.047Z'
+  updatedAt: '2026-05-18T08:54:33.047Z'
+- id: err-1779094473087
+  code: '354'
+  name: AttorneyNumberRequerd
+  description: Attorney Number Required
+  createdAt: '2026-05-18T08:54:33.087Z'
+  updatedAt: '2026-05-18T08:54:33.087Z'
+- id: err-1779094473090
+  code: '355'
+  name: AttorneyNumberRequireOtp
+  description: Attorney Number Requires OTP
+  createdAt: '2026-05-18T08:54:33.090Z'
+  updatedAt: '2026-05-18T08:54:33.090Z'
+- id: err-1779094473095
+  code: '356'
+  name: AttorneyNumberOtpSent
+  description: Attorney Number OTP Sent
+  createdAt: '2026-05-18T08:54:33.095Z'
+  updatedAt: '2026-05-18T08:54:33.095Z'
+- id: err-1779094473098
+  code: '357'
+  name: AttorneyNumberIsNotCorrect
+  description: Attorney Number Is Not Correct
+  createdAt: '2026-05-18T08:54:33.098Z'
+  updatedAt: '2026-05-18T08:54:33.098Z'
+- id: err-1779094473101
+  code: '358'
+  name: AttorneyNumberMustBeAround10Digits
+  description: Attorney Number Must Be Around 10 Digits
+  createdAt: '2026-05-18T08:54:33.101Z'
+  updatedAt: '2026-05-18T08:54:33.101Z'
+- id: err-1779094473154
+  code: '359'
+  name: IdIsNotRelatedToAttorney
+  description: ID Is Not Related To Attorney
+  createdAt: '2026-05-18T08:54:33.154Z'
+  updatedAt: '2026-05-18T08:54:33.154Z'
+- id: err-1779094473163
+  code: '360'
+  name: NotAuthorizedToSignFromAttorney
+  description: Not Authorized To Sign From Attorney
+  createdAt: '2026-05-18T08:54:33.163Z'
+  updatedAt: '2026-05-18T08:54:33.163Z'
+- id: err-1779094473167
+  code: '361'
+  name: InsufficientExtractedContent
+  description: Insufficient Extracted Content
+  createdAt: '2026-05-18T08:54:33.167Z'
+  updatedAt: '2026-05-18T08:54:33.167Z'
+- id: err-1779094473174
+  code: '362'
+  name: AttorneyNationalIdRequired
+  description: Attorney National ID Required
+  createdAt: '2026-05-18T08:54:33.174Z'
+  updatedAt: '2026-05-18T08:54:33.174Z'
+- id: err-1779094473180
+  code: '363'
+  name: UnauthorizedToCreateAccount
+  description: Unauthorized To Create Account
+  createdAt: '2026-05-18T08:54:33.180Z'
+  updatedAt: '2026-05-18T08:54:33.180Z'
+- id: err-1779094473186
+  code: '364'
+  name: NotExistsAccount
+  description: Account Does Not Exist
+  createdAt: '2026-05-18T08:54:33.186Z'
+  updatedAt: '2026-05-18T08:54:33.186Z'
+- id: err-1779094473247
+  code: '365'
+  name: ExistsEmail
+  description: Email Already Exists
+  createdAt: '2026-05-18T08:54:33.247Z'
+  updatedAt: '2026-05-18T08:54:33.247Z'
+- id: err-1779094473250
+  code: '366'
+  name: ExistsPhone
+  description: Phone Already Exists
+  createdAt: '2026-05-18T08:54:33.250Z'
+  updatedAt: '2026-05-18T08:54:33.250Z'
+- id: err-1779094473254
+  code: '367'
+  name: ExistsNationalId
+  description: National ID Already Exists
+  createdAt: '2026-05-18T08:54:33.254Z'
+  updatedAt: '2026-05-18T08:54:33.254Z'
+- id: err-1779094473257
+  code: '368'
+  name: ExistsCommercialNumber
+  description: Commercial Number Already Exists
+  createdAt: '2026-05-18T08:54:33.257Z'
+  updatedAt: '2026-05-18T08:54:33.257Z'
+- id: err-1779094473259
+  code: '369'
+  name: UnauthorizedToDeleteTenancy
+  description: Unauthorized To Delete Tenancy
+  createdAt: '2026-05-18T08:54:33.259Z'
+  updatedAt: '2026-05-18T08:54:33.259Z'
+- id: err-1779094473264
+  code: '370'
+  name: InvalidPackagePrice
+  description: Invalid Package Price
+  createdAt: '2026-05-18T08:54:33.264Z'
+  updatedAt: '2026-05-18T08:54:33.264Z'
+- id: err-1779094473325
+  code: '371'
+  name: InsufficientAiBalance
+  description: Insufficient AI Balance
+  createdAt: '2026-05-18T08:54:33.325Z'
+  updatedAt: '2026-05-18T08:54:33.325Z'
+- id: err-1779094473329
+  code: '372'
+  name: DocumentGenerationFailed
+  description: Document Generation Failed
+  createdAt: '2026-05-18T08:54:33.329Z'
+  updatedAt: '2026-05-18T08:54:33.329Z'
+- id: err-1779094473334
+  code: '373'
+  name: InvalidOtp
+  description: Invalid OTP
+  createdAt: '2026-05-18T08:54:33.334Z'
+  updatedAt: '2026-05-18T08:54:33.334Z'
+- id: err-1779094473338
+  code: '374'
+  name: CertificateProviderNotFound
+  description: Certificate Provider Not Found
+  createdAt: '2026-05-18T08:54:33.338Z'
+  updatedAt: '2026-05-18T08:54:33.338Z'
+- id: err-1779094473344
+  code: '375'
+  name: CertificateProviderAlreadyExists
+  description: Certificate Provider Already Exists
+  createdAt: '2026-05-18T08:54:33.344Z'
+  updatedAt: '2026-05-18T08:54:33.344Z'
+- id: err-1779094473358
+  code: '376'
+  name: InvalidCertificateProviderType
+  description: Invalid Certificate Provider Type
+  createdAt: '2026-05-18T08:54:33.358Z'
+  updatedAt: '2026-05-18T08:54:33.358Z'
+- id: err-1779094473406
+  code: '377'
+  name: CertificateProviderValidationFailed
+  description: Certificate Provider Validation Failed
+  createdAt: '2026-05-18T08:54:33.406Z'
+  updatedAt: '2026-05-18T08:54:33.406Z'
