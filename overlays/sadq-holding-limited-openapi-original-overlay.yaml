@@ -1,0 +1,25 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Sadq Integration API
+  version: 1.0.0
+extends: openapi/sadq-holding-limited-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-21'
+    x-agent-ready: true
+    x-mcp-server: https://docs.sadq.sa/mcp
+    x-auth-md: https://docs.sadq.sa/auth.md
+    x-api-catalog: https://docs.sadq.sa/.well-known/api-catalog
+- target: $.components.securitySchemes
+  update:
+    OAuth2ClientCredentials:
+      type: oauth2
+      description: >-
+        Real authorization mechanism per docs.sadq.sa auth.md and RFC 8414
+        metadata; the raw spec only declares the resulting BearerAuth JWT.
+      flows:
+        clientCredentials:
+          tokenUrl: https://identity.sadq.sa/connect/token
+          scopes:
+            Integrationscope: Full access to the Sadq Integration API

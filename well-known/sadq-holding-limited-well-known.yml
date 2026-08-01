@@ -1,0 +1,45 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sadq.sa/.well-known/
+note: >-
+  The production (api.sadq.sa), sandbox (sandbox-api.sadq-sa.com) and marketing
+  (sadq.sa / sadq-sa.com) hosts return the SPA/catch-all HTML for /.well-known/*
+  (HTTP 200 text/html, not real documents). The machine-readable discovery
+  surface is served by the docs host, docs.sadq.sa, which publishes a full
+  agent-native discovery set (api-catalog, OIDC/OAuth AS metadata, protected
+  resource metadata, MCP server card, llms.txt, auth.md).
+hosts:
+- host: https://docs.sadq.sa
+  documents:
+  - path: /.well-known/api-catalog          # RFC 9727 linkset
+    status: 200
+    file: sadq-holding-limited-api-catalog.json
+  - path: /.well-known/openid-configuration  # OIDC 1.0 discovery
+    status: 200
+    file: sadq-holding-limited-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server  # RFC 8414
+    status: 200
+    file: sadq-holding-limited-oauth-authorization-server.json
+  - path: /.well-known/oauth-protected-resource     # RFC 9728
+    status: 200
+    file: sadq-holding-limited-oauth-protected-resource.json
+  - path: /.well-known/mcp/server-card.json  # MCP server card
+    status: 200
+    file: sadq-holding-limited-mcp-server-card.json
+  - path: /.well-known/security.txt          # RFC 9116
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /auth.md                            # agent auth/registration guide
+    status: 200
+    file: sadq-holding-limited-auth.md
+- host: https://api.sadq.sa
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: returns catch-all HTML, not an RFC 9116 document
+- host: https://sadq.sa
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: returns SPA HTML, not an RFC 9116 document

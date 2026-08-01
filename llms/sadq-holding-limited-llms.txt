@@ -1,0 +1,343 @@
+# Sadq Integration API Documentation
+
+> Sadq is a Saudi e-signature platform. This documentation covers the REST API for integrating with Sadq.
+
+## Overview
+
+- Full API reference: https://docs.sadq.sa/docs
+- Machine-readable OpenAPI schema: https://docs.sadq.sa/api/schema
+- Sitemap: https://docs.sadq.sa/sitemap.xml
+
+## Authentication
+
+Most endpoints require a Bearer JWT token obtained from the Authentication group.
+Some endpoints use BasicAuth (Client ID + Client Secret) or ClientCert.
+
+## API Groups
+
+### Authentication
+
+Obtain and manage API access tokens
+
+Docs: https://docs.sadq.sa/docs/auth
+
+- **POST /Authentication/Authority/Token** — Obtain Access Token
+  https://docs.sadq.sa/docs/auth/post-authentication-authority-token
+  Obtain a JWT Bearer token using Basic Auth. Pass your Client ID as username and Client Secret as password in the Authorization header (Base64-encoded). The body must be form-encoded with grant_type=integration plus user credentials. The returned access_token must be included as a Bearer token in all subsequent API requests.
+
+### Envelopes
+
+Initiate and manage signing envelopes and document packages
+
+Docs: https://docs.sadq.sa/docs/envelopes
+
+- **POST /api/v1/envelopes/initiate** — Initiate Envelope
+  https://docs.sadq.sa/docs/envelopes/post-api-v1-envelopes-initiate
+  Initiate a signature envelope by uploading document files as multipart/form-data. Returns an envelope and Docuemnt ID that can be used in subsequent signing invitation steps.
+- **POST /api/v1/envelopes/initiate-base64** — Initiate Envelope Base64
+  https://docs.sadq.sa/docs/envelopes/post-api-v1-envelopes-initiate-base64
+  Initiate a signature envelope by providing the document content as a Base64-encoded string. The system creates an envelope and returns its ID for subsequent signing invitation steps.
+- **POST /api/v1/envelopes/initiate-by-template** — Initiate Envelope by Template
+  https://docs.sadq.sa/docs/envelopes/post-api-v1-envelopes-initiate-by-template
+  Initiate a signature envelope using a predefined template. The template defines the document structure, signing fields, and signer roles. Returns an envelope ID.
+- **POST /api/v1/envelopes/bulk/initiate-base64** — Bulk Initiate Envelope Base64
+  https://docs.sadq.sa/docs/envelopes/post-api-v1-envelopes-bulk-initiate-base64
+  Initiate multiple signature envelopes in a single request by providing documents as Base64-encoded strings. Returns an array of envelope IDs.
+- **POST /api/v1/envelopes/{envelopeId}/files** — Add Files to Envelope
+  https://docs.sadq.sa/docs/envelopes/post-api-v1-envelopes-envelopeid-files
+  The "Add Files to Envelope" API method allows users to add more files to a pre-initiated envelope/document signing request.
+- **GET /api/v1/envelopes/{envelopeId}/files** — Download Envelope Files
+  https://docs.sadq.sa/docs/envelopes/get-api-v1-envelopes-envelopeid-files
+  Download all files associated with an envelope. Returns file content as binary or base64 depending on the Accept header.
+- **POST /api/v1/envelopes/{envelopeId}/cancel** — Cancel Envelope
+  https://docs.sadq.sa/docs/envelopes/post-api-v1-envelopes-envelopeid-cancel
+  Cancel an active envelope, preventing any further signing actions. Cancellation is irreversible. All pending signers will be notified.
+- **GET /api/v1/envelopes/{envelopeId}/status** — Get Envelope Status
+  https://docs.sadq.sa/docs/envelopes/get-api-v1-envelopes-envelopeid-status
+  Retrieve the current status of an envelope including signer completion details and overall progress.
+- **GET /api/v1/envelopes/{envelopeId}/files/completed** — Download Completed Envelope Files
+  https://docs.sadq.sa/docs/envelopes/get-api-v1-envelopes-envelopeid-files-completed
+  Download the signed and completed files from an envelope. Only available after all signers have completed signing.
+- **POST /api/v1/envelopes/bulk/initiate-and-invite** — Envelope Creation & Signing Invitation Process
+  https://docs.sadq.sa/docs/envelopes/post-api-v1-envelopes-bulk-initiate-and-invite
+  The API provides a complete end-to-end digital document signing workflow in a single operation. It initiates a signature envelope by accepting the document content as a Base64-encoded string, and immediately creates the envelope while generating a unique envelope ID.
+
+In the same process, the API also handles sending signing invitations to recipients. Each recipient receives a secure link via email or SMS, allowing them to review and sign the document electronically without requiring any additional API calls.
+
+### Invitations
+
+Send, extend, and remind signing invitations
+
+Docs: https://docs.sadq.sa/docs/invitations
+
+- **POST /api/v1/invitations** — Send Invitation
+  https://docs.sadq.sa/docs/invitations/post-api-v1-invitations
+  Send a signing invitation to a recipient for a specific envelope. The recipient receives an email or SMS with a link to sign the document.
+- **POST /api/v1/invitations/bulk/send** — Send Bulk Invitations
+  https://docs.sadq.sa/docs/invitations/post-api-v1-invitations-bulk-send
+  Send signing invitations to multiple recipients across multiple envelopes in a single API call. Useful for high-volume signing workflows.
+- **POST /api/v1/invitations/envelope** — Send Invitation by Envelope
+  https://docs.sadq.sa/docs/invitations/post-api-v1-invitations-envelope
+  Send signing invitations for all signers defined within a specific envelope. This triggers invitation dispatch for all pending signers in the envelope.
+- **PUT /api/v1/invitations/extend** — Extend Single Invitation
+  https://docs.sadq.sa/docs/invitations/put-api-v1-invitations-extend
+  Extend the expiry date of a single signing invitation. Use this to give a signer more time to complete signing before the invitation expires.
+- **PUT /api/v1/envelopes/extend-invitations** — Extend Envelope Invitations
+  https://docs.sadq.sa/docs/invitations/put-api-v1-envelopes-extend-invitations
+  Extend the expiry dates of all pending invitations within a specific envelope. This is useful when you need to give all signers more time.
+- **POST /api/v1/invitations/reminders/send** — Send Reminder
+  https://docs.sadq.sa/docs/invitations/post-api-v1-invitations-reminders-send
+  Send a reminder notification to a signer who has not yet completed signing. The reminder is sent via the same channel as the original invitation.
+- **POST /api/v1/invitations/bulk/reminders/send** — Send Bulk Reminders
+  https://docs.sadq.sa/docs/invitations/post-api-v1-invitations-bulk-reminders-send
+  Send reminder notifications to multiple signers in a single request. Use this for batch follow-up campaigns.
+- **POST /api/v2/invitations** — Send Invitation V2
+  https://docs.sadq.sa/docs/invitations/post-api-v2-invitations
+  Version 2 of the Send Invitation API. Unlike previous versions, this endpoint does not send notifications via email or SMS. Instead, it returns the signing link directly in the API response, allowing clients to handle notification delivery and user communication through their own channels.
+- **POST /api/v3/invitations** — Send Invitation V3
+  https://docs.sadq.sa/docs/invitations/post-api-v3-invitations
+  Version 3 of the Send Invitation API. This endpoint sends notifications to recipients via email or SMS and also returns the signing link directly in the API response, allowing clients to both rely on built-in notifications and handle additional communication through their own channels if needed.
+
+### Sign
+
+Direct signing operations including multi-file and templates
+
+Docs: https://docs.sadq.sa/docs/sign
+
+- **POST /api/v2/sign** — Sign Document V2
+  https://docs.sadq.sa/docs/sign/post-api-v2-sign
+  The Sadq API (Version 2) provides a seamless way for clients to electronically sign documents directly without redirecting to external websites. This API allows clients to collect customer information and combine it with the document to create legally binding digital signatures.
+
+This endpoint allows you to sign a document digitally by providing customer information and document details. The document is digitally signed and legally bound. invitation, applying the user's electronic signature.
+- **POST /api/v2/sign/by-template** — Sign by Template V2
+  https://docs.sadq.sa/docs/sign/post-api-v2-sign-by-template
+  Sign a document generated from a template. The template pre-defines signature fields and positions, streamlining the signing process for standardized documents.
+- **GET /api/v2/sign/digital** — Digital Sign
+  https://docs.sadq.sa/docs/sign/get-api-v2-sign-digital
+  Sign documents using personal certificate with Nafath authentication
+
+### eSign
+
+Electronic and digital signature operations via Nafath/PKI
+
+Docs: https://docs.sadq.sa/docs/esign
+
+- **POST /api/v1/esign/nafath/sign** — Hash Sign V1
+  https://docs.sadq.sa/docs/esign/post-api-v1-esign-nafath-sign
+  Sign a document using Saudi Arabia's Nafath national digital identity platform (v1). The signer authenticates via the Nafath app using their national ID.
+- **POST /api/v2/esign/nafath/sign** — Hash Sign V2
+  https://docs.sadq.sa/docs/esign/post-api-v2-esign-nafath-sign
+  Enhanced Nafath signing endpoint (v2) with additional biometric verification options, improved error handling, and support for Nafath API v3 authentication flows.
+
+### Documents
+
+Download and manage signed document files
+
+Docs: https://docs.sadq.sa/docs/documents
+
+- **GET /api/v1/documents/{id}** — Download Document File
+  https://docs.sadq.sa/docs/documents/get-api-v1-documents-id
+  Download the original document file by its ID. Returns the file as binary content.
+- **GET /api/v1/documents/{id}/signed** — Download Signed File
+  https://docs.sadq.sa/docs/documents/get-api-v1-documents-id-signed
+  Download the signed version of a document file. The signed document includes embedded digital signatures.
+- **GET /api/v1/documents/{id}/completed/base64** — Download Completed File Base64
+  https://docs.sadq.sa/docs/documents/get-api-v1-documents-id-completed-base64
+  Download a completed (fully-signed) document as a Base64-encoded string. Useful for applications that need to handle file content programmatically.
+- **GET /api/v1/documents/{id}/content-base64** — Download File  v1
+  https://docs.sadq.sa/docs/documents/get-api-v1-documents-id-content-base64
+  The "File Download" API allows users to download files from the server by providing the unique identifier (FileId) of the desired file. This API is particularly useful for applications that require file handling and management, enabling seamless integration with the system to securely retrieve files.
+- **GET /api/v2/documents/{id}/content-base64** — Download File  v2
+  https://docs.sadq.sa/docs/documents/get-api-v2-documents-id-content-base64
+  The "File Download" API allows users to download files from the server by providing the unique identifier (FileId) of the desired file. This API is particularly useful for applications that require file handling and management, enabling seamless integration with the system to securely retrieve files.
+
+### Templates
+
+List and retrieve reusable signing templates
+
+Docs: https://docs.sadq.sa/docs/templates
+
+- **GET /api/v1/templates** — List Templates
+  https://docs.sadq.sa/docs/templates/get-api-v1-templates
+  Retrieve a paginated list of all reusable document signing templates available to the authenticated account.
+- **GET /api/v1/templates/{templateId}** — Get Template by ID
+  https://docs.sadq.sa/docs/templates/get-api-v1-templates-templateid
+  Retrieves detailed information about a specific template, including its destinations (signers) and creator fields.
+
+### Users
+
+User management, permissions and signature uploads
+
+Docs: https://docs.sadq.sa/docs/users
+
+- **POST /api/v1/users** — Create User
+  https://docs.sadq.sa/docs/users/post-api-v1-users
+  Create a new user account within the tenant. The created user can be assigned permissions and can participate in signing workflows.
+- **POST /api/v1/users/delete** — Delete User
+  https://docs.sadq.sa/docs/users/post-api-v1-users-delete
+  Delete a user account from the tenant. This action is irreversible. All active signing sessions for this user will be terminated.
+- **POST /api/v1/users/permissions/add** — Add User Permissions
+  https://docs.sadq.sa/docs/users/post-api-v1-users-permissions-add
+  Grant additional permissions to a user. Permissions control access to specific API operations and document groups.
+- **POST /api/v1/users/permissions/remove** — Remove User Permissions
+  https://docs.sadq.sa/docs/users/post-api-v1-users-permissions-remove
+  Removes permissions from an existing user.
+- **PUT /api/v1/users/{userId}** — Update User
+  https://docs.sadq.sa/docs/users/put-api-v1-users-userid
+  Updates an existing user's information.
+
+### Workflows
+
+Create and manage document signing workflows
+
+Docs: https://docs.sadq.sa/docs/workflows
+
+- **POST /api/v1/workflows** — Create Workflow
+  https://docs.sadq.sa/docs/workflows/post-api-v1-workflows
+  The "Create Workflow" API method is designed to create a new workflow instance. It is instrumental in initializing workflows with specified attributes and destinations.
+- **PUT /api/v1/workflows/{workflowId}** — Update Workflow
+  https://docs.sadq.sa/docs/workflows/put-api-v1-workflows-workflowid
+  The "Update Workflow" API method enables modification of an existing workflow instance. This method is essential for altering workflow details and destinations.
+- **GET /api/v1/workflows** — List Workflows
+  https://docs.sadq.sa/docs/workflows/get-api-v1-workflows
+  Retrieve a paginated list of all signing workflows configured for the tenant.
+- **GET /api/v1/workflows/{id}** — Get Workflow by ID
+  https://docs.sadq.sa/docs/workflows/get-api-v1-workflows-id
+  The "Get Workflow by ID" API method is used to retrieve detailed information about a specific workflow instance based on its unique identifier (ID).
+- **DELETE /api/v1/workflows/{id}** — Delete Workflow
+  https://docs.sadq.sa/docs/workflows/delete-api-v1-workflows-id
+  Permanently delete a workflow. Active workflows with ongoing signing processes cannot be deleted.
+
+### Webhooks
+
+Configure and manage webhook subscriptions and logs
+
+Docs: https://docs.sadq.sa/docs/webhooks
+
+- **POST /api/v1/webhooks** — Create Webhook
+  https://docs.sadq.sa/docs/webhooks/post-api-v1-webhooks
+  Register a new webhook endpoint to receive real-time event notifications from the Sadq platform. Specify the events to subscribe to and the target URL.
+- **POST /api/v1/webhooks/bulk** — Create Webhooks Bulk
+  https://docs.sadq.sa/docs/webhooks/post-api-v1-webhooks-bulk
+  This API allows you to configure multiple webhook URLs in the system. You can provide a list of webhook URLs along with their authentication tokens and default status. Once configured, the system will send relevant data to the provided URLs whenever specific events occur.
+- **GET /api/v1/webhooks** — List Webhooks
+  https://docs.sadq.sa/docs/webhooks/get-api-v1-webhooks
+  This API allows you to retrieve a list of all webhook configurations from the system.
+- **GET /api/v1/webhooks/{id}** — Get Webhook by ID
+  https://docs.sadq.sa/docs/webhooks/get-api-v1-webhooks-id
+  This API allows you to retrieve a specific webhook configuration based on its ID from the system.
+- **DELETE /api/v1/webhooks/{id}** — Delete Webhook
+  https://docs.sadq.sa/docs/webhooks/delete-api-v1-webhooks-id
+  This API allows you to delete a specific webhook configuration based on its ID from the system.
+- **PUT /api/v1/webhooks** — Update Webhook
+  https://docs.sadq.sa/docs/webhooks/put-api-v1-webhooks
+  This API allows you to update an existing webhook configuration in the system. You can modify the URL, authentication token, and default status of the webhook using this API.
+- **POST /api/v1/webhooks/recall** — Recall Webhook
+  https://docs.sadq.sa/docs/webhooks/post-api-v1-webhooks-recall
+  This endpoint triggers a webhook call within the Sadq Integration Service. It is typically used to manually trigger webhook notifications or synchronize external systems with events or data changes from Sadq.
+- **GET /api/v1/webhooks/logs** — Get Webhook Logs
+  https://docs.sadq.sa/docs/webhooks/get-api-v1-webhooks-logs
+  Retrieve delivery logs for webhook events including request/response details and failure information for troubleshooting.
+
+### Configuration
+
+Update tenant SMS provider and system configuration
+
+Docs: https://docs.sadq.sa/docs/configuration
+
+- **PUT /api/v1/configuration/sms-provider** — Update SMS Provider
+  https://docs.sadq.sa/docs/configuration/put-api-v1-configuration-sms-provider
+  Updates the SMS provider configuration for your Sadq account. This allows you to configure custom SMS settings for sending notifications to signers.
+- **POST /api/v1/configuration/update** — Update Configuration
+  https://docs.sadq.sa/docs/configuration/post-api-v1-configuration-update
+  Updates comprehensive configuration settings including general, email, password, and SMS configurations for your Sadq account in a single request.
+
+### KYB
+
+Know Your Business — CR checks, Absher OTP, delegacy lookups
+
+Docs: https://docs.sadq.sa/docs/kyb
+
+- **GET /api/v1/kyb/check-cr/{commercialNumber}** — Check CR v1
+  https://docs.sadq.sa/docs/kyb/get-api-v1-kyb-check-cr-commercialnumber
+  Retrieves detailed information about a business using its commercial registration number.
+- **GET /api/v2/kyb/check-cr/{commercialNumber}** — Check CR v2
+  https://docs.sadq.sa/docs/kyb/get-api-v2-kyb-check-cr-commercialnumber
+  Enhanced CR verification (v2) with additional details including owner information, branch data, authorized signatories, and real-time Zakat/Tax authority status.
+- **GET /api/v1/kyb/absher-otp/{commercialNumber}/{nationalId}** — Absher OTP with CR
+  https://docs.sadq.sa/docs/kyb/get-api-v1-kyb-absher-otp-commercialnumber-nationalid
+  Initiate an Absher OTP verification for an individual associated with a specific commercial registration. Verifies that the person is authorized to sign on behalf of the company.
+- **GET /api/v1/kyb/absher-otp/{nationalId}** — Absher OTP Individual
+  https://docs.sadq.sa/docs/kyb/get-api-v1-kyb-absher-otp-nationalid
+  Requests an OTP (One-Time Password) from Absher for verification using only the national ID.
+- **GET /api/v1/kyb/delegacy/{nationalId}/{delegatedReferenceId}** — Check Delegacy
+  https://docs.sadq.sa/docs/kyb/get-api-v1-kyb-delegacy-nationalid-delegatedreferenceid
+  Verify a power-of-attorney (delegacy) between two individuals or between an individual and a company. Confirms that the delegated person has authority to sign.
+- **GET /api/v1/kyb/spl/national-address/{crNumber}** — Get National Address
+  https://docs.sadq.sa/docs/kyb/get-api-v1-kyb-spl-national-address-crnumber
+  Retrieves the Saudi Post (SPL) national address information for a business based on its commercial registration number.
+
+### Archiving & Delegations
+
+File archiving categories and delegation management
+
+Docs: https://docs.sadq.sa/docs/archiving-delegations
+
+- **GET /api/v1/archiving/categories** — Get Archive Categories
+  https://docs.sadq.sa/docs/archiving-delegations/get-api-v1-archiving-categories
+  Retrieves all archive categories including their hierarchical structure with subcategories.
+- **POST /api/v1/archiving/categories** — Create Archive Category
+  https://docs.sadq.sa/docs/archiving-delegations/post-api-v1-archiving-categories
+  Creates a new archive category or subcategory for organizing archived documents.
+- **POST /api/v1/archiving/files/upload** — Upload Archive Files
+  https://docs.sadq.sa/docs/archiving-delegations/post-api-v1-archiving-files-upload
+  Upload files directly to the document archive. Files are stored securely and indexed for future retrieval.
+- **POST /api/v1/delegations** — Create Delegation
+  https://docs.sadq.sa/docs/archiving-delegations/post-api-v1-delegations
+  Creates a new delegation, allowing another user to act on your behalf for document signing during a specified time period.
+- **POST /api/v1/delegations/forward** — Forward to Delegate
+  https://docs.sadq.sa/docs/archiving-delegations/post-api-v1-delegations-forward
+  Forward a specific signing request to a delegated authority. The delegate receives the request and can sign on behalf of the original signer.
+- **PUT /api/v1/delegations/status** — Update Delegation Status
+  https://docs.sadq.sa/docs/archiving-delegations/put-api-v1-delegations-status
+  Updates the status of an existing delegation (e.g., activate, deactivate, suspend).
+- **DELETE /api/v1/delegations/{id}** — Delete Delegation
+  https://docs.sadq.sa/docs/archiving-delegations/delete-api-v1-delegations-id
+  Deletes an existing delegation, removing the delegate's authority to act on behalf of the delegator.
+- **POST /api/v1/signature-requests/bulk** — Create Bulk Signature Request
+  https://docs.sadq.sa/docs/archiving-delegations/post-api-v1-signature-requests-bulk
+  Create a bulk signature request job for mass document signing. Upload an Excel file or JSON array with signer details and documents to be processed.
+- **POST /api/v1/signature-requests/bulk/templates** — Search Bulk Templates
+  https://docs.sadq.sa/docs/archiving-delegations/post-api-v1-signature-requests-bulk-templates
+  Search and filter available templates for use in bulk signature requests. Supports text search, category filtering, and pagination.
+
+### Reports & Requests
+
+Consumption reports, request listings and bulk signature jobs
+
+Docs: https://docs.sadq.sa/docs/reports-requests
+
+- **GET /api/v1/reports/consumption** — Get Consumption Report
+  https://docs.sadq.sa/docs/reports-requests/get-api-v1-reports-consumption
+  Retrieves a consumption report showing allocated resources and remaining capacity for your account.
+- **POST /api/v1/reports/requests** — Generate Requests Report
+  https://docs.sadq.sa/docs/reports-requests/post-api-v1-reports-requests
+  Generate a detailed report of signing requests with filtering options. The report can be exported in various formats.
+- **GET /api/v1/requests/list** — Get Requests List
+  https://docs.sadq.sa/docs/reports-requests/get-api-v1-requests-list
+  Retrieves a list of signature requests, optionally filtered by date range.
+- **GET /api/v1/requests/user-list** — Request filter
+  https://docs.sadq.sa/docs/reports-requests/get-api-v1-requests-user-list
+  Get list of envelopes by filter
+- **POST /api/v1/reports/requests-by-destinations** — Requests by Destinations Report
+  https://docs.sadq.sa/docs/reports-requests/post-api-v1-reports-requests-by-destinations
+  Returns a paginated report of signature requests broken down by individual destination (signer/reviewer/creator). Each row
+  represents one destination's activity on a request, including the creator details, destination name, contact info, destination
+  type and status, action/delivery dates, execution duration, and a direct signing URL. Supports filtering by request status,
+  destination status, destination type, reference number, creator, search term, and date ranges (created, actioned, completed).
+  Also returns aggregate totals across the result set.
+
+## Reference Data
+
+- Enums & Reference Values: https://docs.sadq.sa/docs/enums
+- Error Codes: https://docs.sadq.sa/docs/error-codes

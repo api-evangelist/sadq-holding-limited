@@ -1,0 +1,28 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/sadq-holding-limited-openapi-original.json
+note: >-
+  The OpenAPI does not define operationIds; skill steps are grounded in the real
+  HTTP method + path of each documented operation (verified present in the spec).
+skills:
+- file: sadq-holding-limited-send-for-signature.md
+  name: Send a document for signature
+  api: openapi/sadq-holding-limited-openapi-original.json
+  operations:
+  - POST /api/v1/envelopes/initiate-base64
+  - POST /api/v1/invitations
+  - GET /api/v1/envelopes/{envelopeId}/status
+  - GET /api/v1/envelopes/{envelopeId}/files/completed
+- file: sadq-holding-limited-nafath-esign.md
+  name: Sign a document with Nafath national identity
+  api: openapi/sadq-holding-limited-openapi-original.json
+  operations:
+  - POST /api/v2/esign/nafath/sign
+  - GET /api/v1/documents/{id}/signed
+- file: sadq-holding-limited-verify-business-kyb.md
+  name: Verify a Saudi business before signing (KYB)
+  api: openapi/sadq-holding-limited-openapi-original.json
+  operations:
+  - GET /api/v2/kyb/check-cr/{commercialNumber}
+  - GET /api/v1/kyb/absher-otp/{commercialNumber}/{nationalId}
+  - GET /api/v1/kyb/delegacy/{nationalId}/{delegatedReferenceId}

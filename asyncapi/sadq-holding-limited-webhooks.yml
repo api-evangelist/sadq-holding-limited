@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sadq.sa/docs/webhooks
+spec_type: Webhooks
+note: >-
+  Sadq documents an outbound webhook surface but does not publish an AsyncAPI
+  document. The platform pushes real-time event notifications to subscriber URLs;
+  subscriptions, delivery logs, and manual recall are managed via the Webhooks
+  API group (8 operations in the OpenAPI). No fabricated event schema — this
+  captures the documented webhook management surface.
+delivery:
+  direction: outbound
+  auth: per-webhook authentication token (configured on the subscription)
+  logs: GET /api/v1/webhooks/logs (request/response + failure detail for troubleshooting)
+management_operations:
+- method: POST
+  path: /api/v1/webhooks
+  summary: Create Webhook — register an endpoint and subscribe to events.
+- method: POST
+  path: /api/v1/webhooks/bulk
+  summary: Create multiple webhook subscriptions in one request.
+- method: GET
+  path: /api/v1/webhooks
+  summary: List webhook configurations.
+- method: GET
+  path: /api/v1/webhooks/{id}
+  summary: Get a webhook configuration by ID.
+- method: PUT
+  path: /api/v1/webhooks
+  summary: Update a webhook (URL, auth token, default status).
+- method: DELETE
+  path: /api/v1/webhooks/{id}
+  summary: Delete a webhook configuration.
+- method: POST
+  path: /api/v1/webhooks/recall
+  summary: Manually trigger / re-send a webhook notification.
+- method: GET
+  path: /api/v1/webhooks/logs
+  summary: Retrieve webhook delivery logs.

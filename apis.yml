@@ -1,21 +1,221 @@
 aid: sadq-holding-limited
 name: Sadq Holding Limited
-description: Sadq Holding Limited is a company surfaced as a portfolio company of 500-global and added
-  to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Sadq (صادق) is a Saudi Arabian electronic-signature and digital-trust platform
+  that lets businesses send, sign, and manage legally binding documents online.
+  Its Integration API covers signing envelopes and document packages, signing
+  invitations (email/SMS/link), direct and template-based signing, PKI/e-signing
+  via Saudi Arabia's Nafath national digital identity, document download,
+  reusable templates, users and permissions, signing workflows, webhooks, KYB
+  business verification (commercial-registration checks, Absher OTP, delegacy and
+  national-address lookups), archiving, delegations, and consumption reporting.
+  The platform is fully agent-native — it publishes an OpenAPI schema, an
+  RFC 9727 API catalog, OAuth 2.0 / OIDC discovery metadata, an llms.txt, an
+  auth.md agent-registration guide, and a hosted MCP server. Sadq is a 500 Global
+  portfolio company.
 url: https://raw.githubusercontent.com/api-evangelist/sadq-holding-limited/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 500-global
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-live-api
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://sadq.sa/favicon.ico
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- E-Signature
+- Digital Signature
+- Identity
+- KYB
+- Document Management
+- Saudi Arabia
+- Nafath
+- Webhooks
+- Agent Ready
+apis:
+- aid: sadq-holding-limited:sadq-holding-limited-archiving-delegations-api
+  name: Sadq Holding Limited Archiving & Delegations API
+  description: File archiving categories and delegation management
+  humanURL: https://docs.sadq.sa/docs
+  baseURL: https://api.sadq.sa
+  tags:
+  - Archiving & Delegations
+  properties:
+  - type: OpenAPI
+    url: openapi/sadq-holding-limited-archiving-delegations-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sadq.sa/docs
+- aid: sadq-holding-limited:sadq-holding-limited-authentication-api
+  name: Sadq Holding Limited Authentication API
+  description: Obtain and manage API access tokens
+  humanURL: https://docs.sadq.sa/docs
+  baseURL: https://api.sadq.sa
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/sadq-holding-limited-authentication-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sadq.sa/docs
+- aid: sadq-holding-limited:sadq-holding-limited-configuration-api
+  name: Sadq Holding Limited Configuration API
+  description: Update tenant SMS provider and system configuration
+  humanURL: https://docs.sadq.sa/docs
+  baseURL: https://api.sadq.sa
+  tags:
+  - Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/sadq-holding-limited-configuration-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sadq.sa/docs
+- aid: sadq-holding-limited:sadq-holding-limited-documents-api
+  name: Sadq Holding Limited Documents API
+  description: Download and manage signed document files
+  humanURL: https://docs.sadq.sa/docs
+  baseURL: https://api.sadq.sa
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/sadq-holding-limited-documents-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sadq.sa/docs
+- aid: sadq-holding-limited:sadq-holding-limited-envelopes-api
+  name: Sadq Holding Limited Envelopes API
+  description: Initiate and manage signing envelopes and document packages
+  humanURL: https://docs.sadq.sa/docs
+  baseURL: https://api.sadq.sa
+  tags:
+  - Envelopes
+  properties:
+  - type: OpenAPI
+    url: openapi/sadq-holding-limited-envelopes-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sadq.sa/docs
+- aid: sadq-holding-limited:sadq-holding-limited-esign-api
+  name: Sadq Holding Limited eSign API
+  description: Electronic and digital signature operations via Nafath/PKI
+  humanURL: https://docs.sadq.sa/docs
+  baseURL: https://api.sadq.sa
+  tags:
+  - eSign
+  properties:
+  - type: OpenAPI
+    url: openapi/sadq-holding-limited-esign-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sadq.sa/docs
+- aid: sadq-holding-limited:sadq-holding-limited-invitations-api
+  name: Sadq Holding Limited Invitations API
+  description: Send, extend, and remind signing invitations
+  humanURL: https://docs.sadq.sa/docs
+  baseURL: https://api.sadq.sa
+  tags:
+  - Invitations
+  properties:
+  - type: OpenAPI
+    url: openapi/sadq-holding-limited-invitations-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sadq.sa/docs
+- aid: sadq-holding-limited:sadq-holding-limited-kyb-api
+  name: Sadq Holding Limited KYB API
+  description: Know Your Business — CR checks, Absher OTP, delegacy lookups
+  humanURL: https://docs.sadq.sa/docs
+  baseURL: https://api.sadq.sa
+  tags:
+  - KYB
+  properties:
+  - type: OpenAPI
+    url: openapi/sadq-holding-limited-kyb-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sadq.sa/docs
+- aid: sadq-holding-limited:sadq-holding-limited-reports-requests-api
+  name: Sadq Holding Limited Reports & Requests API
+  description: Consumption reports, request listings and bulk signature jobs
+  humanURL: https://docs.sadq.sa/docs
+  baseURL: https://api.sadq.sa
+  tags:
+  - Reports & Requests
+  properties:
+  - type: OpenAPI
+    url: openapi/sadq-holding-limited-reports-requests-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sadq.sa/docs
+- aid: sadq-holding-limited:sadq-holding-limited-sign-api
+  name: Sadq Holding Limited Sign API
+  description: Direct signing operations including multi-file and templates
+  humanURL: https://docs.sadq.sa/docs
+  baseURL: https://api.sadq.sa
+  tags:
+  - Sign
+  properties:
+  - type: OpenAPI
+    url: openapi/sadq-holding-limited-sign-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sadq.sa/docs
+- aid: sadq-holding-limited:sadq-holding-limited-templates-api
+  name: Sadq Holding Limited Templates API
+  description: List and retrieve reusable signing templates
+  humanURL: https://docs.sadq.sa/docs
+  baseURL: https://api.sadq.sa
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/sadq-holding-limited-templates-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sadq.sa/docs
+- aid: sadq-holding-limited:sadq-holding-limited-users-api
+  name: Sadq Holding Limited Users API
+  description: User management, permissions and signature uploads
+  humanURL: https://docs.sadq.sa/docs
+  baseURL: https://api.sadq.sa
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/sadq-holding-limited-users-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sadq.sa/docs
+- aid: sadq-holding-limited:sadq-holding-limited-webhooks-api
+  name: Sadq Holding Limited Webhooks API
+  description: Configure and manage webhook subscriptions and logs
+  humanURL: https://docs.sadq.sa/docs
+  baseURL: https://api.sadq.sa
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/sadq-holding-limited-webhooks-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sadq.sa/docs
+- aid: sadq-holding-limited:sadq-holding-limited-workflows-api
+  name: Sadq Holding Limited Workflows API
+  description: Create and manage document signing workflows
+  humanURL: https://docs.sadq.sa/docs
+  baseURL: https://api.sadq.sa
+  tags:
+  - Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/sadq-holding-limited-workflows-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sadq.sa/docs
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,4 +223,61 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://sadq-sa.com
+  url: https://sadq.sa
+- type: DeveloperPortal
+  url: https://docs.sadq.sa/docs
+- type: Documentation
+  url: https://docs.sadq.sa/docs
+- type: APIReference
+  url: https://docs.sadq.sa/api/schema
+- type: Quickstart
+  url: https://docs.sadq.sa/auth.md
+- type: SignUp
+  url: https://sadq.sa/register
+- type: TermsOfService
+  url: https://sadq.sa/terms
+- type: PrivacyPolicy
+  url: https://sadq.sa/privacy
+- type: Support
+  url: mailto:support@sadq.sa
+- type: OpenAPI
+  url: openapi/sadq-holding-limited-openapi-original.json
+- type: LLMsTxt
+  url: llms/sadq-holding-limited-llms.txt
+- type: MCPServer
+  url: mcp/sadq-holding-limited-mcp.yml
+- type: WellKnown
+  url: well-known/sadq-holding-limited-well-known.yml
+- type: APICatalog
+  url: well-known/sadq-holding-limited-api-catalog.json
+- type: Authentication
+  url: authentication/sadq-holding-limited-authentication.yml
+- type: OAuthScopes
+  url: scopes/sadq-holding-limited-scopes.yml
+- type: OpenIDConnect
+  url: well-known/sadq-holding-limited-openid-configuration.json
+- type: Webhooks
+  url: asyncapi/sadq-holding-limited-webhooks.yml
+- type: ErrorCatalog
+  url: errors/sadq-holding-limited-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/sadq-holding-limited-lifecycle.yml
+- type: Conventions
+  url: conventions/sadq-holding-limited-conventions.yml
+- type: Conformance
+  url: conformance/sadq-holding-limited-conformance.yml
+- type: Sandbox
+  url: sandbox/sadq-holding-limited-sandbox.yml
+- type: Overlay
+  url: overlays/sadq-holding-limited-openapi-original-overlay.yaml
+- type: AgenticAccess
+  url: agentic-access/sadq-holding-limited-agentic-access.yml
+- type: DomainSecurity
+  url: security/sadq-holding-limited-domain-security.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 25
+  pass: local-v1

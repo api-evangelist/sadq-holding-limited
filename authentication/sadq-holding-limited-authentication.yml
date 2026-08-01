@@ -1,0 +1,40 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/sadq-holding-limited-openapi-original.json
+docs: https://docs.sadq.sa/auth.md
+summary:
+  types:
+  - oauth2
+  - http
+  oauth2_flows:
+  - clientCredentials
+  bearer_format: JWT
+schemes:
+- name: OAuth2ClientCredentials
+  type: oauth2
+  flow: clientCredentials
+  token_url: https://identity.sadq.sa/connect/token
+  authorization_server: https://identity.sadq.sa
+  scopes:
+  - Integrationscope
+  revocation_url: https://identity.sadq.sa/connect/revocation
+  introspection_url: https://identity.sadq.sa/connect/introspect
+  note: >-
+    Agents/services register at https://sadq.sa/register for a client_id +
+    client_secret, then exchange them via the client_credentials grant for a
+    Bearer JWT (RS256). Documented in auth.md and the RFC 8414 / RFC 9728
+    discovery documents on docs.sadq.sa.
+  sources:
+  - https://docs.sadq.sa/.well-known/oauth-authorization-server
+  - https://docs.sadq.sa/auth.md
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  note: >-
+    Every API operation in the OpenAPI declares BearerAuth (JWT). The token is
+    obtained via the OAuth2 client_credentials flow above, or from the legacy
+    POST /Authentication/Authority/Token endpoint (Basic Auth with Client ID /
+    Client Secret + form body grant_type=integration).
+  sources:
+  - openapi/sadq-holding-limited-openapi-original.json

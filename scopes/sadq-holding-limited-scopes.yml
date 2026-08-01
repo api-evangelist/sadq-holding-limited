@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sadq.sa/.well-known/oauth-authorization-server
+docs: https://docs.sadq.sa/auth.md
+note: >-
+  The OpenAPI declares only BearerAuth (JWT), but the docs host publishes full
+  OAuth 2.0 authorization-server metadata (RFC 8414), OIDC discovery, and an
+  auth.md. Scopes are captured from those searched discovery documents.
+schemes:
+- name: OAuth2ClientCredentials
+  flow: clientCredentials
+  authorizationServer: https://identity.sadq.sa
+  tokenUrl: https://identity.sadq.sa/connect/token
+scopes:
+- scope: Integrationscope
+  description: Full access to the Sadq Integration API (the scope agents/services request).
+  flows: [clientCredentials]
+  sources: [https://docs.sadq.sa/.well-known/oauth-protected-resource]
+- scope: openid
+  description: OIDC — issue an ID token / subject identifier.
+  flows: [authorizationCode]
+  sources: [https://docs.sadq.sa/.well-known/openid-configuration]
+- scope: profile
+  description: OIDC — access to profile claims (name, given_name, family_name).
+  flows: [authorizationCode]
+  sources: [https://docs.sadq.sa/.well-known/openid-configuration]
+- scope: email
+  description: OIDC — access to the email claim.
+  flows: [authorizationCode]
+  sources: [https://docs.sadq.sa/.well-known/openid-configuration]

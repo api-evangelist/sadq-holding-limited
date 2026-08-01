@@ -1,0 +1,19 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sadq.sa/api/schema
+note: >-
+  Sadq exposes a dedicated sandbox environment as a separate server host,
+  declared alongside production in the OpenAPI servers[]. No test cards apply
+  (e-signature, not payments); test signing is exercised against the sandbox
+  host with a sandbox integration client. No published magic test identifiers
+  were found — do not fabricate any.
+environments:
+- name: production
+  base_url: https://api.sadq.sa
+- name: sandbox
+  base_url: https://sandbox-api.sadq-sa.com
+sandbox:
+  base_url: https://sandbox-api.sadq-sa.com
+  auth: OAuth2 client_credentials (register at https://sadq.sa/register for sandbox client credentials)
+  token_endpoint: https://identity.sadq.sa/connect/token
+  scope: Integrationscope

@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sadq-holding-limited-openapi-original.json
+docs: https://docs.sadq.sa/docs
+authentication:
+  style: oauth2-client-credentials + bearer-jwt
+  header: 'Authorization: Bearer {access_token}'
+  token_endpoint: https://identity.sadq.sa/connect/token
+  scope: Integrationscope
+  see: authentication/sadq-holding-limited-authentication.yml
+idempotency:
+  supported: false
+  note: No Idempotency-Key header or idempotency contract is documented in the OpenAPI or docs.
+pagination:
+  supported: partial
+  style: unknown
+  note: >-
+    Several list/report operations (List Templates, List Workflows, Requests by
+    Destinations Report) describe paginated results, but the OpenAPI does not
+    declare explicit page/limit/cursor parameters, so the paging mechanism is
+    not machine-verifiable from the spec.
+versioning:
+  style: uri-path
+  current: v3
+  see: lifecycle/sadq-holding-limited-lifecycle.yml
+error_envelope:
+  style: custom
+  fields: [data, errorCode, message, returnUrl, stateValidationErrors, signature]
+  see: errors/sadq-holding-limited-problem-types.yml
+webhooks:
+  supported: true
+  note: Real-time event notifications via configurable webhook subscriptions.
+  see: asyncapi/sadq-holding-limited-webhooks.yml
+rate_limiting:
+  signaled: false
+  note: No rate-limit headers or quota documented; a consumption report endpoint (GET /api/v1/reports/consumption) exposes allocated/remaining capacity.
+regional_context:
+  note: >-
+    Saudi-market platform. Signing integrates with national identity rails —
+    Nafath (national digital ID), Absher OTP, and Saudi commercial-registration
+    (CR) / Saudi Post national-address KYB lookups.

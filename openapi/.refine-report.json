@@ -1,0 +1,40 @@
+{
+  "provider": "sadq-holding-limited",
+  "sources": [
+    "sadq-holding-limited-archiving-delegations-api-openapi.yml",
+    "sadq-holding-limited-authentication-api-openapi.yml",
+    "sadq-holding-limited-configuration-api-openapi.yml",
+    "sadq-holding-limited-documents-api-openapi.yml",
+    "sadq-holding-limited-envelopes-api-openapi.yml",
+    "sadq-holding-limited-esign-api-openapi.yml",
+    "sadq-holding-limited-invitations-api-openapi.yml",
+    "sadq-holding-limited-kyb-api-openapi.yml",
+    "sadq-holding-limited-reports-requests-api-openapi.yml",
+    "sadq-holding-limited-sign-api-openapi.yml",
+    "sadq-holding-limited-templates-api-openapi.yml",
+    "sadq-holding-limited-users-api-openapi.yml",
+    "sadq-holding-limited-webhooks-api-openapi.yml",
+    "sadq-holding-limited-workflows-api-openapi.yml"
+  ],
+  "outputs": [
+    "sadq-holding-limited-archiving-delegations-api-openapi.yml",
+    "sadq-holding-limited-authentication-api-openapi.yml",
+    "sadq-holding-limited-configuration-api-openapi.yml",
+    "sadq-holding-limited-documents-api-openapi.yml",
+    "sadq-holding-limited-envelopes-api-openapi.yml",
+    "sadq-holding-limited-esign-api-openapi.yml",
+    "sadq-holding-limited-invitations-api-openapi.yml",
+    "sadq-holding-limited-kyb-api-openapi.yml",
+    "sadq-holding-limited-reports-requests-api-openapi.yml",
+    "sadq-holding-limited-sign-api-openapi.yml",
+    "sadq-holding-limited-templates-api-openapi.yml",
+    "sadq-holding-limited-users-api-openapi.yml",
+    "sadq-holding-limited-webhooks-api-openapi.yml",
+    "sadq-holding-limited-workflows-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

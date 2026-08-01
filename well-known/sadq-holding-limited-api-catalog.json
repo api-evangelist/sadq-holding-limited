@@ -1,0 +1,87 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://api.sadq.sa",
+      "service-desc": [
+        {
+          "href": "https://docs.sadq.sa/api/schema",
+          "type": "application/openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://docs.sadq.sa/docs",
+          "type": "text/html"
+        },
+        {
+          "href": "https://docs.sadq.sa/llms.txt",
+          "type": "text/plain"
+        }
+      ],
+      "describedby": [
+        {
+          "href": "https://docs.sadq.sa/llms.txt",
+          "type": "text/plain"
+        }
+      ],
+      "openid-configuration": [
+        {
+          "href": "https://docs.sadq.sa/.well-known/openid-configuration"
+        }
+      ],
+      "oauth-protected-resource": [
+        {
+          "href": "https://docs.sadq.sa/.well-known/oauth-protected-resource"
+        }
+      ],
+      "mcp-server-card": [
+        {
+          "href": "https://docs.sadq.sa/.well-known/mcp/server-card.json",
+          "type": "application/json"
+        }
+      ]
+    },
+    {
+      "anchor": "https://sandbox-api.sadq-sa.com",
+      "service-desc": [
+        {
+          "href": "https://docs.sadq.sa/api/schema",
+          "type": "application/openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://docs.sadq.sa/docs",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://docs.sadq.sa",
+      "service-desc": [
+        {
+          "href": "https://docs.sadq.sa/api/schema",
+          "type": "application/openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://docs.sadq.sa/docs",
+          "type": "text/html"
+        }
+      ],
+      "describedby": [
+        {
+          "href": "https://docs.sadq.sa/llms.txt",
+          "type": "text/plain"
+        }
+      ],
+      "sitemap": [
+        {
+          "href": "https://docs.sadq.sa/sitemap.xml",
+          "type": "application/xml"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sadq-holding-limited-openapi-original.json
+versioning:
+  scheme: uri-path
+  current: v3
+  observed:
+  - v1
+  - v2
+  - v3
+  note: >-
+    Versions are carried in the URL path (/api/v1/, /api/v2/, /api/v3/). Multiple
+    versions of the same operation coexist (e.g. Send Invitation v1/v2/v3, Sign
+    v2, KYB Check CR v1/v2, eSign Hash Sign v1/v2) — older versions remain
+    available rather than being removed, indicating additive, side-by-side
+    versioning.
+deprecation:
+  policy_url: null
+  sunset_header: null
+  note: No deprecation policy or Sunset/Deprecation header support was found; no operation is marked deprecated in the OpenAPI.
+sla:
+  url: null
+status_page: null
+deprecated_operations: []

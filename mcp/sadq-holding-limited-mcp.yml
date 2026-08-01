@@ -1,0 +1,34 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://docs.sadq.sa/.well-known/mcp/server-card.json
+server:
+  name: sadq-integration-api
+  display_name: Sadq Integration API
+  version: 1.0.0
+  description: >-
+    MCP server exposing the Sadq e-signature platform API. Supports creating
+    envelopes, managing signatories, sending documents for signature, querying
+    webhook logs, and more.
+  homepage: https://docs.sadq.sa/docs
+  transport: streamable-http
+  url: https://docs.sadq.sa/mcp
+  card: mcp/sadq-holding-limited-mcp-server-card.json
+capabilities:
+  tools: true
+  resources: true
+  prompts: false
+authentication:
+  type: oauth2
+  grant_types:
+  - client_credentials
+  authorization_server: https://identity.sadq.sa
+  token_endpoint: https://identity.sadq.sa/connect/token
+  scopes:
+  - Integrationscope
+  auth_md: https://docs.sadq.sa/auth.md
+discovery:
+  api_catalog: https://docs.sadq.sa/.well-known/api-catalog
+  openapi_schema: https://docs.sadq.sa/api/schema
+  oauth_protected_resource: https://docs.sadq.sa/.well-known/oauth-protected-resource
+  llms_txt: https://docs.sadq.sa/llms.txt

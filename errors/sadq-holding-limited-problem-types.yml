@@ -1,0 +1,49 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sadq-holding-limited-openapi-original.json
+docs: https://docs.sadq.sa/docs/error-codes
+format: custom-envelope
+note: >-
+  Sadq does NOT use RFC 9457 problem+json. Errors return a JSON envelope with a
+  numeric application-level errorCode plus a message string, alongside the HTTP
+  status. The full error-code registry is documented at
+  https://docs.sadq.sa/docs/error-codes (rendered client-side; not scrapable).
+envelope:
+  fields:
+  - data              # partial/echoed payload (may be null)
+  - errorCode         # integer application error code
+  - message           # human-readable message / symbolic name
+  - returnUrl
+  - stateValidationErrors
+  - signature
+http_statuses:
+- status: 400
+  description: Bad Request — validation / malformed request.
+- status: 401
+  description: Unauthorized — missing or invalid credentials / Bearer token.
+- status: 404
+  description: Not Found — envelope, template or resource does not exist.
+- status: 409
+  description: Conflict — resource state prevents the action (e.g. envelope not yet completed).
+problems:
+- status: 400
+  errorCode: 100
+  message: GeneralError
+- status: 400
+  errorCode: 116
+  message: FileNotFoundInRequest
+- status: 400
+  errorCode: 400
+  message: File content is required / At least one envelope is required
+- status: 401
+  errorCode: 401
+  message: Unauthorized
+- status: 404
+  errorCode: 404
+  message: Envelope not found / Template not found
+- status: 409
+  errorCode: 5
+  message: User Already Exist
+- status: 409
+  errorCode: 14
+  message: The envelope is not complete, you can't download the file
