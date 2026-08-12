@@ -241,7 +241,7 @@ common:
 - type: Support
   url: mailto:support@sadq.sa
 - type: OpenAPI
-  url: openapi/sadq-holding-limited-openapi-original.json
+  url: openapi/_original/sadq-holding-limited-openapi-original.json
 - type: LLMsTxt
   url: llms/sadq-holding-limited-llms.txt
 - type: MCPServer
