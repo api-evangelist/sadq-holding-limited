@@ -1,0 +1,668 @@
+{
+  "item": [
+    {
+      "id": "a6b2951a-623b-41a7-b933-2c8cdb2758ff",
+      "name": "Users",
+      "description": {
+        "content": "User management, permissions and signature uploads",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5baff9a7-8cff-486c-98ec-5e1b876d30a5",
+          "name": "Create User",
+          "request": {
+            "name": "Create User",
+            "description": {
+              "content": "Create a new user account within the tenant. The created user can be assigned permissions and can participate in signing workflows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "188c5973-d689-49be-b46e-2caeaca72149",
+              "name": "User created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FirstNameAr\": \"Hussein Test\",\n  \"FirstNameEn\": \"Test Integ\",\n  \"MiddleNameAr\": \"حسين\",\n  \"MiddleNameEn\": \"Name\",\n  \"ThirdNameAr\": \"علي\",\n  \"ThirdNameEn\": \"Nameeee\",\n  \"LastNameAr\": \"العائلة\",\n  \"LastNameEn\": \"Family\",\n  \"Email\": \"f7s88@airsworld.net\",\n  \"IsActive\": true,\n  \"Permissions\": [\n    1,\n    2,\n    3\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": \"GUID\",\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7daeedf6-29fa-4d04-a498-66d05695d02c",
+              "name": "User already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FirstNameAr\": \"Hussein Test\",\n  \"FirstNameEn\": \"Test Integ\",\n  \"MiddleNameAr\": \"حسين\",\n  \"MiddleNameEn\": \"Name\",\n  \"ThirdNameAr\": \"علي\",\n  \"ThirdNameEn\": \"Nameeee\",\n  \"LastNameAr\": \"العائلة\",\n  \"LastNameEn\": \"Family\",\n  \"Email\": \"f7s88@airsworld.net\",\n  \"IsActive\": true,\n  \"Permissions\": [\n    1,\n    2,\n    3\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": \"00000000-0000-0000-0000-000000000000\",\n  \"errorCode\": 5,\n  \"message\": \"User Already Exsit\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "420c5eab-2770-4a85-a633-ed5ee9a67429",
+          "name": "Delete User",
+          "request": {
+            "name": "Delete User",
+            "description": {
+              "content": "Delete a user account from the tenant. This action is irreversible. All active signing sessions for this user will be terminated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "daccfbeb-556d-439e-8850-9d922cf19ab4",
+              "name": "User deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"GUID\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": true,\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9682972f-5630-417b-9691-959555f67e17",
+          "name": "Add User Permissions",
+          "request": {
+            "name": "Add User Permissions",
+            "description": {
+              "content": "Grant additional permissions to a user. Permissions control access to specific API operations and document groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "permissions",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "64178593-eb68-450f-ae54-f64ac54730a5",
+              "name": "Permissions added",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "permissions",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"UserId\": \"GUID\",\n  \"Permissions\": [\n    1,\n    2,\n    3,\n    4,\n    5\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": true,\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61fd5171-f4a3-4333-894f-e4c223a43678",
+          "name": "Remove User Permissions",
+          "request": {
+            "name": "Remove User Permissions",
+            "description": {
+              "content": "Removes permissions from an existing user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "permissions",
+                "remove"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ebbc4499-132c-4b4a-9cae-30c470eb035f",
+              "name": "Permissions removed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "permissions",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"e96ed7d6-60e3-4faf-a7d5-5ba5f860bb1a\",\n  \"permissions\": [\n    3,\n    7\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": true,\n  \"errorCode\": 0,\n  \"message\": \"Permissions removed successfully\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9029002c-f768-414b-a3a0-ae20eb250111",
+          "name": "Update User",
+          "request": {
+            "name": "Update User",
+            "description": {
+              "content": "Updates an existing user's information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) The unique identifier of the user to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "801f2946-811d-49e5-b9f8-9f3b0cde6338",
+              "name": "User updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the user to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstNameAr\": \"أحمد\",\n  \"firstNameEn\": \"Ahmed\",\n  \"middleNameAr\": \"محمد\",\n  \"middleNameEn\": \"Mohammed\",\n  \"thirdNameAr\": \"علي\",\n  \"thirdNameEn\": \"Ali\",\n  \"lastNameAr\": \"السعود\",\n  \"lastNameEn\": \"Al-Saud\",\n  \"phone\": \"+966501234567\",\n  \"nationalId\": \"1234567890\",\n  \"gender\": 0,\n  \"postalCode\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"7dc9d9b9-ce7e-419c-8e52-a661f333fd88\",\n    \"nationalId\": \"12345678901234\",\n    \"accountId\": \"c0f63b10-f2e5-44e7-93b3-c78189ce392b\",\n    \"firstNameAr\": \"أحمد\",\n    \"firstNameEn\": \"Ahmed\",\n    \"middleNameAr\": \"محمد\",\n    \"middleNameEn\": \"Mohamed\",\n    \"thirdNameAr\": \"عبدالله\",\n    \"thirdNameEn\": \"Abdullah\",\n    \"lastNameAr\": \"الزايد\",\n    \"lastNameEn\": \"Al Zayed\",\n    \"gender\": 1,\n    \"email\": \"f7s88@airsworld.net\",\n    \"phone\": \"+1234567890\",\n    \"region\": \"\",\n    \"street\": null,\n    \"postalCode\": \"12345\",\n    \"zipcode\": \"12345\",\n    \"nationlity\": null,\n    \"isDeleted\": false,\n    \"transactionsCount\": null,\n    \"position\": null,\n    \"isActive\": true,\n    \"quota\": 0,\n    \"allowToUseAccountQuota\": false\n  },\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sadq.sa",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9522fed6-9e90-4850-b186-c9cc852ae4f6",
+    "name": "Sadq Integration Archiving & Delegations Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API reference for the Sadq e-signature platform",
+      "type": "text/plain"
+    }
+  }
+}

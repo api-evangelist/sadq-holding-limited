@@ -1,0 +1,1751 @@
+{
+  "item": [
+    {
+      "id": "06064483-b4fc-4bab-bfab-c748180e039f",
+      "name": "Envelopes",
+      "description": {
+        "content": "Initiate and manage signing envelopes and document packages",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "73f41bcc-c668-4487-943f-c1a5a8e674d5",
+          "name": "Initiate Envelope",
+          "request": {
+            "name": "Initiate Envelope",
+            "description": {
+              "content": "Initiate a signature envelope by uploading document files as multipart/form-data. Returns an envelope and Docuemnt ID that can be used in subsequent signing invitation steps.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "envelopes",
+                "initiate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "FileId",
+                  "description": "(Required) Optional. Custom file identifier (Guid). If omitted, the system generates one."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "WebhookId",
+                  "description": "(Required) Optional. Target a specific webhook instead of the tenant default."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "WorkflowId",
+                  "description": "(Required) Optional. Attach the envelope to an existing workflow."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ReferenceNumber",
+                  "description": "(Required) Optional. Your own reference number. If omitted, the system generates one."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "Password",
+                  "description": "(Required) Optional. Password to protect the uploaded PDF."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<boolean>",
+                  "key": "IsForExternalWorkFlow",
+                  "description": "(Required) Optional. Enable External WorkFlow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0fcdf5b0-b376-4df2-ac57-163a483fb1fa",
+              "name": "Envelope created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    "initiate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "FileId",
+                      "description": "(Required) Optional. Custom file identifier (Guid). If omitted, the system generates one."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "WebhookId",
+                      "description": "(Required) Optional. Target a specific webhook instead of the tenant default."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "WorkflowId",
+                      "description": "(Required) Optional. Attach the envelope to an existing workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ReferenceNumber",
+                      "description": "(Required) Optional. Your own reference number. If omitted, the system generates one."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Password",
+                      "description": "(Required) Optional. Password to protect the uploaded PDF."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<boolean>",
+                      "key": "IsForExternalWorkFlow",
+                      "description": "(Required) Optional. Enable External WorkFlow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"documentId\": \"d21b710f-bee2-4c0a-a881-0874ca5155ca\",\n    \"envelopeId\": \"c548792b-9b74-48bb-b4b5-6bbc86c62a2f\",\n    \"destinations\": null,\n    \"referenceNumber\": \"contract-i-31157546\",\n    \"creatorFields\": null\n  },\n  \"errorCode\": 0,\n  \"message\": \"Success\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3361115b-289d-473a-9b71-91860b4c79d5",
+              "name": " Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    "initiate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "FileId",
+                      "description": "(Required) Optional. Custom file identifier (Guid). If omitted, the system generates one."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "WebhookId",
+                      "description": "(Required) Optional. Target a specific webhook instead of the tenant default."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "WorkflowId",
+                      "description": "(Required) Optional. Attach the envelope to an existing workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ReferenceNumber",
+                      "description": "(Required) Optional. Your own reference number. If omitted, the system generates one."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Password",
+                      "description": "(Required) Optional. Password to protect the uploaded PDF."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<boolean>",
+                      "key": "IsForExternalWorkFlow",
+                      "description": "(Required) Optional. Enable External WorkFlow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"documentId\": \"00000000-0000-0000-0000-000000000000\",\n    \"envelopeId\": \"00000000-0000-0000-0000-000000000000\",\n    \"destinations\": null,\n    \"referenceNumber\": null,\n    \"creatorFields\": null\n  },\n  \"errorCode\": 116,\n  \"message\": \"FileNotFoundInRequest\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7df46b6-4205-4256-8d37-3e2a3896f8be",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    "initiate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "FileId",
+                      "description": "(Required) Optional. Custom file identifier (Guid). If omitted, the system generates one."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "WebhookId",
+                      "description": "(Required) Optional. Target a specific webhook instead of the tenant default."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "WorkflowId",
+                      "description": "(Required) Optional. Attach the envelope to an existing workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ReferenceNumber",
+                      "description": "(Required) Optional. Your own reference number. If omitted, the system generates one."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Password",
+                      "description": "(Required) Optional. Password to protect the uploaded PDF."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<boolean>",
+                      "key": "IsForExternalWorkFlow",
+                      "description": "(Required) Optional. Enable External WorkFlow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": null,\n  \"errorCode\": 401,\n  \"message\": \"Unauthorized\",\n  \"returnUrl\": null,\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ddeac0f7-4963-41c4-8835-af4f809dd6a4",
+          "name": "Initiate Envelope Base64",
+          "request": {
+            "name": "Initiate Envelope Base64",
+            "description": {
+              "content": "Initiate a signature envelope by providing the document content as a Base64-encoded string. The system creates an envelope and returns its ID for subsequent signing invitation steps.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "envelopes",
+                "initiate-base64"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff534987-edc7-49b0-bde9-217fe0c5f915",
+              "name": "Envelope created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    "initiate-base64"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userOnlySigner\": true,\n  \"webhookId\": \"\",\n  \"workflowId\": \"\",\n  \"referenceNumber\": \"string\",\n  \"isForExternalWorkFlow\": true,\n  \"files\": {\n    \"fileId\": \"\",\n    \"file\": \"\",\n    \"fileName\": \"\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"documentId\": \"a6b7946e-5d76-478f-bfab-b1d6378d4f38\",\n    \"envelopeId\": \"4b83d3e7-b391-4dd2-b7d8-c0c121cb6cb1\",\n    \"destinations\": null,\n    \"referenceNumber\": \"Req-A-2026-125\",\n    \"creatorFields\": null\n  },\n  \"errorCode\": 0,\n  \"message\": \"Success\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d4e14cf-b400-4ea2-8345-364cd7289a97",
+              "name": "Invalid request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    "initiate-base64"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userOnlySigner\": true,\n  \"webhookId\": \"\",\n  \"workflowId\": \"\",\n  \"referenceNumber\": \"string\",\n  \"isForExternalWorkFlow\": true,\n  \"files\": {\n    \"fileId\": \"\",\n    \"file\": \"\",\n    \"fileName\": \"\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": null,\n  \"errorCode\": 400,\n  \"message\": \"File content is required\",\n  \"returnUrl\": null,\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "777571a6-28c5-4411-94b6-33be58d8b22b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    "initiate-base64"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userOnlySigner\": true,\n  \"webhookId\": \"\",\n  \"workflowId\": \"\",\n  \"referenceNumber\": \"string\",\n  \"isForExternalWorkFlow\": true,\n  \"files\": {\n    \"fileId\": \"\",\n    \"file\": \"\",\n    \"fileName\": \"\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": null,\n  \"errorCode\": 401,\n  \"message\": \"Unauthorized\",\n  \"returnUrl\": null,\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8397ee84-e906-4192-8026-73d0f7f7abab",
+          "name": "Initiate Envelope by Template",
+          "request": {
+            "name": "Initiate Envelope by Template",
+            "description": {
+              "content": "Initiate a signature envelope using a predefined template. The template defines the document structure, signing fields, and signer roles. Returns an envelope ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "envelopes",
+                "initiate-by-template"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "0",
+                  "value": "<",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "1",
+                  "value": "o",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "2",
+                  "value": "b",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "3",
+                  "value": "j",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "4",
+                  "value": "e",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "5",
+                  "value": "c",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "6",
+                  "value": "t",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "7",
+                  "value": ">",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1de181e8-497e-4bb4-a03d-2a412648d887",
+              "name": "Envelope created from template",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    "initiate-by-template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "templateId",
+                      "value": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"documentId\": \"31e9cca5-3d6b-4493-a16e-4948174c6a3f\",\n    \"envelopeId\": \"8cf497f7-8c09-40d0-8dd1-b6593f6abc06\",\n    \"destinations\": [],\n    \"referenceNumber\": \"Req-A-2026-326\",\n    \"creatorFields\": null\n  },\n  \"errorCode\": 0,\n  \"message\": \"Success\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65d187c4-79cd-4dd6-bc48-39ae5cccb8d5",
+              "name": "Template not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    "initiate-by-template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "templateId",
+                      "value": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": null,\n  \"errorCode\": 404,\n  \"message\": \"Template not found\",\n  \"returnUrl\": null,\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "871ad5fe-b535-4240-a063-2de0d24156a2",
+          "name": "Bulk Initiate Envelope Base64",
+          "request": {
+            "name": "Bulk Initiate Envelope Base64",
+            "description": {
+              "content": "Initiate multiple signature envelopes in a single request by providing documents as Base64-encoded strings. Returns an array of envelope IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "envelopes",
+                "bulk",
+                "initiate-base64"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "97583571-5328-406f-b1d0-d672ade03c19",
+              "name": "Bulk envelopes created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    "bulk",
+                    "initiate-base64"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userOnlySigner\": true,\n  \"webhookId\": \"\",\n  \"workflowId\": \"\",\n  \"referenceNumber\": \"\",\n  \"isForExternalWorkFlow\": true,\n  \"files\": [\n    {\n      \"file\": \"\",\n      \"fileName\": \"\"\n    },\n    {\n      \"file\": \"\",\n      \"fileName\": \"\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"envelopeId\": \"71cbe1e0-1b18-42c6-88b2-9f371019c723\",\n    \"bulkFileResponse\": [\n      {\n        \"documentId\": \"d8190868-a918-4e82-b149-e6d0074dacf8\",\n        \"documentName\": \"example.pdf\",\n        \"referenceNumber\": \"Req-A-2026-126\"\n      }\n    ],\n    \"destinations\": null\n  },\n  \"errorCode\": 0,\n  \"message\": \"Success\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b05b112b-316b-4960-932b-7a4731bbadb4",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    "bulk",
+                    "initiate-base64"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userOnlySigner\": true,\n  \"webhookId\": \"\",\n  \"workflowId\": \"\",\n  \"referenceNumber\": \"\",\n  \"isForExternalWorkFlow\": true,\n  \"files\": [\n    {\n      \"file\": \"\",\n      \"fileName\": \"\"\n    },\n    {\n      \"file\": \"\",\n      \"fileName\": \"\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": null,\n  \"errorCode\": 400,\n  \"message\": \"At least one envelope is required\",\n  \"returnUrl\": null,\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51e2c539-d59f-4a7f-ae37-179510b3a94a",
+          "name": "Download Envelope Files",
+          "request": {
+            "name": "Download Envelope Files",
+            "description": {
+              "content": "Download all files associated with an envelope. Returns file content as binary or base64 depending on the Accept header.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "envelopes",
+                ":envelopeId",
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "envelopeId",
+                  "description": "(Required) The unique identifier of the envelope"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7646b8df-d21e-4e2b-a012-7144b10e1e27",
+              "name": "Envelope files returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    ":envelopeId",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "envelopeId",
+                      "description": "(Required) The unique identifier of the envelope"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"files\": [\n      {\n        \"fileId\": \"f1a2b3c4-d5e6-7890-abcd-ef1234567890\",\n        \"fileName\": \"contract.pdf\"\n      }\n    ]\n  },\n  \"errorCode\": 0,\n  \"message\": \"Success\",\n  \"returnUrl\": null,\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca1d3d60-2aa4-4317-8041-9fc0def6f5bb",
+              "name": "Envelope not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    ":envelopeId",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "envelopeId",
+                      "description": "(Required) The unique identifier of the envelope"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": null,\n  \"errorCode\": 404,\n  \"message\": \"Envelope not found\",\n  \"returnUrl\": null,\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be6a98a3-6bb1-446a-9c4a-de8c7420c03b",
+          "name": "Cancel Envelope",
+          "request": {
+            "name": "Cancel Envelope",
+            "description": {
+              "content": "Cancel an active envelope, preventing any further signing actions. Cancellation is irreversible. All pending signers will be notified.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "envelopes",
+                ":envelopeId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "envelopeId",
+                  "description": "(Required) The unique identifier of the envelope to cancel"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1f2f61d-80a9-4646-ad9f-ca66d150407d",
+              "name": "Envelope cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    ":envelopeId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "envelopeId",
+                      "description": "(Required) The unique identifier of the envelope to cancel"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"envelopId\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 0,\n  \"message\": \"Success\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2a4f480-43e6-4dd4-bd6c-c3e059f58db0",
+              "name": "Envelope already completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    ":envelopeId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "envelopeId",
+                      "description": "(Required) The unique identifier of the envelope to cancel"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"envelopId\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 100,\n  \"message\": \"GeneralError\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "955be81d-ce6d-485f-a32e-ca78ed2a7740",
+          "name": "Get Envelope Status",
+          "request": {
+            "name": "Get Envelope Status",
+            "description": {
+              "content": "Retrieve the current status of an envelope including signer completion details and overall progress.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "envelopes",
+                ":envelopeId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "envelopeId",
+                  "description": "(Required) The unique identifier of the envelope"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cd38b896-dd07-475a-a1ea-5c3c9a896680",
+              "name": "Envelope status retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    ":envelopeId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "envelopeId",
+                      "description": "(Required) The unique identifier of the envelope"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"envelopeId\": \"9af7cb57-436f-40e9-b05c-75d05732db1c\",\n    \"status\": \"Pending\",\n    \"createdAt\": \"2024-01-15T09:00:00Z\",\n    \"signers\": [\n      {\n        \"name\": \"Ahmed Al-Rashid\",\n        \"email\": \"ahmed@example.com\",\n        \"status\": \"Signed\",\n        \"signedAt\": \"2024-01-15T10:30:00Z\"\n      },\n      {\n        \"name\": \"Sara Al-Otaibi\",\n        \"email\": \"sara@example.com\",\n        \"status\": \"Pending\",\n        \"signedAt\": null\n      }\n    ]\n  },\n  \"errorCode\": 0,\n  \"message\": \"Success\",\n  \"returnUrl\": null,\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fcd69f75-7ea8-45ba-a36e-f8b4ca87a14a",
+          "name": "Download Completed Envelope Files",
+          "request": {
+            "name": "Download Completed Envelope Files",
+            "description": {
+              "content": "Download the signed and completed files from an envelope. Only available after all signers have completed signing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "envelopes",
+                ":envelopeId",
+                "files",
+                "completed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "envelopeId",
+                  "description": "(Required) The unique identifier of the completed envelope"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c0cdc0fe-296e-4ea8-a51e-031c268e93af",
+              "name": "Completed files returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    ":envelopeId",
+                    "files",
+                    "completed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "envelopeId",
+                      "description": "(Required) The unique identifier of the completed envelope"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"fileName\": \"A Simple PDF File.pdf\",\n      \"file\": \"file Base64 bit\"\n    }\n  ],\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbe9f926-1062-44aa-9071-6b7cd60a640a",
+              "name": "Envelope not yet completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    ":envelopeId",
+                    "files",
+                    "completed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "envelopeId",
+                      "description": "(Required) The unique identifier of the completed envelope"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": null,\n  \"errorCode\": 14,\n  \"message\": \"The envelope is not complete, you can't download the file\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "614bb9bc-e7c9-45a2-900e-3ef8f7d88404",
+          "name": "Envelope Creation & Signing Invitation Process",
+          "request": {
+            "name": "Envelope Creation & Signing Invitation Process",
+            "description": {
+              "content": "The API provides a complete end-to-end digital document signing workflow in a single operation. It initiates a signature envelope by accepting the document content as a Base64-encoded string, and immediately creates the envelope while generating a unique envelope ID.\n\nIn the same process, the API also handles sending signing invitations to recipients. Each recipient receives a secure link via email or SMS, allowing them to review and sign the document electronically without requiring any additional API calls.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "envelopes",
+                "bulk",
+                "initiate-and-invite"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "780411d2-02fc-40af-8588-3aa4051e4e25",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    "bulk",
+                    "initiate-and-invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Files\": [\n    {\n      \"File\": \"sadfsfsfr....\",\n      \"fileName\": \"PDF-File.pdf\"\n    }\n  ],\n  \"Destinations\": [\n    {\n      \"DestinationName\": \"Nubani\",\n      \"DestinationEmail\": \"ahmed.alnubani@gmail.com\",\n      \"DestinationPhoneNumber\": \"\",\n      \"SigneOrder\": 0,\n      \"Signatories\": [],\n      \"AvailableTo\": \"2029-04-22T23:59:59Z\",\n      \"ConsentOnly\": true,\n      \"AuthenticationType\": 0,\n      \"AllowUserToSignAnyWhere\": false,\n      \"DailyNotify\": false,\n      \"Escalation\": null\n    }\n  ],\n  \"SaveAsDraft\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 100,\n  \"message\": \"General Erorr\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\",\n  \"data\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sadq.sa",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "44d58484-12c9-4f4a-822a-cfa9cf44c2fd",
+    "name": "Sadq Integration Archiving & Delegations Envelopes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API reference for the Sadq e-signature platform",
+      "type": "text/plain"
+    }
+  }
+}

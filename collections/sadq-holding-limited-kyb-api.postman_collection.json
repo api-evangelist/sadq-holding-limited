@@ -1,0 +1,725 @@
+{
+  "item": [
+    {
+      "id": "249b6f2c-1287-46a0-9575-d9a3f421e33a",
+      "name": "KYB",
+      "description": {
+        "content": "Know Your Business — CR checks, Absher OTP, delegacy lookups",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "25c4008a-b128-45ec-bb0a-223685c9848e",
+          "name": "Check CR v1",
+          "request": {
+            "name": "Check CR v1",
+            "description": {
+              "content": "Retrieves detailed information about a business using its commercial registration number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "kyb",
+                "check-cr",
+                ":commercialNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commercialNumber",
+                  "description": "(Required) The commercial registration number to check."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cc05fd70-5c9c-40d2-a05d-e24288ba3bae",
+              "name": "CR not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "kyb",
+                    "check-cr",
+                    ":commercialNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commercialNumber",
+                      "description": "(Required) The commercial registration number to check."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": null,\n  \"errorCode\": 149,\n  \"message\": \"The commercial registration number is not registered with the Ministry of Commerce\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "823b91f8-b6eb-45c6-a37d-08e76cc9d159",
+          "name": "Check CR v2",
+          "request": {
+            "name": "Check CR v2",
+            "description": {
+              "content": "Enhanced CR verification (v2) with additional details including owner information, branch data, authorized signatories, and real-time Zakat/Tax authority status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "kyb",
+                "check-cr",
+                ":commercialNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commercialNumber",
+                  "description": "(Required) The Saudi commercial registration number (CR)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0323945a-cd21-4764-819f-3238d3bf45aa",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "kyb",
+                    "check-cr",
+                    ":commercialNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commercialNumber",
+                      "description": "(Required) The Saudi commercial registration number (CR)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": null,\n  \"errorCode\": 149,\n  \"message\": \"The commercial registration number is not registered with the Ministry of Commerce\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1155d22a-ffe4-46dd-94c1-c14213da2bf7",
+          "name": "Absher OTP with CR",
+          "request": {
+            "name": "Absher OTP with CR",
+            "description": {
+              "content": "Initiate an Absher OTP verification for an individual associated with a specific commercial registration. Verifies that the person is authorized to sign on behalf of the company.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "kyb",
+                "absher-otp",
+                ":commercialNumber",
+                ":nationalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commercialNumber",
+                  "description": "(Required) The CR number of the company"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nationalId",
+                  "description": "(Required) The Saudi National ID of the person"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5a27579c-7269-4eb6-99d2-06e7198367f4",
+              "name": "not enough credit",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "kyb",
+                    "absher-otp",
+                    ":commercialNumber",
+                    ":nationalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commercialNumber",
+                      "description": "(Required) The CR number of the company"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nationalId",
+                      "description": "(Required) The Saudi National ID of the person"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": null,\n  \"errorCode\": 152,\n  \"message\": \"There is not enough credit to Absher Quota\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f23fbb30-d4a9-4386-bf5d-06cf1e088d9a",
+          "name": "Absher OTP Individual",
+          "request": {
+            "name": "Absher OTP Individual",
+            "description": {
+              "content": "Requests an OTP (One-Time Password) from Absher for verification using only the national ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "kyb",
+                "absher-otp",
+                ":nationalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nationalId",
+                  "description": "(Required) The Saudi National ID or Iqama number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7bde0a9f-028b-4eb0-af53-82258e987870",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "kyb",
+                    "absher-otp",
+                    ":nationalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nationalId",
+                      "description": "(Required) The Saudi National ID or Iqama number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": null,\n  \"errorCode\": 152,\n  \"message\": \"There is not enough credit to Absher Quota\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f513f1cc-fb6f-4698-9b9d-69b29df514dd",
+          "name": "Check Delegacy",
+          "request": {
+            "name": "Check Delegacy",
+            "description": {
+              "content": "Verify a power-of-attorney (delegacy) between two individuals or between an individual and a company. Confirms that the delegated person has authority to sign.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "kyb",
+                "delegacy",
+                ":nationalId",
+                ":delegatedReferenceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nationalId",
+                  "description": "(Required) The national ID of the delegating party"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "delegatedReferenceId",
+                  "description": "(Required) The reference ID of the delegation document"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7beb1bce-0438-4c9c-8e49-db7e1c5c647e",
+              "name": "Delegacy check result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "kyb",
+                    "delegacy",
+                    ":nationalId",
+                    ":delegatedReferenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nationalId",
+                      "description": "(Required) The national ID of the delegating party"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "delegatedReferenceId",
+                      "description": "(Required) The reference ID of the delegation document"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 0,\n  \"message\": \"Success\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\",\n  \"data\": {\n    \"name\": \"أحمد محمد العلي\",\n    \"nameEn\": \"Ahmad Mohammed Al-Ali\",\n    \"birthDate\": \"1990-05-15\",\n    \"identity\": {\n      \"id\": \"1234567890\",\n      \"type\": \"NATIONAL_ID\"\n    },\n    \"nationality\": {\n      \"id\": \"SA\",\n      \"name\": \"السعودية\"\n    },\n    \"delegacy\": [\n      {\n        \"id\": 12345,\n        \"expiryDate\": \"2025-12-31\",\n        \"startDate\": \"2024-01-01\",\n        \"href\": \"https://api.wathq.sa/delegacy/12345\",\n        \"organization\": [\n          {\n            \"id\": 67890,\n            \"name\": \"وزارة التجارة\",\n            \"nameEn\": \"Ministry of Commerce\",\n            \"system\": [\n              {\n                \"id\": \"SYS001\",\n                \"name\": \"نظام السجل التجاري\",\n                \"nameEn\": \"Commercial Registry System\",\n                \"role\": [\n                  {\n                    \"id\": \"ROLE001\",\n                    \"name\": \"مدير\",\n                    \"nameEn\": \"Manager\",\n                    \"delegatedReferenceId\": \"REF-2024-001\",\n                    \"delegatedReferenceType\": \"COMPANY\",\n                    \"mainReferenceId\": null\n                  }\n                ]\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ed5b691-a759-4152-972e-99211a110c3a",
+          "name": "Get National Address",
+          "request": {
+            "name": "Get National Address",
+            "description": {
+              "content": "Retrieves the Saudi Post (SPL) national address information for a business based on its commercial registration number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "kyb",
+                "spl",
+                "national-address",
+                ":crNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "crNumber",
+                  "description": "(Required) The commercial registration number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3b07fc99-860d-4b6e-bd4f-469c865b7bbe",
+              "name": "No data returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "kyb",
+                    "spl",
+                    "national-address",
+                    ":crNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "crNumber",
+                      "description": "(Required) The commercial registration number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": null,\n  \"errorCode\": 100,\n  \"message\": \"No data returned from SPL National Address endpoint\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sadq.sa",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "971e464f-06f3-4f2c-93f0-598eca593194",
+    "name": "Sadq Integration Archiving & Delegations KYB API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API reference for the Sadq e-signature platform",
+      "type": "text/plain"
+    }
+  }
+}

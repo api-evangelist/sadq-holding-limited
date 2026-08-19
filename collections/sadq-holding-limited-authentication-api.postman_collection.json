@@ -1,0 +1,274 @@
+{
+  "item": [
+    {
+      "id": "d5dae7d6-c94e-4040-901a-8ba03b23e5b0",
+      "name": "Authentication",
+      "description": {
+        "content": "Obtain and manage API access tokens",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ec52ab02-9d8b-4650-b06c-69cf0e15d15b",
+          "name": "Obtain Access Token",
+          "request": {
+            "name": "Obtain Access Token",
+            "description": {
+              "content": "Obtain a JWT Bearer token using Basic Auth. Pass your Client ID as username and Client Secret as password in the Authorization header (Base64-encoded). The body must be form-encoded with grant_type=integration plus user credentials. The returned access_token must be included as a Bearer token in all subsequent API requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Authentication",
+                "Authority",
+                "Token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "0",
+                  "value": "<"
+                },
+                {
+                  "disabled": false,
+                  "key": "1",
+                  "value": "o"
+                },
+                {
+                  "disabled": false,
+                  "key": "2",
+                  "value": "b"
+                },
+                {
+                  "disabled": false,
+                  "key": "3",
+                  "value": "j"
+                },
+                {
+                  "disabled": false,
+                  "key": "4",
+                  "value": "e"
+                },
+                {
+                  "disabled": false,
+                  "key": "5",
+                  "value": "c"
+                },
+                {
+                  "disabled": false,
+                  "key": "6",
+                  "value": "t"
+                },
+                {
+                  "disabled": false,
+                  "key": "7",
+                  "value": ">"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "03ab0f77-b51d-42af-99c5-e48e6e4cbed1",
+              "name": "Token issued successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Authentication",
+                    "Authority",
+                    "Token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "grant_type",
+                      "value": "integration"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "username",
+                      "value": "user@example.com"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "password",
+                      "value": "your-password"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "accountId",
+                      "value": "your-account-id"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "accountSecret",
+                      "value": "your-account-secret"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGllbnQtaWQiLCJpYXQiOjE3MDAwMDAwMDAsImV4cCI6MTcwMDAwMzYwMH0...\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 3600,\n  \"scope\": \"api\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ef1c546-9f1c-4ddb-a84a-a355b3a6ae0e",
+              "name": "Invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Authentication",
+                    "Authority",
+                    "Token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "grant_type",
+                      "value": "integration"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "username",
+                      "value": "user@example.com"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "password",
+                      "value": "your-password"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "accountId",
+                      "value": "your-account-id"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "accountSecret",
+                      "value": "your-account-secret"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_client\",\n  \"error_description\": \"Client authentication failed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sadq.sa",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fbd133cf-0ce3-4e3b-b988-f615e545f49f",
+    "name": "Sadq Integration Archiving & Delegations Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API reference for the Sadq e-signature platform",
+      "type": "text/plain"
+    }
+  }
+}

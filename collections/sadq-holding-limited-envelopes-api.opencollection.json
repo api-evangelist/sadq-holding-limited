@@ -1,0 +1,243 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sadq Integration Archiving & Delegations Envelopes API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Envelopes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate Envelope",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/envelopes/initiate",
+            "params": [
+              {
+                "name": "FileId",
+                "value": "",
+                "type": "path",
+                "description": "Optional. Custom file identifier (Guid). If omitted, the system generates one."
+              },
+              {
+                "name": "WebhookId",
+                "value": "",
+                "type": "path",
+                "description": "Optional. Target a specific webhook instead of the tenant default."
+              },
+              {
+                "name": "WorkflowId",
+                "value": "",
+                "type": "path",
+                "description": "Optional. Attach the envelope to an existing workflow."
+              },
+              {
+                "name": "ReferenceNumber",
+                "value": "",
+                "type": "path",
+                "description": "Optional. Your own reference number. If omitted, the system generates one."
+              },
+              {
+                "name": "Password",
+                "value": "",
+                "type": "path",
+                "description": "Optional. Password to protect the uploaded PDF."
+              },
+              {
+                "name": "IsForExternalWorkFlow",
+                "value": "",
+                "type": "path",
+                "description": "Optional. Enable External WorkFlow."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Initiate a signature envelope by uploading document files as multipart/form-data. Returns an envelope and Docuemnt ID that can be used in subsequent signing invitation steps."
+        },
+        {
+          "info": {
+            "name": "Initiate Envelope Base64",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/envelopes/initiate-base64",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Initiate a signature envelope by providing the document content as a Base64-encoded string. The system creates an envelope and returns its ID for subsequent signing invitation steps."
+        },
+        {
+          "info": {
+            "name": "Initiate Envelope by Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/envelopes/initiate-by-template",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Initiate a signature envelope using a predefined template. The template defines the document structure, signing fields, and signer roles. Returns an envelope ID."
+        },
+        {
+          "info": {
+            "name": "Bulk Initiate Envelope Base64",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/envelopes/bulk/initiate-base64",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Initiate multiple signature envelopes in a single request by providing documents as Base64-encoded strings. Returns an array of envelope IDs."
+        },
+        {
+          "info": {
+            "name": "Download Envelope Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v1/envelopes/:envelopeId/files",
+            "params": [
+              {
+                "name": "envelopeId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the envelope"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download all files associated with an envelope. Returns file content as binary or base64 depending on the Accept header."
+        },
+        {
+          "info": {
+            "name": "Cancel Envelope",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/envelopes/:envelopeId/cancel",
+            "params": [
+              {
+                "name": "envelopeId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the envelope to cancel"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Cancel an active envelope, preventing any further signing actions. Cancellation is irreversible. All pending signers will be notified."
+        },
+        {
+          "info": {
+            "name": "Get Envelope Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v1/envelopes/:envelopeId/status",
+            "params": [
+              {
+                "name": "envelopeId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the envelope"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the current status of an envelope including signer completion details and overall progress."
+        },
+        {
+          "info": {
+            "name": "Download Completed Envelope Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v1/envelopes/:envelopeId/files/completed",
+            "params": [
+              {
+                "name": "envelopeId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the completed envelope"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download the signed and completed files from an envelope. Only available after all signers have completed signing."
+        },
+        {
+          "info": {
+            "name": "Envelope Creation & Signing Invitation Process",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/envelopes/bulk/initiate-and-invite",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The API provides a complete end-to-end digital document signing workflow in a single operation. It initiates a signature envelope by accepting the document content as a Base64-encoded string, and immediately creates the envelope while generating a unique envelope ID.\n\nIn the same process, the API also handles sending signing invitations to recipients. Each recipient receives a secure link via email or SMS, allowing them to review and sign the document electronically without requiring any additio"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

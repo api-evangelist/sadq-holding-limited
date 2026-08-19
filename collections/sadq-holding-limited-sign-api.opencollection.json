@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sadq Integration Archiving & Delegations Sign API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sign",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sign Document V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v2/sign",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Sadq API (Version 2) provides a seamless way for clients to electronically sign documents directly without redirecting to external websites. This API allows clients to collect customer information and combine it with the document to create legally binding digital signatures.\n\nThis endpoint allows you to sign a document digitally by providing customer information and document details. The document is digitally signed and legally bound. invitation, applying the user's electronic signature."
+        },
+        {
+          "info": {
+            "name": "Sign by Template V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v2/sign/by-template",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Sign a document generated from a template. The template pre-defines signature fields and positions, streamlining the signing process for standardized documents."
+        },
+        {
+          "info": {
+            "name": "Digital Sign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v2/sign/digital",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Sign documents using personal certificate with Nafath authentication"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

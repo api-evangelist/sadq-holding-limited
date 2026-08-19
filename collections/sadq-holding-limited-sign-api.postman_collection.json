@@ -1,0 +1,369 @@
+{
+  "item": [
+    {
+      "id": "53c8e1da-f25e-41ec-96b6-99de519ecf54",
+      "name": "Sign",
+      "description": {
+        "content": "Direct signing operations including multi-file and templates",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9de9ce70-0648-4bcd-a1bc-0b040cc4d762",
+          "name": "Sign Document V2",
+          "request": {
+            "name": "Sign Document V2",
+            "description": {
+              "content": "The Sadq API (Version 2) provides a seamless way for clients to electronically sign documents directly without redirecting to external websites. This API allows clients to collect customer information and combine it with the document to create legally binding digital signatures.\n\nThis endpoint allows you to sign a document digitally by providing customer information and document details. The document is digitally signed and legally bound. invitation, applying the user's electronic signature.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "sign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f5759281-aa73-43b6-8972-e57f814bd540",
+              "name": "GeneralError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "sign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentId\": \"\",\n  \"signres\": [\n    {\n      \"firstNameArabic\": \"\",\n      \"firstNameEnglish\": \"\",\n      \"secondNameArabic\": \"\",\n      \"secondNameEnglish\": \"\",\n      \"familyNameArabic\": \"\",\n      \"familyNameEnglish\": \"\",\n      \"nationalId\": \"\",\n      \"mobileNumber\": \"\",\n      \"emailAddress\": \"\"\n    },\n    {\n      \"firstNameArabic\": \"\",\n      \"firstNameEnglish\": \"\",\n      \"secondNameArabic\": \"\",\n      \"secondNameEnglish\": \"\",\n      \"familyNameArabic\": \"\",\n      \"familyNameEnglish\": \"\",\n      \"nationalId\": \"\",\n      \"mobileNumber\": \"\",\n      \"emailAddress\": \"\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 100,\n  \"message\": \"GeneralError\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "316f56e2-2e94-4531-af28-f8d372952150",
+          "name": "Sign by Template V2",
+          "request": {
+            "name": "Sign by Template V2",
+            "description": {
+              "content": "Sign a document generated from a template. The template pre-defines signature fields and positions, streamlining the signing process for standardized documents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "sign",
+                "by-template"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4167619c-1511-438c-92dc-bbddd4f44054",
+              "name": "Fill Data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "sign",
+                    "by-template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"templateId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n  \"signres\": [\n    {\n      \"firstNameArabic\": \"xx\",\n      \"firstNameEnglish\": \"xxx\",\n      \"secondNameArabic\": \"xx\",\n      \"secondNameEnglish\": \"xx\",\n      \"familyNameArabic\": \"xx\",\n      \"familyNameEnglish\": \"xxx\",\n      \"nationalId\": \"1111111111\",\n      \"mobileNumber\": \"+962700000020\",\n      \"emailAddress\": \"a.@gmail.sa\"\n    }\n  ],\n  \"templateFields\": [\n    {\n      \"fieldName\": \"contractDate\",\n      \"value\": \"2024-01-15\"\n    }\n  ],\n  \"ReferenceNumber \": \"sig-uuid-1234-5678-90ab\",\n  \"Password\": \"112233\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 209,\n  \"message\": \"Template With Id [ 94b22fdc-4132-4169-a4f3-5630e80755fa ] has data that needs to be filled by the recipient, so it can't be used in this model.\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4d9b60c-22dd-4447-9bd4-77a60a0dbf10",
+          "name": "Digital Sign",
+          "request": {
+            "name": "Digital Sign",
+            "description": {
+              "content": "Sign documents using personal certificate with Nafath authentication",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "sign",
+                "digital"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e620397c-2b70-45d4-a821-46ff96626e62",
+              "name": "Sign Successfully ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "sign",
+                    "digital"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fileName\": \"string (required)\",\n  \"fileContent\": \"string (required, base64)\",\n  \"referenceNumber\": \"string (optional)\",\n  \"signres\": [\n    {\n      \"firstNameArabic\": \"string\",\n      \"firstNameEnglish\": \"string\",\n      \"secondNameArabic\": \"string\",\n      \"secondNameEnglish\": \"string\",\n      \"familyNameArabic\": \"string\",\n      \"familyNameEnglish\": \"string\",\n      \"nationalId\": \"string\",\n      \"mobileNumber\": \"string\",\n      \"emailAddress\": \"string\",\n      \"authType\": \"string \",\n      \"appearance\": {\n        \"isVisible\": \"boolean (default: true)\",\n        \"pageNumber\": \"string (default: 1)\",\n        \"fontSize\": \"number (default: 8)\",\n        \"x1\": \"number\",\n        \"y1\": \"number\",\n        \"width\": \"number\",\n        \"height\": \"number\",\n        \"appearanceImageBase64\": \"string (optional)\",\n        \"imageLocation\": \"number (0 or 1)\"\n      }\n    }\n  ],\n  \"addAuditTrail\": \"boolean (required)\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"number\",\n  \"message\": \"string\",\n  \"data\": {\n    \"documentId\": \"guid\",\n    \"envelopeId\": \"guid\",\n    \"referenceNumber\": \"string\",\n    \"signedFile\": \"string (base64)\",\n    \"auditTrailFile\": \"string (base64, nullable)\",\n    \"hasAuditTrail\": \"boolean\",\n    \"isAuditTrailSeparate\": \"boolean\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sadq.sa",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cde6816b-3238-4095-88c8-0f5592e693ab",
+    "name": "Sadq Integration Archiving & Delegations Sign API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API reference for the Sadq e-signature platform",
+      "type": "text/plain"
+    }
+  }
+}

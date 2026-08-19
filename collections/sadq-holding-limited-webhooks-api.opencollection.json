@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sadq Integration Archiving & Delegations Webhooks API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sadq.sa/api/v1/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This API allows you to update an existing webhook configuration in the system. You can modify the URL, authentication token, and default status of the webhook using this API."
+        },
+        {
+          "info": {
+            "name": "Create Webhooks Bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/webhooks/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This API allows you to configure multiple webhook URLs in the system. You can provide a list of webhook URLs along with their authentication tokens and default status. Once configured, the system will send relevant data to the provided URLs whenever specific events occur."
+        },
+        {
+          "info": {
+            "name": "Delete Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sadq.sa/api/v1/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the webhook to delete."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This API allows you to delete a specific webhook configuration based on its ID from the system."
+        },
+        {
+          "info": {
+            "name": "Recall Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/webhooks/recall",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint triggers a webhook call within the Sadq Integration Service. It is typically used to manually trigger webhook notifications or synchronize external systems with events or data changes from Sadq."
+        },
+        {
+          "info": {
+            "name": "Get Webhook Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v1/webhooks/logs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve delivery logs for webhook events including request/response details and failure information for troubleshooting."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,575 @@
+{
+  "item": [
+    {
+      "id": "6cf42d15-ecf9-4786-b216-e903aae89c9d",
+      "name": "Reports & Requests",
+      "description": {
+        "content": "Consumption reports, request listings and bulk signature jobs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dca9a787-ac3c-4dde-8cba-27dc4dd7ef21",
+          "name": "Get Consumption Report",
+          "request": {
+            "name": "Get Consumption Report",
+            "description": {
+              "content": "Retrieves a consumption report showing allocated resources and remaining capacity for your account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "reports",
+                "consumption"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "97e87aba-7ed0-47c5-ba9d-1e379ee3096f",
+              "name": "Consumption report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "reports",
+                    "consumption"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"title\": \"Monthly Signature Requests\",\n    \"allocated\": 1000,\n    \"remaining\": 742\n  },\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e547974-3b3a-4440-b343-8d8a573099f3",
+          "name": "Generate Requests Report",
+          "request": {
+            "name": "Generate Requests Report",
+            "description": {
+              "content": "Generate a detailed report of signing requests with filtering options. The report can be exported in various formats.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "reports",
+                "requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d376de6d-4bf7-4faf-bc92-b65c7885f3e9",
+              "name": "Requests report generated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "reports",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fromDate\": \"2025-05-14\",\n  \"toDate\": \"2025-05-16\",\n  \"UserId\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"0a727241-a392-49c1-9fad-2551e5dc0cf9\",\n      \"status\": \"In-progress\",\n      \"statusValue\": 1,\n      \"createDate\": \"2025-05-16T01:42:47.003\",\n      \"signatories\": [\n        {\n          \"id\": \"64db64e6-a2db-4164-8a32-48daac19846d\",\n          \"signatureRequestId\": \"0a727241-a392-49c1-9fad-2551e5dc0cf9\",\n          \"status\": \"SIGNED\",\n          \"statusValue\": 3,\n          \"fullName\": \"Waleed\",\n          \"fullNameAr\": \"Waleed\",\n          \"nationalId\": \"\",\n          \"signOrder\": 0,\n          \"email\": \"cesowe2771@hazhab.com\",\n          \"phoneNumber\": \"\",\n          \"gender\": \"NONE\",\n          \"nationlity\": \"\",\n          \"signDate\": \"2025-05-16T01:51:19.377\"\n        },\n        {\n          \"id\": \"59a130d7-5b4b-42e9-ba2d-9d6491c9437d\",\n          \"signatureRequestId\": \"0a727241-a392-49c1-9fad-2551e5dc0cf9\",\n          \"status\": \"SIGNED\",\n          \"statusValue\": 3,\n          \"fullName\": \"SALEM\",\n          \"fullNameAr\": \"سالم\",\n          \"nationalId\": \"000.....\",\n          \"signOrder\": 0,\n          \"email\": \"a.a@gmail.com\",\n          \"phoneNumber\": \"+96278000..\",\n          \"gender\": \"MALE\",\n          \"nationlity\": \"الاردن\",\n          \"signDate\": null\n        },\n        {\n          \"id\": \"49f471d6-5fa6-4b21-b4aa-d97eea338ec4\",\n          \"signatureRequestId\": \"0a727241-a392-49c1-9fad-2551e5dc0cf9\",\n          \"status\": \"PENDING\",\n          \"statusValue\": 1,\n          \"fullName\": \"Hussein\",\n          \"fullNameAr\": \"       \",\n          \"nationalId\": \"sadq-api-not pr\",\n          \"signOrder\": 0,\n          \"email\": \"a.a@gmail.com\",\n          \"phoneNumber\": \"\",\n          \"gender\": \"MALE\",\n          \"nationlity\": \"\",\n          \"signDate\": null\n        }\n      ],\n      \"documents\": [\n        {\n          \"id\": \"8f0648ba-2b67-4d0d-9686-1caf69da3dcf\",\n          \"signatureRequestId\": \"0a727241-a392-49c1-9fad-2551e5dc0cf9\",\n          \"fileName\": \"Test_1.pdf\",\n          \"uploadDate\": \"2025-05-16T01:42:46.923\",\n          \"sizeInKB\": 14,\n          \"isSigned\": false\n        }\n      ],\n      \"referenceNumber\": \"sadq-api-2025-20\"\n    }\n  ],\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5772eab6-99b3-468d-90d9-4f248b725323",
+          "name": "Get Requests List",
+          "request": {
+            "name": "Get Requests List",
+            "description": {
+              "content": "Retrieves a list of signature requests, optionally filtered by date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a7fe6f1f-b38c-4d44-a4de-3d2a9d4c2230",
+              "name": "Requests list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FromDate\": \"2026-01-01\",\n  \"ToDate\": \"2026-02-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"63D7067F-BFA6-4599-A9D9-F3CEB24A80C6\",\n      \"status\": \"Completed\",\n      \"createDate\": \"2026-05-14T11:35:03.547\",\n      \"signatories\": [\n        {\n          \"id\": \"63D7067F-BFA6-4599-A9D9-F3CEB24A80C6\",\n          \"status\": \"SIGNED\",\n          \"fullName\": \"SALEM\",\n          \"fullNameAr\": \"سالم\",\n          \"nationalId\": \"0000...\",\n          \"signOrder\": 0,\n          \"email\": \"s.test@test\",\n          \"phoneNumber\": \"+96600000\",\n          \"gender\": \"MALE\",\n          \"nationlity\": \"الاردن\",\n          \"lastActionDate\": null,\n          \"signingUrl\": null\n        },\n        {\n          \"id\": \"63D7067F-BFA6-4599-A9D9-F3CEB24A80C6\",\n          \"status\": \"SIGNED\",\n          \"fullName\": \"ALAA  ALBADWAI\",\n          \"fullNameAr\": \"ALAA  ALBADWAI\",\n          \"nationalId\": \"9551058000\",\n          \"signOrder\": 0,\n          \"email\": \"A.A@Gmail.com\",\n          \"phoneNumber\": 79999999,\n          \"gender\": \"NONE\",\n          \"nationlity\": \"\",\n          \"lastActionDate\": null,\n          \"signingUrl\": null\n        }\n      ],\n      \"referenceNumber\": \"Req-A-2026-343\"\n    },\n    {\n      \"id\": \"9C800B06-618D-488C-8822-1DDB33286515\",\n      \"status\": \"In-progress\",\n      \"createDate\": \"2026-05-14T10:50:04.823\",\n      \"signatories\": [],\n      \"referenceNumber\": \"Req-A-2026-342\"\n    },\n    {\n      \"id\": \"79CD5372-5CB1-4C04-AEB4-4660761FA750\",\n      \"status\": \"Completed\",\n      \"createDate\": \"2026-05-14T10:42:54.897\",\n      \"signatories\": [\n        {\n          \"id\": \"79CD5372-5CB1-4C04-AEB4-4660761FA750\",\n          \"status\": \"SIGNED\",\n          \"fullName\": \"SALEM SALAH SALEM ABADAWI\",\n          \"fullNameAr\": \"سالم صلاح سالم البدوى\",\n          \"nationalId\": \"2307329983\",\n          \"signOrder\": 0,\n          \"email\": \"s.albadawi@sadq.sa\",\n          \"phoneNumber\": \"+966568684127\",\n          \"gender\": \"MALE\",\n          \"nationlity\": \"الاردن\",\n          \"lastActionDate\": null,\n          \"signingUrl\": null\n        },\n        {\n          \"id\": \"79CD5372-5CB1-4C04-AEB4-4660761FA750\",\n          \"status\": \"SIGNED\",\n          \"fullName\": \"Nubani\",\n          \"fullNameAr\": \"Nubani\",\n          \"nationalId\": \"\",\n          \"signOrder\": 0,\n          \"email\": \"a.n@test\",\n          \"phoneNumber\": \"\",\n          \"gender\": \"NONE\",\n          \"nationlity\": \"\",\n          \"lastActionDate\": null,\n          \"signingUrl\": null\n        }\n      ],\n      \"referenceNumber\": \"Req-A-2026-341\"\n    }\n  ],\n  \"errorCode\": 0,\n  \"message\": \"Success\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f15329d1-4627-47b6-adb5-4b40da997211",
+          "name": "Request filter",
+          "request": {
+            "name": "Request filter",
+            "description": {
+              "content": "Get list of envelopes by filter",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                "user-list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5fb27086-15c0-4001-9d8c-1df7d9eed5d0",
+              "name": "Sucess",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    "user-list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pageNumber\": 1,\n  \"pageSize\": 10,\n  \"fromDate\": null,\n  \"toDate\": null,\n  \"search\": null,\n  \"isCompleted\": null,\n  \"isRejected\": null,\n  \"isNeedYourSign\": null,\n  \"requestStatus\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signatureRequestList\": [\n    {\n      \"requestId\": \"6f1c2a8b-3d9e-4f1a-9c2e-123456789abc\",\n      \"fileId\": \"9b2d7f44-1c88-4d5b-8a77-abcdef123456\",\n      \"fileName\": \"Contract.pdf\",\n      \"title\": \"Employment Contract\",\n      \"userEmail\": \"user@example.com\",\n      \"userFirstName\": \"Ahmad\",\n      \"lastName\": \"Khaled\",\n      \"destination\": \"Internal User\",\n      \"destinationName\": \"Ahmad Khaled\",\n      \"destinationPhone\": \"+962790000000\",\n      \"destinationNationalId\": \"1234567890\",\n      \"destinationType\": 1,\n      \"destinationTypeText\": \"Signer\",\n      \"destinationStatus\": 2,\n      \"destinationStatusText\": \"Pending\",\n      \"creatorFirstName\": \"Sara\",\n      \"creatorLastName\": \"Omar\",\n      \"signers\": \"Ahmad Khaled,Mohammad Ali\",\n      \"status\": 2,\n      \"statusText\": \"Pending\",\n      \"isCompleted\": false,\n      \"isSignedByUser\": false,\n      \"isReject\": false,\n      \"rejectionReason\": null,\n      \"createDate\": \"2026-06-01T10:15:30Z\",\n      \"statusChangeDate\": \"2026-06-01T10:15:30Z\",\n      \"availableTo\": \"2026-06-10T23:59:59Z\",\n      \"originalAvailableTo\": \"2026-06-10T23:59:59Z\",\n      \"userOnlySigner\": false,\n      \"isCC\": false,\n      \"isUserSignOrder\": true,\n      \"authenticationType\": 1,\n      \"randomId\": \"ABC123XYZ\",\n      \"completionRatio\": 50,\n      \"quorumCount\": 2,\n      \"allowExternalRecipientToViewSignerMap\": true,\n      \"allowContinueOnRejection\": false,\n      \"workflowId\": \"11111111-2222-3333-4444-555555555555\",\n      \"referenceNumber\": \"REF-2026-0001\",\n      \"isForExternalWorkFlow\": false,\n      \"isFromIntegration\": true,\n      \"source\": 1,\n      \"metadataTemplateId\": \"aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\",\n      \"categoryId\": \"ffffffff-1111-2222-3333-444444444444\",\n      \"tags\": \"HR,Contract\",\n      \"messageCount\": 3,\n      \"hasUnseenMessages\": true,\n      \"files\": [\n        {\n          \"fileId\": \"9b2d7f44-1c88-4d5b-8a77-abcdef123456\",\n          \"fileName\": \"Contract.pdf\",\n          \"requestId\": \"6f1c2a8b-3d9e-4f1a-9c2e-123456789abc\",\n          \"fileSize\": 245760,\n          \"fileOrder\": 1,\n          \"fileCreatorName\": \"Sara Omar\",\n          \"extension\": \".pdf\",\n          \"isPasswordProtected\": false,\n          \"metadataTemplateId\": \"aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\",\n          \"categoryId\": \"ffffffff-1111-2222-3333-444444444444\",\n          \"categoryName\": \"Contracts\"\n        }\n      ]\n    }\n  ],\n  \"totalCount\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "baefab7c-8e5a-45df-ab69-c573cae8d733",
+          "name": "Requests by Destinations Report",
+          "request": {
+            "name": "Requests by Destinations Report",
+            "description": {
+              "content": "Returns a paginated report of signature requests broken down by individual destination (signer/reviewer/creator). Each row\n  represents one destination's activity on a request, including the creator details, destination name, contact info, destination\n  type and status, action/delivery dates, execution duration, and a direct signing URL. Supports filtering by request status,\n  destination status, destination type, reference number, creator, search term, and date ranges (created, actioned, completed).\n  Also returns aggregate totals across the result set.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "reports",
+                "requests-by-destinations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "11c9364e-2847-446f-8676-f9f3131ea0ce",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "reports",
+                    "requests-by-destinations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdFromDate\": \"2025-06-06T12:59:47.005Z\",\n  \"createdToDate\": \"2026-06-09T12:59:47.005Z\",\n  \"destinationStatus\": null,\n  \"destinationType\": null,\n  \"pageNumber\": 1,\n  \"pageSize\": 10,\n  \"requestStatus\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"totalCount\": 2,\n    \"dataList\": [\n      {\n        \"requestId\": \"42ae7c04-9c0b-49ce-a4c1-af5363f7c096\",\n        \"referenceNumber\": \"Req-staging-2026-6393\",\n        \"createdDate\": \"2026-05-12T12:33:14.923\",\n        \"completedDate\": \"2026-05-12T09:35:06.983\",\n        \"requestStatus\": 5,\n        \"requestStatusName\": \"Completed\",\n        \"creatorName\": \"Nuha Taha\",\n        \"numberOfFiles\": 1,\n        \"filesNames\": \"Test_1.pdf\",\n        \"destinationEmail\": \"example@email.com\",\n        \"destinationTypeName\": \"Signer\",\n        \"destinationStatusName\": \"Signed\",\n        \"destinationName\": \"Sample User\",\n        \"numberOfSigners\": 2,\n        \"signingUrl\": \"http://example.com/sign/abc123\"\n      }\n    ],\n    \"totals\": {\n      \"totalRequests\": 1,\n      \"totalNumberOfSigners\": 2,\n      \"totalSignedDestinations\": 2,\n      \"totalCompletedRequests\": 1\n    }\n  },\n  \"errorCode\": 0,\n  \"message\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sadq.sa",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "67a39b93-f650-49e5-bce1-42699be2a9b3",
+    "name": "Sadq Integration Archiving & Delegations Reports & Requests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API reference for the Sadq e-signature platform",
+      "type": "text/plain"
+    }
+  }
+}

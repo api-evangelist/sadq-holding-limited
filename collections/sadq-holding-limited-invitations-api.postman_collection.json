@@ -1,0 +1,1063 @@
+{
+  "item": [
+    {
+      "id": "6bd71862-2e07-4da9-b9eb-9b0bcac906cd",
+      "name": "Invitations",
+      "description": {
+        "content": "Send, extend, and remind signing invitations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eff02e36-e6e2-4bda-b161-a574e6dd2a11",
+          "name": "Send Invitation",
+          "request": {
+            "name": "Send Invitation",
+            "description": {
+              "content": "Send a signing invitation to a recipient for a specific envelope. The recipient receives an email or SMS with a link to sign the document.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "invitations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d9317a1a-942f-4f97-9df6-e5f2d0f15f34",
+              "name": "Invitation sent successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DocumentId\": \"9af7cb57-436f-40e9-b05c-75d05732db1c\",\n  \"Destinations\": [\n    {\n      \"DestinationName\": \"Ahmed Al-Rashid\",\n      \"DestinationEmail\": \"ahmed.alrashid@example.com\",\n      \"DestinationPhoneNumber\": \"+966501234567\",\n      \"signatories\": [],\n      \"ConsentOnly\": true,\n      \"AuthenticationType\": 0\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": true,\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8fd844fd-6686-4966-9623-3f3aebc75153",
+          "name": "Send Bulk Invitations",
+          "request": {
+            "name": "Send Bulk Invitations",
+            "description": {
+              "content": "Send signing invitations to multiple recipients across multiple envelopes in a single API call. Useful for high-volume signing workflows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "invitations",
+                "bulk",
+                "send"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5740ca9e-867e-4139-8444-2013fed1b8b6",
+              "name": "Bulk invitations sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "invitations",
+                    "bulk",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"documentId\": \"772ad332-a04a-48c4-a04c-176aa04b3cf5\",\n    \"destinations\": [\n      {\n        \"destinationName\": \"string\",\n        \"destinationEmail\": \"string@gmail.com\",\n        \"destinationPhoneNumber\": \"\",\n        \"signatories\": [],\n        \"ConsentOnly\": true\n      }\n    ]\n  },\n  {\n    \"documentId\": \"945421fb-7e9b-47b7-b1dd-7274d13ca027\",\n    \"destinations\": [\n      {\n        \"destinationName\": \"string\",\n        \"destinationEmail\": \"string+1@gmail.com\",\n        \"destinationPhoneNumber\": \"\",\n        \"signatories\": [],\n        \"ConsentOnly\": true\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": true,\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d661799-0363-4355-ad68-7af3abb00816",
+          "name": "Send Invitation by Envelope",
+          "request": {
+            "name": "Send Invitation by Envelope",
+            "description": {
+              "content": "Send signing invitations for all signers defined within a specific envelope. This triggers invitation dispatch for all pending signers in the envelope.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "invitations",
+                "envelope"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "envelopeId",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the envelope."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe533965-df9b-495f-b063-a339f6fea066",
+              "name": "Invitations sent for envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "invitations",
+                    "envelope"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "envelopeId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"envelopeId\": \"GUID\",\n  \"destinations\": [\n    {\n      \"destinationName\": \"hussein\",\n      \"destinationEmail\": \"test@gmail.sa\",\n      \"destinationPhoneNumber\": \"\",\n      \"signatories\": [],\n      \"consentOnly\": true,\n      \"authenticationType\": 0\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": true,\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4fcd78c0-2d33-4d5c-8ea5-f9a0bb4fc1fc",
+          "name": "Extend Single Invitation",
+          "request": {
+            "name": "Extend Single Invitation",
+            "description": {
+              "content": "Extend the expiry date of a single signing invitation. Use this to give a signer more time to complete signing before the invitation expires.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "invitations",
+                "extend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "56eac5cc-4dcd-4965-a326-649fef33dbb6",
+              "name": "AvailableTo is in the past",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "invitations",
+                    "extend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destinationId\": \"e96ed7d6-60e3-4faf-a7d5-5ba5f860bb1a\",\n  \"availableTo\": \"2025-12-29T12:00:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": false,\n  \"errorCode\": 16,\n  \"message\": \"AvailableTo is in the past\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63a4c40d-7113-443b-a2d9-d402844c5bbf",
+          "name": "Extend Envelope Invitations",
+          "request": {
+            "name": "Extend Envelope Invitations",
+            "description": {
+              "content": "Extend the expiry dates of all pending invitations within a specific envelope. This is useful when you need to give all signers more time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "envelopes",
+                "extend-invitations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b30a4d3f-cec9-44b0-9ee3-97b3f8af9c61",
+              "name": "AvailableTo is in the past",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "envelopes",
+                    "extend-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"envelopeId\": \"9af7cb57-436f-40e9-b05c-75d05732db1c\",\n  \"availableTo\": \"2025-12-29T12:00:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": false,\n  \"errorCode\": 16,\n  \"message\": \"AvailableTo is in the past\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3275dca-2cff-4a20-ac70-7e0cb1b37a19",
+          "name": "Send Reminder",
+          "request": {
+            "name": "Send Reminder",
+            "description": {
+              "content": "Send a reminder notification to a signer who has not yet completed signing. The reminder is sent via the same channel as the original invitation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "invitations",
+                "reminders",
+                "send"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "420ffe0f-1f82-4a55-bb22-98f6233da7c6",
+              "name": "Reminder sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "invitations",
+                    "reminders",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"GUID\",\n  \"destinationEmail\": \"X@gmail.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": true,\n  \"errorCode\": 0,\n  \"message\": \"Success\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98134274-6c05-43db-bf4e-5a1e7e846661",
+          "name": "Send Bulk Reminders",
+          "request": {
+            "name": "Send Bulk Reminders",
+            "description": {
+              "content": "Send reminder notifications to multiple signers in a single request. Use this for batch follow-up campaigns.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "invitations",
+                "bulk",
+                "reminders",
+                "send"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "63b43c54-081e-40f7-a860-a7658bab35fa",
+              "name": "The email not belong to this envelop",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "invitations",
+                    "bulk",
+                    "reminders",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"requestId\": \"9af7cb57-436f-40e9-b05c-75d05732db1c\",\n    \"destinationEmail\": \"ahmed.alsaud@example.com\",\n    \"destinationPhone\": \"+966501234567\"\n  },\n  {\n    \"requestId\": \"a1b2c3d4-5e6f-7g8h-9i0j-1k2l3m4n5o6p\",\n    \"destinationEmail\": \"fatima.otaibi@example.com\",\n    \"destinationPhone\": null\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": true,\n  \"errorCode\": 121,\n  \"message\": \"The email not belong to this envelop  \",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb8be2b9-90b5-4607-8a6a-a426a2aca28c",
+          "name": "Send Invitation V2",
+          "request": {
+            "name": "Send Invitation V2",
+            "description": {
+              "content": "Version 2 of the Send Invitation API. Unlike previous versions, this endpoint does not send notifications via email or SMS. Instead, it returns the signing link directly in the API response, allowing clients to handle notification delivery and user communication through their own channels.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "invitations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "15098f66-6541-4764-8933-1f6f24292629",
+              "name": "Invitation sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentId\": \"\",\n  \"destinations\": [\n    {\n      \"destinationName\": \"\",\n      \"destinationEmail\": \"\",\n      \"destinationPhoneNumber\": \"\",\n      \"signeOrder\": 0,\n      \"ConsentOnly\": true,\n      \"destinationType\": 1,\n      \"signatories\": [],\n      \"availableTo\": \"\",\n      \"allowUserToSignAnyWhere\": false,\n      \"authenticationType\": 7,\n      \"invitationLanguage\": 1,\n      \"redirectUrl\": \"\",\n      \"allowUserToAddDestination\": false\n    }\n  ],\n  \"invitationMessage\": \"Dear User, please sign the document attached below.\",\n  \"invitationSubject\": \"Document Signature Request\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"\",\n      \"subject\": \"\",\n      \"message\": \"\",\n      \"name\": \"\",\n      \"nationalId\": null,\n      \"signeOrder\": 0,\n      \"destinationType\": 1,\n      \"authenticationType\": 7,\n      \"destinationPhone\": \"\",\n      \"destination\": \"\",\n      \"fileId\": \"a\",\n      \"status\": 1,\n      \"userHost\": \"\",\n      \"invitationLink\": \"\",\n      \"invitationLanguage\": 0\n    }\n  ],\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da2d0816-6fa9-4f49-a953-cc80927aa8a7",
+          "name": "Send Invitation V3",
+          "request": {
+            "name": "Send Invitation V3",
+            "description": {
+              "content": "Version 3 of the Send Invitation API. This endpoint sends notifications to recipients via email or SMS and also returns the signing link directly in the API response, allowing clients to both rely on built-in notifications and handle additional communication through their own channels if needed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "invitations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9f2b7781-e77b-4622-aaa7-750bc1add4fe",
+              "name": "Multi-step invitation created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentId\": \"\",\n  \"destinations\": [\n    {\n      \"destinationName\": \"\",\n      \"destinationEmail\": \"\",\n      \"destinationPhoneNumber\": \"\",\n      \"signeOrder\": 0,\n      \"ConsentOnly\": true,\n      \"destinationType\": 1,\n      \"signatories\": [],\n      \"availableTo\": \"\",\n      \"allowUserToSignAnyWhere\": false,\n      \"authenticationType\": 3,\n      \"invitationLanguage\": 1,\n      \"redirectUrl\": \"\",\n      \"allowUserToAddDestination\": false\n    }\n  ],\n  \"invitationMessage\": \"Dear User, please sign the document attached.\",\n  \"invitationSubject\": \"Document Signature Request\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"\",\n      \"subject\": \"\",\n      \"message\": \"\",\n      \"name\": \"\",\n      \"signeOrder\": 0,\n      \"destinationType\": 1,\n      \"authenticationType\": 7,\n      \"destination\": \"\",\n      \"fileId\": \"\",\n      \"status\": 1,\n      \"userHost\": \"\",\n      \"invitationLink\": \"\",\n      \"invitationLanguage\": 0\n    }\n  ],\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sadq.sa",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a210de01-d6cd-4206-b871-2a4bba7a36df",
+    "name": "Sadq Integration Archiving & Delegations Invitations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API reference for the Sadq e-signature platform",
+      "type": "text/plain"
+    }
+  }
+}

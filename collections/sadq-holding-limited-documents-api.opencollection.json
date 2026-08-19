@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sadq Integration Archiving & Delegations Documents API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download Document File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v1/documents/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique document ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download the original document file by its ID. Returns the file as binary content."
+        },
+        {
+          "info": {
+            "name": "Download Signed File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v1/documents/:id/signed",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique document ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download the signed version of a document file. The signed document includes embedded digital signatures."
+        },
+        {
+          "info": {
+            "name": "Download Completed File Base64",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v1/documents/:id/completed/base64",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the document to be downloaded."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download a completed (fully-signed) document as a Base64-encoded string. Useful for applications that need to handle file content programmatically."
+        },
+        {
+          "info": {
+            "name": "Download File  v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v1/documents/:id/content-base64",
+            "params": [
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "The unique document ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The \"File Download\" API allows users to download files from the server by providing the unique identifier (FileId) of the desired file. This API is particularly useful for applications that require file handling and management, enabling seamless integration with the system to securely retrieve files."
+        },
+        {
+          "info": {
+            "name": "Download File  v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v2/documents/:id/content-base64",
+            "params": [
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the file to be downloaded."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The \"File Download\" API allows users to download files from the server by providing the unique identifier (FileId) of the desired file. This API is particularly useful for applications that require file handling and management, enabling seamless integration with the system to securely retrieve files."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

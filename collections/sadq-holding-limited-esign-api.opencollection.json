@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sadq Integration Archiving & Delegations eSign API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "eSign",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Hash Sign V1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/esign/nafath/sign",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Sign a document using Saudi Arabia's Nafath national digital identity platform (v1). The signer authenticates via the Nafath app using their national ID."
+        },
+        {
+          "info": {
+            "name": "Hash Sign V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v2/esign/nafath/sign",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Enhanced Nafath signing endpoint (v2) with additional biometric verification options, improved error handling, and support for Nafath API v3 authentication flows."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

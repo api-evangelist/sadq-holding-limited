@@ -1,0 +1,262 @@
+{
+  "item": [
+    {
+      "id": "f6e56587-1fbc-4a63-bf5a-13cb06359651",
+      "name": "eSign",
+      "description": {
+        "content": "Electronic and digital signature operations via Nafath/PKI",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "58ae4f08-623b-402c-9a3b-8ba0afb9ea78",
+          "name": "Hash Sign V1",
+          "request": {
+            "name": "Hash Sign V1",
+            "description": {
+              "content": "Sign a document using Saudi Arabia's Nafath national digital identity platform (v1). The signer authenticates via the Nafath app using their national ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "esign",
+                "nafath",
+                "sign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0aee6df9-52cf-48ef-a70a-f06a1ae80290",
+              "name": " Authenticate Nafath",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "esign",
+                    "nafath",
+                    "sign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"9af7cb57-436f-40e9-b05c-75d05732db1c\",\n  \"signatureAppearance\": {\n    \"isVisible\": true,\n    \"pageNumber\": 1,\n    \"rect\": {\n      \"x1\": 100,\n      \"y1\": 100,\n      \"width\": 200,\n      \"height\": 80\n    },\n    \"appearanceImageBase64\": \"iVBORw0KGgoAAAANSUhEUgAAAAUA...\",\n    \"extraText\": \"Digitally signed via Nafath\"\n  },\n  \"file\": {\n    \"file\": \"JVBERi0xLjQKJeLjz9MKMiAwIG9iago8PC9BUDw8...\",\n    \"fileName\": \"contract.pdf\",\n    \"password\": null\n  },\n  \"config\": {\n    \"showAccountName\": true,\n    \"showRequestId\": true,\n    \"showSignDate\": true,\n    \"showPageNumber\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": null,\n  \"errorCode\": 100,\n  \"message\": \"users must authenticate them-self throw Nafath before signing the document\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bbc9f3e3-4bc3-4215-8c18-5f500f227977",
+          "name": "Hash Sign V2",
+          "request": {
+            "name": "Hash Sign V2",
+            "description": {
+              "content": "Enhanced Nafath signing endpoint (v2) with additional biometric verification options, improved error handling, and support for Nafath API v3 authentication flows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "esign",
+                "nafath",
+                "sign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "003d4416-eb06-4bdd-bb7a-bb4d8f411b42",
+              "name": "Nafath v2 signing completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "esign",
+                    "nafath",
+                    "sign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"9af7cb57-436f-40e9-b05c-75d05732db1c\",\n  \"signatureAppearance\": {\n    \"isVisible\": true,\n    \"pageNumber\": 1,\n    \"rect\": {\n      \"x1\": 100,\n      \"y1\": 100,\n      \"width\": 200,\n      \"height\": 80\n    },\n    \"appearanceImageBase64\": \"iVBORw0KGgoAAAANSUhEUgAAAAUA...\",\n    \"extraText\": \"Digitally signed via Nafath\"\n  },\n  \"signres\": [\n    {\n      \"firstNameArabic\": \"xxxxx\",\n      \"firstNameEnglish\": \"xxx\",\n      \"secondNameArabic\": \"\",\n      \"secondNameEnglish\": \"\",\n      \"familyNameArabic\": \"xxxx\",\n      \"familyNameEnglish\": \"xxx\",\n      \"nationalId\": \"9551058000\",\n      \"mobileNumber\": 79999999,\n      \"emailAddress\": \"A.A@Gmail.com\"\n    }\n  ],\n  \"file\": {\n    \"file\": \"JVBERi0xLjQKJeLjz9MKMiAwIG9iago8PC9BUDw8...\",\n    \"fileName\": \"contract.pdf\",\n    \"password\": null\n  },\n  \"config\": {\n    \"showAccountName\": true,\n    \"showRequestId\": true,\n    \"showSignDate\": true,\n    \"showPageNumber\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": \"JVBERi0xLjQKJeLj.......\",\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sadq.sa",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "aa6866e0-2220-4315-ad7c-794bfa4583d1",
+    "name": "Sadq Integration Archiving & Delegations eSign API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API reference for the Sadq e-signature platform",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sadq Integration Archiving & Delegations KYB API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "KYB",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check CR v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v1/kyb/check-cr/:commercialNumber",
+            "params": [
+              {
+                "name": "commercialNumber",
+                "value": "",
+                "type": "path",
+                "description": "The commercial registration number to check."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves detailed information about a business using its commercial registration number."
+        },
+        {
+          "info": {
+            "name": "Check CR v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v2/kyb/check-cr/:commercialNumber",
+            "params": [
+              {
+                "name": "commercialNumber",
+                "value": "",
+                "type": "path",
+                "description": "The Saudi commercial registration number (CR)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Enhanced CR verification (v2) with additional details including owner information, branch data, authorized signatories, and real-time Zakat/Tax authority status."
+        },
+        {
+          "info": {
+            "name": "Absher OTP with CR",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v1/kyb/absher-otp/:commercialNumber/:nationalId",
+            "params": [
+              {
+                "name": "commercialNumber",
+                "value": "",
+                "type": "path",
+                "description": "The CR number of the company"
+              },
+              {
+                "name": "nationalId",
+                "value": "",
+                "type": "path",
+                "description": "The Saudi National ID of the person"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Initiate an Absher OTP verification for an individual associated with a specific commercial registration. Verifies that the person is authorized to sign on behalf of the company."
+        },
+        {
+          "info": {
+            "name": "Absher OTP Individual",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v1/kyb/absher-otp/:nationalId",
+            "params": [
+              {
+                "name": "nationalId",
+                "value": "",
+                "type": "path",
+                "description": "The Saudi National ID or Iqama number"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Requests an OTP (One-Time Password) from Absher for verification using only the national ID."
+        },
+        {
+          "info": {
+            "name": "Check Delegacy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v1/kyb/delegacy/:nationalId/:delegatedReferenceId",
+            "params": [
+              {
+                "name": "nationalId",
+                "value": "",
+                "type": "path",
+                "description": "The national ID of the delegating party"
+              },
+              {
+                "name": "delegatedReferenceId",
+                "value": "",
+                "type": "path",
+                "description": "The reference ID of the delegation document"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Verify a power-of-attorney (delegacy) between two individuals or between an individual and a company. Confirms that the delegated person has authority to sign."
+        },
+        {
+          "info": {
+            "name": "Get National Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v1/kyb/spl/national-address/:crNumber",
+            "params": [
+              {
+                "name": "crNumber",
+                "value": "",
+                "type": "path",
+                "description": "The commercial registration number"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the Saudi Post (SPL) national address information for a business based on its commercial registration number."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

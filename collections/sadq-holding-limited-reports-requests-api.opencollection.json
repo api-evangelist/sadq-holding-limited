@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sadq Integration Archiving & Delegations Reports & Requests API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports & Requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Consumption Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v1/reports/consumption",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a consumption report showing allocated resources and remaining capacity for your account."
+        },
+        {
+          "info": {
+            "name": "Generate Requests Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/reports/requests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Generate a detailed report of signing requests with filtering options. The report can be exported in various formats."
+        },
+        {
+          "info": {
+            "name": "Get Requests List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v1/requests/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a list of signature requests, optionally filtered by date range."
+        },
+        {
+          "info": {
+            "name": "Request filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sadq.sa/api/v1/requests/user-list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get list of envelopes by filter"
+        },
+        {
+          "info": {
+            "name": "Requests by Destinations Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/reports/requests-by-destinations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a paginated report of signature requests broken down by individual destination (signer/reviewer/creator). Each row\n  represents one destination's activity on a request, including the creator details, destination name, contact info, destination\n  type and status, action/delivery dates, execution duration, and a direct signing URL. Supports filtering by request status,\n  destination status, destination type, reference number, creator, search term, and date ranges (created, actioned, comple"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

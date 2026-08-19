@@ -1,0 +1,413 @@
+{
+  "item": [
+    {
+      "id": "74c1853b-1db2-4edf-a6d2-61838a449f5b",
+      "name": "Workflows",
+      "description": {
+        "content": "Create and manage document signing workflows",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "903775c4-2050-4317-b45a-220334e4cc7e",
+          "name": "List Workflows",
+          "request": {
+            "name": "List Workflows",
+            "description": {
+              "content": "Retrieve a paginated list of all signing workflows configured for the tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "51b4af0b-c75d-4ed7-95fe-b18d1ab0a59e",
+              "name": "Workflows list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 2,\n  \"dataList\": [\n    {\n      \"id\": \"575f0d6b-f4be-4543-90e0-ca473ded3758\",\n      \"accountId\": \"c0f63b10-f2e5-44e7-93b3-c78189ce392b\",\n      \"nameAr\": \"Test Integration 9\",\n      \"nameEn\": \"Test Integration 9\",\n      \"isActive\": true,\n      \"isDeleted\": false,\n      \"creatorId\": \"6e71bfed-63b0-47c6-8733-65ba15d7f127\",\n      \"workflowDestinations\": [\n        {\n          \"id\": \"62529c87-cf62-4a8f-a07e-1738874e40ec\",\n          \"workflowId\": \"575f0d6b-f4be-4543-90e0-ca473ded3758\",\n          \"accountId\": \"c0f63b10-f2e5-44e7-93b3-c78189ce392b\",\n          \"name\": \"test203\",\n          \"email\": \"Test_20@Sadq.Sa\",\n          \"phone\": null,\n          \"order\": 2,\n          \"authenticationType\": 1,\n          \"destinationType\": 1\n        },\n        {\n          \"id\": \"a89ae641-4dd3-4915-bf8f-ba31bd365619\",\n          \"workflowId\": \"575f0d6b-f4be-4543-90e0-ca473ded3758\",\n          \"accountId\": \"c0f63b10-f2e5-44e7-93b3-c78189ce392b\",\n          \"name\": \"hussein\",\n          \"email\": \"huss66n@gmail.com\",\n          \"phone\": null,\n          \"order\": 1,\n          \"authenticationType\": 1,\n          \"destinationType\": 3\n        },\n        {\n          \"id\": \"c88dbe54-cb54-4e0e-896e-c483c41662e8\",\n          \"workflowId\": \"575f0d6b-f4be-4543-90e0-ca473ded3758\",\n          \"accountId\": \"c0f63b10-f2e5-44e7-93b3-c78189ce392b\",\n          \"name\": \"Alaa\",\n          \"email\": \"a.darweesh@sadq.sa\",\n          \"phone\": null,\n          \"order\": 3,\n          \"authenticationType\": 0,\n          \"destinationType\": 1\n        }\n      ]\n    },\n    {\n      \"id\": \"10bcb6b6-739c-42ce-990a-dff5fde92132\",\n      \"accountId\": \"c0f63b10-f2e5-44e7-93b3-c78189ce392b\",\n      \"nameAr\": \"Test Integration 99\",\n      \"nameEn\": \"Test Integration 99\",\n      \"isActive\": true,\n      \"isDeleted\": false,\n      \"creatorId\": \"6e71bfed-63b0-47c6-8733-65ba15d7f127\",\n      \"workflowDestinations\": [\n        {\n          \"id\": \"68c8f2dc-2f04-453c-a6a1-498c10c3408f\",\n          \"workflowId\": \"10bcb6b6-739c-42ce-990a-dff5fde92132\",\n          \"accountId\": \"c0f63b10-f2e5-44e7-93b3-c78189ce392b\",\n          \"name\": \"test203\",\n          \"email\": \"Test_20@Sadq.Sa\",\n          \"phone\": null,\n          \"order\": 2,\n          \"authenticationType\": 1,\n          \"destinationType\": 1\n        },\n        {\n          \"id\": \"35bc0f97-1c5a-43ef-a525-5f858fe1fcae\",\n          \"workflowId\": \"10bcb6b6-739c-42ce-990a-dff5fde92132\",\n          \"accountId\": \"c0f63b10-f2e5-44e7-93b3-c78189ce392b\",\n          \"name\": \"Alaa\",\n          \"email\": \"a.darweesh@sadq.sa\",\n          \"phone\": null,\n          \"order\": 3,\n          \"authenticationType\": 0,\n          \"destinationType\": 1\n        },\n        {\n          \"id\": \"2933b25b-4377-4f68-80f2-725a16ae2d26\",\n          \"workflowId\": \"10bcb6b6-739c-42ce-990a-dff5fde92132\",\n          \"accountId\": \"c0f63b10-f2e5-44e7-93b3-c78189ce392b\",\n          \"name\": \"hussein\",\n          \"email\": \"huss66n@gmail.com\",\n          \"phone\": null,\n          \"order\": 1,\n          \"authenticationType\": 1,\n          \"destinationType\": 3\n        }\n      ]\n    }\n  ],\n  \"errorCode\": 0,\n  \"message\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba87eaa6-050e-49bc-bc57-ed2d6d64244c",
+          "name": "Update Workflow",
+          "request": {
+            "name": "Update Workflow",
+            "description": {
+              "content": "The \"Update Workflow\" API method enables modification of an existing workflow instance. This method is essential for altering workflow details and destinations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "workflows",
+                ":workflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The unique workflow ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bb0ac41c-0c03-4a99-a265-3220443de25e",
+              "name": "Workflow updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "workflows",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The unique workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"\",\n  \"NameAr\": \"\",\n  \"NameEn\": \"\",\n  \"IsActive\": true,\n  \"IsDeleted\": false,\n  \"WorkflowDestinations\": [\n    {\n      \"Id\": \"\",\n      \"WorkflowId\": \"\",\n      \"Name\": \"\",\n      \"Email\": \"\",\n      \"Phone\": \"\",\n      \"Order\": 1,\n      \"AuthenticationType\": 1,\n      \"DestinationType\": 3\n    },\n    {\n      \"Id\": \"\",\n      \"WorkflowId\": \"\",\n      \"Name\": \"\",\n      \"Email\": \"\",\n      \"Phone\": \"\",\n      \"Order\": 2,\n      \"AuthenticationType\": 1,\n      \"DestinationType\": 3\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c87fe6a2-d8ee-4f53-a7e7-a639d4f66269",
+          "name": "Delete Workflow",
+          "request": {
+            "name": "Delete Workflow",
+            "description": {
+              "content": "Permanently delete a workflow. Active workflows with ongoing signing processes cannot be deleted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "workflows",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique workflow ID to delete"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "84bdbc2f-48b2-426b-95b3-19cd734390db",
+              "name": "Workflow deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "workflows",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique workflow ID to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13b5b179-d3bb-4a26-9dc0-496e69a9a546",
+              "name": "Id is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "workflows",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique workflow ID to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8,\n  \"message\": null,\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": {\n    \"id\": {\n      \"rawValue\": \"{id}575f0d6b-f4be-4543-90e0-ca473ded3758\",\n      \"attemptedValue\": \"{id}575f0d6b-f4be-4543-90e0-ca473ded3758\",\n      \"errors\": [\n        {\n          \"exception\": null,\n          \"errorMessage\": \"The value '{id}575f0d6b-f4be-4543-90e0-ca473ded3758' is not valid.\"\n        }\n      ],\n      \"validationState\": 1,\n      \"isContainerNode\": false,\n      \"children\": null\n    }\n  },\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sadq.sa",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "02453a45-e14f-4d44-a605-3eef5e952419",
+    "name": "Sadq Integration Archiving & Delegations Workflows API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API reference for the Sadq e-signature platform",
+      "type": "text/plain"
+    }
+  }
+}

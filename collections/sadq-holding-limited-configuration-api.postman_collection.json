@@ -1,0 +1,258 @@
+{
+  "item": [
+    {
+      "id": "0828d369-6170-44f6-a2ff-eb96d4892cf0",
+      "name": "Configuration",
+      "description": {
+        "content": "Update tenant SMS provider and system configuration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "534b4cc6-7b85-4464-8522-4e7824829ce3",
+          "name": "Update SMS Provider",
+          "request": {
+            "name": "Update SMS Provider",
+            "description": {
+              "content": "Updates the SMS provider configuration for your Sadq account. This allows you to configure custom SMS settings for sending notifications to signers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "configuration",
+                "sms-provider"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a609e9b5-4a19-41e5-aa2c-3a0d171dee34",
+              "name": "SMS provider updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "configuration",
+                    "sms-provider"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"smsUrl\": \"https://sms-api.example.com/send\",\n  \"smsSender\": \"Sadq\",\n  \"smsUserame\": \"api_user\",\n  \"smsPassword\": \"secure_password\",\n  \"smsProvider\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be3df847-d7d3-43d5-adb9-c6b92674ebc2",
+          "name": "Update Configuration",
+          "request": {
+            "name": "Update Configuration",
+            "description": {
+              "content": "Updates comprehensive configuration settings including general, email, password, and SMS configurations for your Sadq account in a single request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "configuration",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0bb3097f-3938-42d4-ae09-c78927b6c98a",
+              "name": "Configuration updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "configuration",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"general\": {\n    \"referenceNumberFirstPart\": \"REQ-2025\",\n    \"defaultRedirectUrl\": \"https://example.com/success\",\n    \"allowExternalRecipientsToViewSignerMapping\": false,\n    \"notifyMeEachTimeaSignerCompletesTheirSignature\": true,\n    \"hideSignersSensitiveInformationInTheAuditTrail\": true,\n    \"separateAuditTrailFromOriginalFile\": true,\n    \"preventSignerFromResizingTheSignature\": false,\n    \"flag\": 0\n  },\n  \"email\": {\n    \"emailProviderType\": 1,\n    \"emailDomain\": \"example.com\",\n    \"emailUser\": \"noreply@example.com\",\n    \"emailPassword\": \"secure_password\",\n    \"emailSmtp\": \"smtp.example.com\",\n    \"emailPort\": \"587\",\n    \"emailEnableSSL\": true\n  },\n  \"password\": {\n    \"expiryIntervalDays\": 90,\n    \"minPasswordLength\": 8,\n    \"maxPasswordLength\": 128,\n    \"uppercaseCharRequirement\": 1,\n    \"lowercaseCharRequirement\": 1,\n    \"numberCharRequirement\": 1,\n    \"specialCharRequirement\": 1,\n    \"enableExpiryNotification\": true,\n    \"expiryNotificationDaysBefore\": 7\n  },\n  \"sms\": {\n    \"smsProvider\": 1,\n    \"invitationLanguage\": 1,\n    \"smsUrl\": \"https://sms-api.example.com/send\",\n    \"smsSender\": \"Sadq\",\n    \"smsUsername\": \"api_user\",\n    \"smsPassword\": \"secure_password\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 0,\n  \"message\": null,\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sadq.sa",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4869f836-ad3a-4d24-9667-99510d20e8aa",
+    "name": "Sadq Integration Archiving & Delegations Configuration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API reference for the Sadq e-signature platform",
+      "type": "text/plain"
+    }
+  }
+}

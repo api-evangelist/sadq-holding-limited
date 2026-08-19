@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sadq Integration Archiving & Delegations API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Archiving & Delegations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Archive Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/archiving/categories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a new archive category or subcategory for organizing archived documents."
+        },
+        {
+          "info": {
+            "name": "Upload Archive Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/archiving/files/upload",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Upload files directly to the document archive. Files are stored securely and indexed for future retrieval."
+        },
+        {
+          "info": {
+            "name": "Create Delegation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/delegations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a new delegation, allowing another user to act on your behalf for document signing during a specified time period."
+        },
+        {
+          "info": {
+            "name": "Forward to Delegate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/delegations/forward",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Forward a specific signing request to a delegated authority. The delegate receives the request and can sign on behalf of the original signer."
+        },
+        {
+          "info": {
+            "name": "Update Delegation Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sadq.sa/api/v1/delegations/status",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates the status of an existing delegation (e.g., activate, deactivate, suspend)."
+        },
+        {
+          "info": {
+            "name": "Delete Delegation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sadq.sa/api/v1/delegations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the delegation to delete."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes an existing delegation, removing the delegate's authority to act on behalf of the delegator."
+        },
+        {
+          "info": {
+            "name": "Create Bulk Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/signature-requests/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a bulk signature request job for mass document signing. Upload an Excel file or JSON array with signer details and documents to be processed."
+        },
+        {
+          "info": {
+            "name": "Search Bulk Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/signature-requests/bulk/templates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Search and filter available templates for use in bulk signature requests. Supports text search, category filtering, and pagination."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,197 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sadq Integration Archiving & Delegations Invitations API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invitations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/invitations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Send a signing invitation to a recipient for a specific envelope. The recipient receives an email or SMS with a link to sign the document."
+        },
+        {
+          "info": {
+            "name": "Send Bulk Invitations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/invitations/bulk/send",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Send signing invitations to multiple recipients across multiple envelopes in a single API call. Useful for high-volume signing workflows."
+        },
+        {
+          "info": {
+            "name": "Send Invitation by Envelope",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/invitations/envelope",
+            "params": [
+              {
+                "name": "envelopeId",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the envelope."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Send signing invitations for all signers defined within a specific envelope. This triggers invitation dispatch for all pending signers in the envelope."
+        },
+        {
+          "info": {
+            "name": "Extend Single Invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sadq.sa/api/v1/invitations/extend",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Extend the expiry date of a single signing invitation. Use this to give a signer more time to complete signing before the invitation expires."
+        },
+        {
+          "info": {
+            "name": "Extend Envelope Invitations",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sadq.sa/api/v1/envelopes/extend-invitations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Extend the expiry dates of all pending invitations within a specific envelope. This is useful when you need to give all signers more time."
+        },
+        {
+          "info": {
+            "name": "Send Reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/invitations/reminders/send",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Send a reminder notification to a signer who has not yet completed signing. The reminder is sent via the same channel as the original invitation."
+        },
+        {
+          "info": {
+            "name": "Send Bulk Reminders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v1/invitations/bulk/reminders/send",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Send reminder notifications to multiple signers in a single request. Use this for batch follow-up campaigns."
+        },
+        {
+          "info": {
+            "name": "Send Invitation V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v2/invitations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Version 2 of the Send Invitation API. Unlike previous versions, this endpoint does not send notifications via email or SMS. Instead, it returns the signing link directly in the API response, allowing clients to handle notification delivery and user communication through their own channels."
+        },
+        {
+          "info": {
+            "name": "Send Invitation V3",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/api/v3/invitations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Version 3 of the Send Invitation API. This endpoint sends notifications to recipients via email or SMS and also returns the signing link directly in the API response, allowing clients to both rely on built-in notifications and handle additional communication through their own channels if needed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

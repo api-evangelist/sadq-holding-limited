@@ -1,0 +1,284 @@
+{
+  "item": [
+    {
+      "id": "3a5a8c15-2d4b-4084-b870-6719aa5d94fd",
+      "name": "Templates",
+      "description": {
+        "content": "List and retrieve reusable signing templates",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4b670a79-3250-492b-bcd1-4d54881387b0",
+          "name": "List Templates",
+          "request": {
+            "name": "List Templates",
+            "description": {
+              "content": "Retrieve a paginated list of all reusable document signing templates available to the authenticated account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7c5f2c7d-ffdc-4f08-a79a-101e03b80646",
+              "name": "Templates list returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"94b22fdc-4132-4169-a4f3-5630e80755fa\",\n      \"fileName\": \"sample6.pdf\",\n      \"uploadDate\": \"2025-11-23T12:35:39.58\",\n      \"shareType\": 3\n    },\n    {\n      \"id\": \"b34f152e-29a7-4195-8339-ba0cb0c97cf4\",\n      \"fileName\": \"New_Template.pdf\",\n      \"uploadDate\": \"2025-12-14T11:31:58.117\",\n      \"shareType\": 2\n    }\n  ],\n  \"errorCode\": 0,\n  \"message\": \"Success\",\n  \"returnUrl\": \"\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "098adb3e-6ff3-4422-a5dd-44ccd3901adc",
+          "name": "Get Template by ID",
+          "request": {
+            "name": "Get Template by ID",
+            "description": {
+              "content": "Retrieves detailed information about a specific template, including its destinations (signers) and creator fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "templates",
+                ":templateId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) The unique template ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "75891637-4f68-41e2-9404-7359f8e506b1",
+              "name": "Template details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "templates",
+                    ":templateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) The unique template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"templateId\": \"94b22fdc-4132-4169-a4f3-5630e80755fa\",\n    \"fileName\": \"sample6.pdf\",\n    \"destinations\": [\n      {\n        \"destinationName\": null,\n        \"destinationEmail\": null,\n        \"destinationPhoneNumber\": \"\",\n        \"signeOrder\": 0,\n        \"signatories\": [\n          {\n            \"positionX\": 7.5836406,\n            \"positionY\": 7.650696,\n            \"signatureHigh\": 36.72334,\n            \"signatureWidth\": 303.99942,\n            \"pageNumber\": 1,\n            \"text\": \"\",\n            \"type\": \"Signature\",\n            \"fieldLabel\": null,\n            \"fontFamily\": \"D3F13AA8-A350-4739-B862-27070B4943C0\",\n            \"fontSize\": 12,\n            \"appendDate\": false,\n            \"documentId\": null,\n            \"isRequired\": true,\n            \"textAlignment\": 0,\n            \"dataSource\": null\n          },\n          {\n            \"positionX\": 334.21112,\n            \"positionY\": 174.05334,\n            \"signatureHigh\": 75.588875,\n            \"signatureWidth\": 186.40596,\n            \"pageNumber\": 1,\n            \"text\": \"\",\n            \"type\": \"Signature\",\n            \"fieldLabel\": null,\n            \"fontFamily\": \"D3F13AA8-A350-4739-B862-27070B4943C0\",\n            \"fontSize\": 12,\n            \"appendDate\": false,\n            \"documentId\": null,\n            \"isRequired\": true,\n            \"textAlignment\": 0,\n            \"dataSource\": null\n          },\n          {\n            \"positionX\": 71.049286,\n            \"positionY\": 178.08905,\n            \"signatureHigh\": 67.1731,\n            \"signatureWidth\": 198.53976,\n            \"pageNumber\": 1,\n            \"text\": null,\n            \"type\": \"CreatorSignature\",\n            \"fieldLabel\": null,\n            \"fontFamily\": \"D3F13AA8-A350-4739-B862-27070B4943C0\",\n            \"fontSize\": 12,\n            \"appendDate\": false,\n            \"documentId\": null,\n            \"isRequired\": true,\n            \"textAlignment\": 0,\n            \"dataSource\": null\n          }\n        ],\n        \"availableTo\": \"2026-06-17T00:00:00+03:00\",\n        \"consentOnly\": false,\n        \"authenticationType\": 0,\n        \"allowUserToSignAnyWhere\": false,\n        \"destinationType\": 1,\n        \"nationalId\": null,\n        \"invitationLanguage\": null,\n        \"redirectUrl\": null,\n        \"allowUserToAddDestination\": false,\n        \"delegaterId\": null,\n        \"commercialNumber\": null,\n        \"uploadFile\": null,\n        \"dailyNotify\": false,\n        \"escalation\": null\n      }\n    ],\n    \"creatorFields\": {}\n  },\n  \"errorCode\": 0,\n  \"message\": \"Success\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3b08654-cb0b-4d02-a8ee-b743a960fc56",
+              "name": "Template not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "templates",
+                    ":templateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) The unique template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": null,\n  \"errorCode\": 0,\n  \"message\": \"Success\",\n  \"returnUrl\": \"/dashboard\",\n  \"stateValidationErrors\": null,\n  \"signature\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sadq.sa",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "28647fc9-1bf6-4908-8f83-61688ab1e9a3",
+    "name": "Sadq Integration Archiving & Delegations Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API reference for the Sadq e-signature platform",
+      "type": "text/plain"
+    }
+  }
+}

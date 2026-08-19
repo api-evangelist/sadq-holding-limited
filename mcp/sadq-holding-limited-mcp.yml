@@ -6,10 +6,8 @@ server:
   name: sadq-integration-api
   display_name: Sadq Integration API
   version: 1.0.0
-  description: >-
-    MCP server exposing the Sadq e-signature platform API. Supports creating
-    envelopes, managing signatories, sending documents for signature, querying
-    webhook logs, and more.
+  description: MCP server exposing the Sadq e-signature platform API. Supports creating envelopes, managing
+    signatories, sending documents for signature, querying webhook logs, and more.
   homepage: https://docs.sadq.sa/docs
   transport: streamable-http
   url: https://docs.sadq.sa/mcp
@@ -32,3 +30,8 @@ discovery:
   openapi_schema: https://docs.sadq.sa/api/schema
   oauth_protected_resource: https://docs.sadq.sa/.well-known/oauth-protected-resource
   llms_txt: https://docs.sadq.sa/llms.txt
+deployment:
+  mode: remote
+  verified: searched
+  checked: '2026-08-12'
+  source: catalog MCP census

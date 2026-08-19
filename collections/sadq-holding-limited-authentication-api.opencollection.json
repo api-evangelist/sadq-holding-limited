@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sadq Integration Archiving & Delegations Authentication API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Obtain Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sadq.sa/Authentication/Authority/Token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Obtain a JWT Bearer token using Basic Auth. Pass your Client ID as username and Client Secret as password in the Authorization header (Base64-encoded). The body must be form-encoded with grant_type=integration plus user credentials. The returned access_token must be included as a Bearer token in all subsequent API requests."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
