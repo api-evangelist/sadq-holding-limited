@@ -42,6 +42,17 @@ tags:
 - Digital Signature
 - Identity
 - KYB
+- Document-Management
+- Saudi Arabia
+- Nafath
+- Webhook
+- Agent Ready
+tags_raw:
+- Company
+- E-Signature
+- Digital Signature
+- Identity
+- KYB
 - Document Management
 - Saudi Arabia
 - Nafath
@@ -186,6 +197,8 @@ apis:
   humanURL: https://docs.sadq.sa/docs
   baseURL: https://api.sadq.sa
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -198,6 +211,8 @@ apis:
   humanURL: https://docs.sadq.sa/docs
   baseURL: https://api.sadq.sa
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
