@@ -131,18 +131,6 @@ apis:
     url: openapi/sadq-holding-limited-envelopes-api-openapi.yml
   - type: APIReference
     url: https://docs.sadq.sa/docs
-- aid: sadq-holding-limited:sadq-holding-limited-esign-api
-  name: Sadq Holding Limited eSign API
-  description: Electronic and digital signature operations via Nafath/PKI
-  humanURL: https://docs.sadq.sa/docs
-  baseURL: https://api.sadq.sa
-  tags:
-  - eSign
-  properties:
-  - type: OpenAPI
-    url: openapi/sadq-holding-limited-esign-api-openapi.yml
-  - type: APIReference
-    url: https://docs.sadq.sa/docs
 - aid: sadq-holding-limited:sadq-holding-limited-invitations-api
   name: Sadq Holding Limited Invitations API
   description: Send, extend, and remind signing invitations
@@ -241,6 +229,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/sadq-holding-limited-workflows-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sadq.sa/docs
+- aid: sadq-holding-limited:sadq-holding-limited-e-sign-api
+  name: Sadq Holding Limited e Sign API
+  description: Electronic and digital signature operations via Nafath/PKI
+  humanURL: https://docs.sadq.sa/docs
+  baseURL: https://api.sadq.sa
+  tags:
+  - e Sign
+  properties:
+  - type: OpenAPI
+    url: openapi/sadq-holding-limited-e-sign-api-openapi.yml
   - type: APIReference
     url: https://docs.sadq.sa/docs
 maintainers:
