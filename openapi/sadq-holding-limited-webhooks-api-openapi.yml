@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Sadq Integration Archiving & Delegations Webhooks API
+  title: Sadq Integration Webhooks API
   description: API reference for the Sadq e-signature platform
   version: 1.0.0
   contact:
@@ -47,6 +47,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: putApiV1Webhooks
+      x-operation-id-source: derived
   /api/v1/webhooks/bulk:
     post:
       tags:
@@ -93,6 +95,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV1WebhooksBulk
+      x-operation-id-source: derived
   /api/v1/webhooks/{id}:
     delete:
       tags:
@@ -121,6 +125,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: deleteApiV1WebhooksById
+      x-operation-id-source: derived
   /api/v1/webhooks/recall:
     post:
       tags:
@@ -151,6 +157,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV1WebhooksRecall
+      x-operation-id-source: derived
   /api/v1/webhooks/logs:
     get:
       tags:
@@ -190,6 +198,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: getApiV1WebhooksLogs
+      x-operation-id-source: derived
 components:
   securitySchemes:
     BearerAuth:

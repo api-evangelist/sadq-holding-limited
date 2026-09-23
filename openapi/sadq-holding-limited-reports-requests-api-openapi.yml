@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Sadq Integration Archiving & Delegations Reports & Requests API
+  title: Sadq Integration Reports & Requests API
   description: API reference for the Sadq e-signature platform
   version: 1.0.0
   contact:
@@ -41,6 +41,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: getApiV1ReportsConsumption
+      x-operation-id-source: derived
   /api/v1/reports/requests:
     post:
       tags:
@@ -126,6 +128,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV1ReportsRequests
+      x-operation-id-source: derived
   /api/v1/requests/list:
     get:
       tags:
@@ -221,6 +225,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: getApiV1RequestsList
+      x-operation-id-source: derived
   /api/v1/requests/user-list:
     get:
       tags:
@@ -315,12 +321,22 @@ paths:
                     categoryId: ffffffff-1111-2222-3333-444444444444
                     categoryName: Contracts
                 totalCount: 1
+      operationId: getApiV1RequestsUserList
+      x-operation-id-source: derived
   /api/v1/reports/requests-by-destinations:
     post:
       tags:
       - Reports & Requests
       summary: Requests by Destinations Report
-      description: "Returns a paginated report of signature requests broken down by individual destination (signer/reviewer/creator). Each row\n  represents one destination's activity on a request, including the creator details, destination name, contact info, destination\n  type and status, action/delivery dates, execution duration, and a direct signing URL. Supports filtering by request status,\n  destination status, destination type, reference number, creator, search term, and date ranges (created, actioned, completed).\n  Also returns aggregate totals across the result set."
+      description: 'Returns a paginated report of signature requests broken down by individual destination (signer/reviewer/creator). Each row
+
+        represents one destination''s activity on a request, including the creator details, destination name, contact info, destination
+
+        type and status, action/delivery dates, execution duration, and a direct signing URL. Supports filtering by request status,
+
+        destination status, destination type, reference number, creator, search term, and date ranges (created, actioned, completed).
+
+        Also returns aggregate totals across the result set.'
       deprecated: false
       x-docs-url: https://docs.sadq.sa/docs/reports-requests/post-api-v1-reports-requests-by-destinations
       security:
@@ -371,6 +387,8 @@ paths:
                     totalCompletedRequests: 1
                 errorCode: 0
                 message: null
+      operationId: postApiV1ReportsRequestsByDestinations
+      x-operation-id-source: derived
 components:
   securitySchemes:
     BearerAuth:

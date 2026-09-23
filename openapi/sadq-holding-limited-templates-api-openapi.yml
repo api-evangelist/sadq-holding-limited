@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Sadq Integration Archiving & Delegations Templates API
+  title: Sadq Integration Templates API
   description: API reference for the Sadq e-signature platform
   version: 1.0.0
   contact:
@@ -46,6 +46,8 @@ paths:
                 returnUrl: ''
                 stateValidationErrors: null
                 signature: ''
+      operationId: getApiV1Templates
+      x-operation-id-source: derived
   /api/v1/templates/{templateId}:
     get:
       tags:
@@ -154,6 +156,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: getApiV1TemplatesByTemplateId
+      x-operation-id-source: derived
 components:
   securitySchemes:
     BearerAuth:

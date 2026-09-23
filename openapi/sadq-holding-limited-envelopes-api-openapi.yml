@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Sadq Integration Archiving & Delegations Envelopes API
+  title: Sadq Integration Envelopes API
   description: API reference for the Sadq e-signature platform
   version: 1.0.0
   contact:
@@ -106,6 +106,8 @@ paths:
                 returnUrl: null
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV1EnvelopesInitiate
+      x-operation-id-source: derived
   /api/v1/envelopes/initiate-base64:
     post:
       tags:
@@ -172,6 +174,8 @@ paths:
                 returnUrl: null
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV1EnvelopesInitiateBase64
+      x-operation-id-source: derived
   /api/v1/envelopes/initiate-by-template:
     post:
       tags:
@@ -219,6 +223,8 @@ paths:
                 returnUrl: null
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV1EnvelopesInitiateByTemplate
+      x-operation-id-source: derived
   /api/v1/envelopes/bulk/initiate-base64:
     post:
       tags:
@@ -276,6 +282,8 @@ paths:
                 returnUrl: null
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV1EnvelopesBulkInitiateBase64
+      x-operation-id-source: derived
   /api/v1/envelopes/{envelopeId}/files:
     get:
       tags:
@@ -319,6 +327,8 @@ paths:
                 returnUrl: null
                 stateValidationErrors: null
                 signature: ''
+      operationId: getApiV1EnvelopesByEnvelopeIdFiles
+      x-operation-id-source: derived
   /api/v1/envelopes/{envelopeId}/cancel:
     post:
       tags:
@@ -365,6 +375,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV1EnvelopesByEnvelopeIdCancel
+      x-operation-id-source: derived
   /api/v1/envelopes/{envelopeId}/status:
     get:
       tags:
@@ -406,6 +418,8 @@ paths:
                 returnUrl: null
                 stateValidationErrors: null
                 signature: ''
+      operationId: getApiV1EnvelopesByEnvelopeIdStatus
+      x-operation-id-source: derived
   /api/v1/envelopes/{envelopeId}/files/completed:
     get:
       tags:
@@ -448,6 +462,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: getApiV1EnvelopesByEnvelopeIdFilesCompleted
+      x-operation-id-source: derived
   /api/v1/envelopes/bulk/initiate-and-invite:
     post:
       tags:
@@ -497,6 +513,8 @@ paths:
                 stateValidationErrors: null
                 signature: ''
                 data: null
+      operationId: postApiV1EnvelopesBulkInitiateAndInvite
+      x-operation-id-source: derived
 components:
   securitySchemes:
     BearerAuth:

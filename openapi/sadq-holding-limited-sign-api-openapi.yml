@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Sadq Integration Archiving & Delegations Sign API
+  title: Sadq Integration Sign API
   description: API reference for the Sadq e-signature platform
   version: 1.0.0
   contact:
@@ -67,6 +67,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV2Sign
+      x-operation-id-source: derived
   /api/v2/sign/by-template:
     post:
       tags:
@@ -112,6 +114,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV2SignByTemplate
+      x-operation-id-source: derived
   /api/v2/sign/digital:
     get:
       tags:
@@ -171,6 +175,8 @@ paths:
                   auditTrailFile: string (base64, nullable)
                   hasAuditTrail: boolean
                   isAuditTrailSeparate: boolean
+      operationId: getApiV2SignDigital
+      x-operation-id-source: derived
 components:
   securitySchemes:
     BearerAuth:

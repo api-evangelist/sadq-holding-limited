@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Sadq Integration Archiving & Delegations eSign API
+  title: Sadq Integration E Sign API
   description: API reference for the Sadq e-signature platform
   version: 1.0.0
   contact:
@@ -11,14 +11,14 @@ servers:
 - url: https://sandbox-api.sadq-sa.com
   description: Sandbox
 tags:
-- name: eSign
+- name: e Sign
   description: Electronic and digital signature operations via Nafath/PKI
   x-docs-url: https://docs.sadq.sa/docs/esign
 paths:
   /api/v1/esign/nafath/sign:
     post:
       tags:
-      - eSign
+      - e Sign
       summary: Hash Sign V1
       description: Sign a document using Saudi Arabia's Nafath national digital identity platform (v1). The signer authenticates via the Nafath app using their national ID.
       deprecated: false
@@ -65,10 +65,12 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV1EsignNafathSign
+      x-operation-id-source: derived
   /api/v2/esign/nafath/sign:
     post:
       tags:
-      - eSign
+      - e Sign
       summary: Hash Sign V2
       description: Enhanced Nafath signing endpoint (v2) with additional biometric verification options, improved error handling, and support for Nafath API v3 authentication flows.
       deprecated: false
@@ -125,6 +127,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV2EsignNafathSign
+      x-operation-id-source: derived
 components:
   securitySchemes:
     BearerAuth:

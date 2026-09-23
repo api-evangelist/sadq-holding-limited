@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Sadq Integration Archiving & Delegations KYB API
+  title: Sadq Integration KYB API
   description: API reference for the Sadq e-signature platform
   version: 1.0.0
   contact:
@@ -44,6 +44,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: getApiV1KybCheckCrByCommercialNumber
+      x-operation-id-source: derived
   /api/v2/kyb/check-cr/{commercialNumber}:
     get:
       tags:
@@ -73,6 +75,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: getApiV2KybCheckCrByCommercialNumber
+      x-operation-id-source: derived
   /api/v1/kyb/absher-otp/{commercialNumber}/{nationalId}:
     get:
       tags:
@@ -108,6 +112,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: getApiV1KybAbsherOtpByCommercialNumberByNationalId
+      x-operation-id-source: derived
   /api/v1/kyb/absher-otp/{nationalId}:
     get:
       tags:
@@ -137,6 +143,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: getApiV1KybAbsherOtpByNationalId
+      x-operation-id-source: derived
   /api/v1/kyb/delegacy/{nationalId}/{delegatedReferenceId}:
     get:
       tags:
@@ -201,6 +209,8 @@ paths:
                           delegatedReferenceId: REF-2024-001
                           delegatedReferenceType: COMPANY
                           mainReferenceId: null
+      operationId: getApiV1KybDelegacyByNationalIdByDelegatedReferenceId
+      x-operation-id-source: derived
   /api/v1/kyb/spl/national-address/{crNumber}:
     get:
       tags:
@@ -230,6 +240,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: getApiV1KybSplNationalAddressByCrNumber
+      x-operation-id-source: derived
 components:
   securitySchemes:
     BearerAuth:

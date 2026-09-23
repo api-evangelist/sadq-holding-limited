@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Sadq Integration Archiving & Delegations Workflows API
+  title: Sadq Integration Workflows API
   description: API reference for the Sadq e-signature platform
   version: 1.0.0
   contact:
@@ -106,6 +106,8 @@ paths:
                     destinationType: 3
                 errorCode: 0
                 message: ''
+      operationId: getApiV1Workflows
+      x-operation-id-source: derived
   /api/v1/workflows/{workflowId}:
     put:
       tags:
@@ -163,6 +165,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: putApiV1WorkflowsByWorkflowId
+      x-operation-id-source: derived
   /api/v1/workflows/{id}:
     delete:
       tags:
@@ -210,6 +214,8 @@ paths:
                     isContainerNode: false
                     children: null
                 signature: ''
+      operationId: deleteApiV1WorkflowsById
+      x-operation-id-source: derived
 components:
   securitySchemes:
     BearerAuth:

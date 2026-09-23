@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Sadq Integration Archiving & Delegations Configuration API
+  title: Sadq Integration Configuration API
   description: API reference for the Sadq e-signature platform
   version: 1.0.0
   contact:
@@ -49,6 +49,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: putApiV1ConfigurationSmsProvider
+      x-operation-id-source: derived
   /api/v1/configuration/update:
     post:
       tags:
@@ -112,6 +114,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV1ConfigurationUpdate
+      x-operation-id-source: derived
 components:
   securitySchemes:
     BearerAuth:

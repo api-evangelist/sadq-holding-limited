@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Sadq Integration Archiving & Delegations Invitations API
+  title: Sadq Integration Invitations API
   description: API reference for the Sadq e-signature platform
   version: 1.0.0
   contact:
@@ -53,6 +53,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV1Invitations
+      x-operation-id-source: derived
   /api/v1/invitations/bulk/send:
     post:
       tags:
@@ -97,6 +99,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV1InvitationsBulkSend
+      x-operation-id-source: derived
   /api/v1/invitations/envelope:
     post:
       tags:
@@ -141,6 +145,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV1InvitationsEnvelope
+      x-operation-id-source: derived
   /api/v1/invitations/extend:
     put:
       tags:
@@ -173,6 +179,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: putApiV1InvitationsExtend
+      x-operation-id-source: derived
   /api/v1/envelopes/extend-invitations:
     put:
       tags:
@@ -205,6 +213,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: putApiV1EnvelopesExtendInvitations
+      x-operation-id-source: derived
   /api/v1/invitations/reminders/send:
     post:
       tags:
@@ -237,6 +247,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV1InvitationsRemindersSend
+      x-operation-id-source: derived
   /api/v1/invitations/bulk/reminders/send:
     post:
       tags:
@@ -273,6 +285,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV1InvitationsBulkRemindersSend
+      x-operation-id-source: derived
   /api/v2/invitations:
     post:
       tags:
@@ -335,6 +349,8 @@ paths:
                 returnUrl: ''
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV2Invitations
+      x-operation-id-source: derived
   /api/v3/invitations:
     post:
       tags:
@@ -395,6 +411,8 @@ paths:
                 returnUrl: ''
                 stateValidationErrors: null
                 signature: ''
+      operationId: postApiV3Invitations
+      x-operation-id-source: derived
 components:
   securitySchemes:
     BearerAuth:

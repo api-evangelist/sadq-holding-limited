@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Sadq Integration Archiving & Delegations Documents API
+  title: Sadq Integration Documents API
   description: API reference for the Sadq e-signature platform
   version: 1.0.0
   contact:
@@ -38,6 +38,8 @@ paths:
           content:
             application/json:
               example: {}
+      operationId: getApiV1DocumentsById
+      x-operation-id-source: derived
   /api/v1/documents/{id}/signed:
     get:
       tags:
@@ -61,6 +63,8 @@ paths:
           content:
             application/json:
               example: {}
+      operationId: getApiV1DocumentsByIdSigned
+      x-operation-id-source: derived
   /api/v1/documents/{id}/completed/base64:
     get:
       tags:
@@ -93,11 +97,13 @@ paths:
                 returnUrl: ''
                 stateValidationErrors: null
                 signature: ''
+      operationId: getApiV1DocumentsByIdCompletedBase64
+      x-operation-id-source: derived
   /api/v1/documents/{id}/content-base64:
     get:
       tags:
       - Documents
-      summary: Download File  v1
+      summary: Download File v1
       description: The "File Download" API allows users to download files from the server by providing the unique identifier (FileId) of the desired file. This API is particularly useful for applications that require file handling and management, enabling seamless integration with the system to securely retrieve files.
       deprecated: false
       x-docs-url: https://docs.sadq.sa/docs/documents/get-api-v1-documents-id-content-base64
@@ -122,11 +128,13 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: getApiV1DocumentsByIdContentBase64
+      x-operation-id-source: derived
   /api/v2/documents/{id}/content-base64:
     get:
       tags:
       - Documents
-      summary: Download File  v2
+      summary: Download File v2
       description: The "File Download" API allows users to download files from the server by providing the unique identifier (FileId) of the desired file. This API is particularly useful for applications that require file handling and management, enabling seamless integration with the system to securely retrieve files.
       deprecated: false
       x-docs-url: https://docs.sadq.sa/docs/documents/get-api-v2-documents-id-content-base64
@@ -151,6 +159,8 @@ paths:
                 returnUrl: /dashboard
                 stateValidationErrors: null
                 signature: ''
+      operationId: getApiV2DocumentsByIdContentBase64
+      x-operation-id-source: derived
 components:
   securitySchemes:
     BearerAuth:

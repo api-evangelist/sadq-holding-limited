@@ -1,20 +1,7 @@
 {
   "provider": "sadq-holding-limited",
   "sources": [
-    "sadq-holding-limited-archiving-delegations-api-openapi.yml",
-    "sadq-holding-limited-authentication-api-openapi.yml",
-    "sadq-holding-limited-configuration-api-openapi.yml",
-    "sadq-holding-limited-documents-api-openapi.yml",
-    "sadq-holding-limited-envelopes-api-openapi.yml",
-    "sadq-holding-limited-esign-api-openapi.yml",
-    "sadq-holding-limited-invitations-api-openapi.yml",
-    "sadq-holding-limited-kyb-api-openapi.yml",
-    "sadq-holding-limited-reports-requests-api-openapi.yml",
-    "sadq-holding-limited-sign-api-openapi.yml",
-    "sadq-holding-limited-templates-api-openapi.yml",
-    "sadq-holding-limited-users-api-openapi.yml",
-    "sadq-holding-limited-webhooks-api-openapi.yml",
-    "sadq-holding-limited-workflows-api-openapi.yml"
+    "_original/sadq-holding-limited-openapi-original.json"
   ],
   "outputs": [
     "sadq-holding-limited-archiving-delegations-api-openapi.yml",
@@ -22,7 +9,6 @@
     "sadq-holding-limited-configuration-api-openapi.yml",
     "sadq-holding-limited-documents-api-openapi.yml",
     "sadq-holding-limited-envelopes-api-openapi.yml",
-    "sadq-holding-limited-esign-api-openapi.yml",
     "sadq-holding-limited-invitations-api-openapi.yml",
     "sadq-holding-limited-kyb-api-openapi.yml",
     "sadq-holding-limited-reports-requests-api-openapi.yml",
@@ -30,11 +16,34 @@
     "sadq-holding-limited-templates-api-openapi.yml",
     "sadq-holding-limited-users-api-openapi.yml",
     "sadq-holding-limited-webhooks-api-openapi.yml",
-    "sadq-holding-limited-workflows-api-openapi.yml"
+    "sadq-holding-limited-workflows-api-openapi.yml",
+    "sadq-holding-limited-esign-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sadq-holding-limited-openapi-original.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: sadq-holding-limited-e-sign-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 14 total)"
+  ],
+  "skipped": [
+    "sadq-holding-limited-archiving-delegations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sadq-holding-limited-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sadq-holding-limited-configuration-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sadq-holding-limited-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sadq-holding-limited-e-sign-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sadq-holding-limited-envelopes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sadq-holding-limited-invitations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sadq-holding-limited-kyb-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sadq-holding-limited-reports-requests-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sadq-holding-limited-sign-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sadq-holding-limited-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sadq-holding-limited-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sadq-holding-limited-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sadq-holding-limited-workflows-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
