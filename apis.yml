@@ -1,5 +1,5 @@
 aid: sadq-holding-limited
-name: Sadq Holding Limited
+name: Sadq
 description: >-
   Sadq (صادق) is a Saudi Arabian electronic-signature and digital-trust platform
   that lets businesses send, sign, and manage legally binding documents online.
@@ -54,7 +54,7 @@ tags:
 - Digital Signature
 - Identity
 - KYB
-- Document-Management
+- Document Management
 - Saudi Arabia
 - Nafath
 - Webhook
@@ -70,6 +70,7 @@ tags_raw:
 - Nafath
 - Webhooks
 - Agent Ready
+- Document-Management
 apis:
 - aid: sadq-holding-limited:sadq-holding-limited-archiving-delegations-api
   name: Sadq Holding Limited Archiving & Delegations API
@@ -232,13 +233,11 @@ apis:
   - type: APIReference
     url: https://docs.sadq.sa/docs
 - aid: sadq-holding-limited:sadq-holding-limited-e-sign-api
-  name: Sadq Holding Limited e Sign API
+  name: Sadq e Sign API
   description: Electronic and digital signature operations via Nafath/PKI
   humanURL: https://docs.sadq.sa/docs
   baseURL: https://api.sadq.sa
   tags:
-  - eSign
-  tags_raw:
   - e Sign
   properties:
   - type: OpenAPI
@@ -310,3 +309,4 @@ x-enrichment:
   status: enriched
   artifacts_added: 25
   pass: local-v1
+x-legal-name: Sadq Holding Limited

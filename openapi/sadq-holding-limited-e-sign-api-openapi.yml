@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Sadq Integration E Sign API
+  title: Sadq Integration eSign API
   description: API reference for the Sadq e-signature platform
   version: 1.0.0
   contact:
