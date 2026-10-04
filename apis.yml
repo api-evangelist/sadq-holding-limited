@@ -238,6 +238,8 @@ apis:
   humanURL: https://docs.sadq.sa/docs
   baseURL: https://api.sadq.sa
   tags:
+  - eSign
+  tags_raw:
   - e Sign
   properties:
   - type: OpenAPI
@@ -250,6 +252,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/sadq-holding-limited-capability-edges.yml
+  name: Sadq Business Capability Map
 - type: Website
   url: https://sadq.sa
 - type: DeveloperPortal
