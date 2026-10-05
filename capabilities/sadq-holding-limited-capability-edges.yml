@@ -1,0 +1,46 @@
+slug: sadq-holding-limited
+provider: Sadq
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Webhooks
+  spec_file: sadq-holding-limited-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.78
+  evidence: POST /api/v1/webhooks/bulk  Create Webhooks Bulk; GET /api/v1/webhooks/logs  Get Webhook Logs
+  reason: Operations create, update, delete and inspect delivery logs for outbound webhook subscriptions
+    — the lifecycle of event subscriptions exposed to integrating developers. Maps to Webhook & Event
+    Subscription Management rather than any document/legal capability.
+- tag: Envelopes
+  spec_file: sadq-holding-limited-envelopes-api-openapi.yml
+  capability_id: BC-150.10
+  capability_id_l1: BC-150
+  capability_name: Contract Management
+  confidence: 0.7
+  evidence: POST /api/v1/envelopes/initiate Initiate Envelope; POST /api/v1/envelopes/{envelopeId}/cancel
+    Cancel Envelope; GET /api/v1/envelopes/{envelopeId}/status Get Envelope Status
+  reason: Envelope initiation, status tracking and cancellation is the core execution workflow for 'legally
+    binding documents', i.e. the signing/execution stage of contract lifecycle management. Moderate confidence
+    since envelopes may carry any document type, not only contracts.
+- tag: Sign
+  spec_file: sadq-holding-limited-sign-api-openapi.yml
+  capability_id: BC-150.10
+  capability_id_l1: BC-150
+  capability_name: Contract Management
+  confidence: 0.7
+  evidence: POST /api/v2/sign Sign Document V2; GET /api/v2/sign/digital Digital Sign
+  reason: Direct and template-based electronic signing of legally binding documents is the execution step
+    of contract lifecycle management. Not raised higher because the signed artefacts need not be contracts
+    in every use case.
