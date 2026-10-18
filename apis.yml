@@ -238,6 +238,8 @@ apis:
   humanURL: https://docs.sadq.sa/docs
   baseURL: https://api.sadq.sa
   tags:
+  - E-Signature
+  tags_raw:
   - e Sign
   properties:
   - type: OpenAPI
